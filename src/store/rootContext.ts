@@ -1,11 +1,13 @@
 import * as navigator from '~/navigation/navigator';
 
-const rootContext = {
-  navigator,
-};
-
-export enum RootContext {
+export enum ContextName {
   NAVIGATOR = 'navigator',
 }
+
+const rootContext = {
+  [ContextName.NAVIGATOR]: navigator,
+};
+
+export type RootContext = typeof rootContext;
 
 export default rootContext;
