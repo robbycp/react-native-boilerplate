@@ -1,7 +1,24 @@
-import {createNavigationContainerRef} from '@react-navigation/native';
+import {
+  CommonActions,
+  createNavigationContainerRef,
+  NavigationContainerRefWithCurrent,
+  StackActions,
+} from '@react-navigation/native';
+import {RootStackParamList} from '~/types/navigation';
 
-export const navigationRef = createNavigationContainerRef();
+export const navigationRef =
+  createNavigationContainerRef<
+    NavigationContainerRefWithCurrent<RootStackParamList>
+  >();
 
-export function navigate(name: never, params: never) {
-  navigationRef.navigate(name, params);
+export function navigate(name: string, params?: object) {
+  navigationRef.current?.dispatch(
+    CommonActions.navigate({
+      name,
+      params,
+    }),
+  );
+}
+export function replace(name: string, params?: object) {
+  navigationRef.current?.dispatch(StackActions.replace(name, params));
 }
