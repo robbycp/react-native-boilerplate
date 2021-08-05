@@ -1,6 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {ReduxModule} from '~/types/redux';
 import {Auth} from '~/types/user';
+import {RootState} from '~/store/rootReducers';
 
 interface AuthState {
   data: Auth;
@@ -38,6 +39,6 @@ export const authSlice = createSlice({
 export const {authCheckRequest, authCheckFailed, authCheckSuccess} =
   authSlice.actions;
 
-export const getDataAuth = (state: AuthState): AuthState['data'] => state.data;
+export const getDataAuth = (state: RootState) => state.auth.data;
 
 export default authSlice.reducer;
