@@ -1,22 +1,23 @@
 import React from 'react';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {View, Text} from 'react-native';
 
 import {navigationRef} from '~/navigation/navigator';
-import {RootStackParamList, ScreenName} from '~/types/navigation';
+import {useDispatch} from 'react-redux';
+import {appStartCheck} from '~/store/slices/app';
 
-interface Props {
-  navigation: NativeStackNavigationProp<RootStackParamList, ScreenName.SPLASH>;
-}
+// interface Props {
+//   navigation: NativeStackNavigationProp<RootStackParamList, ScreenName.SPLASH>;
+// }
 
-const ScreenSplashView = ({navigation}: Props) => {
+const ScreenSplashView = () => {
+  const dispatch = useDispatch();
   const isReady = React.useRef(navigationRef.isReady());
 
   React.useEffect(() => {
     if (isReady) {
-      navigation.replace(ScreenName.HOME);
+      dispatch(appStartCheck());
     }
-  }, [isReady, navigation]);
+  }, [isReady, dispatch]);
 
   return (
     <View>
