@@ -1,1 +1,1 @@
-export {default} from './ScreenHomeView';
+export {default} from './ScreenHomeContainer';
