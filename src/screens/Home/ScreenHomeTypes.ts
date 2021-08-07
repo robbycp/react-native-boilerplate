@@ -13,4 +13,5 @@ export interface ScreenHomeContainerProps
   > {}
 export interface ScreenHomeViewProps {
   listFeatures: ListFeature[];
+  textFirebaseConfig: RemoteConfigValue;
 }
