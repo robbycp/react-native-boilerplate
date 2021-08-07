@@ -15,6 +15,11 @@ const ScreenHomeContainer: React.FunctionComponent<ScreenHomeContainerProps> =
     };
     const listFeatures: ListFeature[] = [
       {
+        title: 'Form',
+        icon: 'account-box',
+        onPress: () => navigateAndAnalytics(ScreenName.FORM),
+      },
+      {
         title: 'Webview',
         icon: 'google',
         onPress: () => navigateAndAnalytics(ScreenName.WEBVIEW_GOOGLE),

@@ -1,6 +1,7 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
+import ScreenForm from '~/screens/Form';
 import ScreenHome from '~/screens/Home';
 import ScreenSplash from '~/screens/Splash';
 import ScreenWebviewGoogle from '~/screens/WebviewGoogle';
@@ -11,6 +12,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const RootNavigator: React.FunctionComponent = () => {
   return (
     <Stack.Navigator initialRouteName={ScreenName.SPLASH}>
+      <Stack.Screen name={ScreenName.FORM} component={ScreenForm} />
       <Stack.Screen name={ScreenName.HOME} component={ScreenHome} />
       <Stack.Screen name={ScreenName.SPLASH} component={ScreenSplash} />
       <Stack.Screen
