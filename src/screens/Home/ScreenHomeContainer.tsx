@@ -20,6 +20,11 @@ const ScreenHomeContainer: React.FunctionComponent<ScreenHomeContainerProps> =
         onPress: () => navigateAndAnalytics(ScreenName.FORM),
       },
       {
+        title: 'List Image',
+        icon: 'image',
+        onPress: () => navigateAndAnalytics(ScreenName.FLATLIST_IMAGE),
+      },
+      {
         title: 'Webview',
         icon: 'google',
         onPress: () => navigateAndAnalytics(ScreenName.WEBVIEW_GOOGLE),

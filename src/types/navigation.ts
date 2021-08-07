@@ -1,4 +1,5 @@
 export enum ScreenName {
+  FLATLIST_IMAGE = 'flatlist_image',
   FORM = 'form',
   HOME = 'home',
   SPLASH = 'splash',
@@ -6,6 +7,7 @@ export enum ScreenName {
 }
 
 export type RootStackParamList = {
+  [ScreenName.FLATLIST_IMAGE]: undefined;
   [ScreenName.FORM]: undefined;
   [ScreenName.HOME]: undefined;
   [ScreenName.SPLASH]: undefined;
