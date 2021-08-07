@@ -1,4 +1,5 @@
 import React from 'react';
+import {getValue, RemoteConfigKeys} from '~/services/firebaseRemoteConfig';
 import {ScreenName} from '~/types/navigation';
 import {ListFeature, ScreenHomeContainerProps} from './ScreenHomeTypes';
 
@@ -13,10 +14,12 @@ const ScreenHomeContainer: React.FunctionComponent<ScreenHomeContainerProps> =
         onPress: () => navigation.navigate(ScreenName.WEBVIEW_GOOGLE),
       },
     ];
+    const textFirebaseConfig = getValue(RemoteConfigKeys.AWESOME_NEW_FEATURE);
     return (
       <ScreenHomeView
         {...{
           listFeatures,
+          textFirebaseConfig,
         }}
       />
     );

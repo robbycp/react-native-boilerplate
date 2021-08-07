@@ -14,6 +14,7 @@ import {navigationRef} from '~/navigation/navigator';
 import configureStore from '~/store';
 import theme from '~/style/theme';
 import {exceptionJSHandler, exceptionNativeHandler} from '~/utils/errorHandler';
+import {fetchRemoteConfig} from '~/services/firebaseRemoteConfig';
 
 const {persistor, store} = configureStore();
 
@@ -21,6 +22,8 @@ const allowInDevMode = true;
 
 setJSExceptionHandler(exceptionJSHandler, allowInDevMode);
 setNativeExceptionHandler(exceptionNativeHandler, allowInDevMode);
+
+fetchRemoteConfig();
 
 const App = () => {
   return (
