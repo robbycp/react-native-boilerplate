@@ -19,7 +19,7 @@ import {initialAnalytics, logScreen} from '~/services/firebaseAnalytics';
 
 const {persistor, store} = configureStore();
 
-const allowInDevMode = true;
+const allowInDevMode = false;
 
 setJSExceptionHandler(exceptionJSHandler, allowInDevMode);
 setNativeExceptionHandler(exceptionNativeHandler, allowInDevMode);

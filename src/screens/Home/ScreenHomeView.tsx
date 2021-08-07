@@ -6,12 +6,13 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-import {List, Text} from 'react-native-paper';
+import {Button, List, Text} from 'react-native-paper';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {ScreenHomeViewProps} from './ScreenHomeTypes';
 
 const ScreenHomeView = ({
+  handleShareMessage,
   listFeatures,
   textFirebaseConfig,
 }: ScreenHomeViewProps) => {
@@ -29,6 +30,7 @@ const ScreenHomeView = ({
         style={backgroundStyle}>
         <View>
           <Text>Firebase Remote Config : {textFirebaseConfig.value}</Text>
+          <Button onPress={handleShareMessage}>Share Message</Button>
         </View>
         <View
           style={{

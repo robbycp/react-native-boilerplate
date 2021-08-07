@@ -12,6 +12,7 @@ export interface ScreenHomeContainerProps
     ScreenName.WEBVIEW_GOOGLE
   > {}
 export interface ScreenHomeViewProps {
+  handleShareMessage: () => void;
   listFeatures: ListFeature[];
   textFirebaseConfig: RemoteConfigValue;
 }
