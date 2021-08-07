@@ -1,19 +1,24 @@
 import React from 'react';
-import {Pressable, View, TextInput as RNTextInput} from 'react-native';
+import {
+  Pressable,
+  View,
+  TextInput as RNTextInput,
+  GestureResponderEvent,
+} from 'react-native';
 import {HelperText, TextInput} from 'react-native-paper';
 
 const TEXTINPUT_MODE = 'outlined';
 
 type RNTextInputProps = React.ComponentProps<typeof TextInput>;
 
-type TextInputCustomProps = {
+export type TextInputCustomProps = {
   isPressable?: boolean;
   isShowHelper?: boolean;
   helperMode?: 'error' | 'info';
   onClear?: () => void;
-  onPress?: () => void;
+  onPress?: ((event: GestureResponderEvent) => void) | null | undefined;
   textInputMode?: 'secure' | 'clear';
-  textInputProps: RNTextInputProps;
+  nativeTextInputProps: RNTextInputProps;
   textHelper?: string;
   withClearButton?: boolean;
   withSecureButton?: boolean;
@@ -27,11 +32,11 @@ const TextInputCustom = ({
   onClear = () => {},
   onPress,
   textInputMode,
-  textInputProps,
+  nativeTextInputProps,
   textHelper,
   withHelperText,
 }: TextInputCustomProps) => {
-  const {onChangeText = () => {}, value} = textInputProps;
+  const {onChangeText = () => {}, value} = nativeTextInputProps;
   const [isSecure, setisSecure] = React.useState(false);
   const textInputRef = React.useRef<RNTextInput>(null);
   const onPressClear = () => {
@@ -57,7 +62,7 @@ const TextInputCustom = ({
   }
 
   const propsTextInput = {
-    ...textInputProps,
+    ...nativeTextInputProps,
     onChangeText,
     right,
     value,
