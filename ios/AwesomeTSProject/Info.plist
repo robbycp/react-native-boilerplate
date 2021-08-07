@@ -37,6 +37,8 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>Analytics data will be used to enhance our features</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>

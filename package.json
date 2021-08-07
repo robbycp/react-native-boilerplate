@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.5",
+    "@react-native-firebase/analytics": "^12.4.0",
     "@react-native-firebase/app": "^12.4.0",
     "@react-native-firebase/remote-config": "^12.4.0",
     "@react-navigation/native": "^6.0.0",
@@ -26,6 +27,7 @@
     "react-native-reanimated": "^2.2.0",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.4.0",
+    "react-native-tracking-transparency": "^0.1.1",
     "react-native-vector-icons": "^8.1.0",
     "react-native-webview": "^11.6.6",
     "react-redux": "^7.2.4",
