@@ -1,36 +1,53 @@
 import React from 'react';
-import {View} from 'react-native';
-import {Title} from 'react-native-paper';
+import {ScrollView, StyleSheet} from 'react-native';
+import {Subheading, Title} from 'react-native-paper';
+import DatetimePicker from '~/components/basic/Form/DatetimePicker';
 
 import TextInput from '~/components/basic/Form/TextInput';
 
 import {ScreenFormViewProps} from './screenFormTypes';
 
-const ScreenFormView = ({formText, setFormText}: ScreenFormViewProps) => {
+const styles = StyleSheet.create({
+  container: {
+    paddingLeft: 8,
+    paddingRight: 8,
+    paddingTop: 8,
+  },
+});
+
+const ScreenFormView = ({
+  formText,
+  formDate,
+  formTime,
+  setFormText,
+  setFormDate,
+  setFormTime,
+}: ScreenFormViewProps) => {
   return (
-    <View>
-      <Title>Normal</Title>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Title>Text Input</Title>
+      <Subheading>Normal</Subheading>
       <TextInput
-        textInputProps={{
+        nativeTextInputProps={{
           label: 'Text',
           value: formText,
           onChangeText: setFormText,
         }}
       />
       <TextInput
-        textInputProps={{
+        nativeTextInputProps={{
           label: 'Number',
           value: formText,
           textContentType: 'telephoneNumber',
           onChangeText: setFormText,
         }}
       />
-      <Title>With Helper</Title>
+      <Subheading>With Helper</Subheading>
       <TextInput
         isShowHelper
         helperMode="info"
         textHelper="Please input your name"
-        textInputProps={{
+        nativeTextInputProps={{
           label: 'Text',
           value: formText,
           onChangeText: setFormText,
@@ -41,32 +58,45 @@ const ScreenFormView = ({formText, setFormText}: ScreenFormViewProps) => {
         isShowHelper
         helperMode="error"
         textHelper="Wrong input"
-        textInputProps={{
+        nativeTextInputProps={{
           label: 'Text',
           value: formText,
           onChangeText: setFormText,
         }}
         withHelperText
       />
-      <Title>Input mode: secure</Title>
+      <Subheading>Input mode: secure</Subheading>
       <TextInput
         textInputMode="secure"
-        textInputProps={{
+        nativeTextInputProps={{
           label: 'Text',
           value: formText,
           onChangeText: setFormText,
         }}
       />
-      <Title>Input mode: clear</Title>
+      <Subheading>Input mode: clear</Subheading>
       <TextInput
         textInputMode="clear"
-        textInputProps={{
+        nativeTextInputProps={{
           label: 'Text',
           value: formText,
           onChangeText: setFormText,
         }}
       />
-    </View>
+      <Title>Datetime picker</Title>
+      <Subheading>Date</Subheading>
+      <DatetimePicker
+        mode="date"
+        onChange={val => setFormDate(val)}
+        value={formDate}
+      />
+      <Subheading>Time</Subheading>
+      <DatetimePicker
+        mode="time"
+        onChange={val => setFormTime(val)}
+        value={formTime}
+      />
+    </ScrollView>
   );
 };
 
