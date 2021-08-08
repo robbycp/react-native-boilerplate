@@ -12,6 +12,8 @@ import {Button, List, Subheading, Text, Title} from 'react-native-paper';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import YoutubePlayer from '~/components/basic/YoutubePlayer';
 import {deviceWidth} from '~/utils/calculationView';
+
+import Signin from './Signin';
 import {ScreenHomeViewProps} from './ScreenHomeTypes';
 
 const marginVideoPlayer = 16;
@@ -55,6 +57,8 @@ const ScreenHomeView = ({
             videoId="iee2TATGMyI"
             width={deviceWidth - 2 * marginVideoPlayer}
           />
+          <Subheading>Authentication</Subheading>
+          <Signin />
           <Title>Other Features</Title>
         </View>
         <View

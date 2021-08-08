@@ -1200,10 +1200,25 @@
     opencollective-postinstall "^2.0.1"
     superstruct "^0.6.2"
 
+"@react-native-firebase/auth@^12.4.0":
+  version "12.4.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-12.4.0.tgz#40dcbdaf715df445204fa1ffe616d4eb2dfe3e32"
+  integrity sha512-xdCS3sOODHXIIDtGLdewCEJl8NR7UtQ4tHIylrdllUUdpHU7dh+DHvKeTn7oLfDmdmJBCSvDlVf5s6XGHyifZA==
+
+"@react-native-firebase/firestore@^12.4.0":
+  version "12.4.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-12.4.0.tgz#ab73a55ad832dba1e8718a8ce5ee39ff76126a48"
+  integrity sha512-H3cQnZCaXVwg0usRewATpRGlGfUdG+YeGiB/c8ncd40bZzMUfq4vyyLafwYJ7+iedgkxx67fdAwKZ+yNdbS8Mg==
+
 "@react-native-firebase/remote-config@^12.4.0":
   version "12.4.0"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/remote-config/-/remote-config-12.4.0.tgz#0db71e420177d171b469beca6d86bdfca8287eb3"
   integrity sha512-J0V90blO0XxGNIUGwS8nmFP9m6hW7YRLhDY/Jr3BnGTk1iDsSdHHL6RUzYmuSIE4WTe8h88Y6SUx6i9wpBOgiw==
+
+"@react-native-google-signin/google-signin@^6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@react-native-google-signin/google-signin/-/google-signin-6.0.1.tgz#c953c24c74c42009f59213015d4bdd4e58133c54"
+  integrity sha512-8Kyt3v6JcAQoJqZau3z4Mj+8R5Zv1yB8TfL/iCrB6ZI9lIR7gm4wuNzgpNSjX7OwNTboyhBek9Tjx8qJj7a6Mw==
 
 "@react-native/assets@1.0.0":
   version "1.0.0"
@@ -1502,6 +1517,11 @@
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-2.0.1.tgz#20f18294f797f2209b5f65c8e3b5c8e8261d127c"
   integrity sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==
+
+"@types/webpack-env@^1.16.2":
+  version "1.16.2"
+  resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.16.2.tgz#8db514b059c1b2ae14ce9d7bb325296de6a9a0fa"
+  integrity sha512-vKx7WNQNZDyJveYcHAm9ZxhqSGLYwoyLhrHjLBOkw3a7cT76sTdjgtwyijhk1MaHyRIuSztcVwrUOO/NEu68Dw==
 
 "@types/yargs-parser@*":
   version "20.2.1"
