@@ -39,7 +39,19 @@ export default () => {
       }).concat([sagaMiddleware]),
   });
 
+  if (module.hot) {
+    module.hot.accept('~/store/rootReducers', () => {
+      // This fetch the new state of the above reducers.
+      const nextRootReducer = require('~/store/rootReducers').default;
+      store.replaceReducer(persistReducer(persistConfig, nextRootReducer));
+    });
+  }
+
   let persistor = persistStore(store);
+
+  if (__DEV__) {
+    persistor.purge();
+  }
 
   sagaMiddleware.run(sagas);
   return {persistor, store};
