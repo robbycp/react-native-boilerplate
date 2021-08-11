@@ -16,10 +16,13 @@ import theme from '~/style/theme';
 import {exceptionJSHandler, exceptionNativeHandler} from '~/utils/errorHandler';
 import {fetchRemoteConfig} from '~/services/firebaseRemoteConfig';
 import {initialAnalytics, logScreen} from '~/services/firebaseAnalytics';
+import {setInAppMessaging} from '~/services/firebaseInAppMessaging';
 
 const {persistor, store} = configureStore();
 
 const allowInDevMode = false;
+
+setInAppMessaging(true);
 
 setJSExceptionHandler(exceptionJSHandler, allowInDevMode);
 setNativeExceptionHandler(exceptionNativeHandler, allowInDevMode);
