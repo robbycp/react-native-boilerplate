@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {logPressHomeList} from '~/services/firebaseAnalytics';
+import {setInAppMessaging} from '~/services/firebaseInAppMessaging';
 import {getValue, RemoteConfigKeys} from '~/services/firebaseRemoteConfig';
 import {ScreenName} from '~/types/navigation';
 import {shareMessage} from '~/utils/shareLink';
@@ -35,6 +36,9 @@ const ScreenHomeContainer: React.FunctionComponent<ScreenHomeContainerProps> =
     const handleShareMessage = () => {
       shareMessage('Hello share is working');
     };
+    React.useEffect(() => {
+      setInAppMessaging(false);
+    }, []);
     return (
       <ScreenHomeView
         {...{

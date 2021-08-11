@@ -1251,6 +1251,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-12.4.0.tgz#ab73a55ad832dba1e8718a8ce5ee39ff76126a48"
   integrity sha512-H3cQnZCaXVwg0usRewATpRGlGfUdG+YeGiB/c8ncd40bZzMUfq4vyyLafwYJ7+iedgkxx67fdAwKZ+yNdbS8Mg==
 
+"@react-native-firebase/in-app-messaging@^12.4.0":
+  version "12.4.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/in-app-messaging/-/in-app-messaging-12.4.0.tgz#52338c6bee970613bc1f5e9899bfdab7c44bb5a4"
+  integrity sha512-bF211QZZvwxogn5JmDq9XAdIChW1/2t5k50iGThvjN+WMYHnHmYVV3avmoPW+xU7Izz4YZSThmtw9uQ6NwPhPw==
+
 "@react-native-firebase/remote-config@^12.4.0":
   version "12.4.0"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/remote-config/-/remote-config-12.4.0.tgz#0db71e420177d171b469beca6d86bdfca8287eb3"
