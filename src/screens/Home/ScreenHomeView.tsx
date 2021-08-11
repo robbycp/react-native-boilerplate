@@ -21,6 +21,7 @@ import YoutubePlayer from '~/components/basic/YoutubePlayer';
 import metrics from '~/style/metrics';
 
 import HTMLHome from './HTMLHome';
+import NetworkRead from './NetworkRead';
 import Signin from './Signin';
 import {ScreenHomeViewProps} from './ScreenHomeTypes';
 
@@ -75,6 +76,8 @@ const ScreenHomeView = ({
           <Signin />
           <Subheading>Render HTML</Subheading>
           <HTMLHome />
+          <Subheading>Network Read</Subheading>
+          <NetworkRead />
           <Title>Other Features</Title>
         </View>
         <View
