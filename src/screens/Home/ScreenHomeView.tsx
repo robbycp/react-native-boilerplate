@@ -15,13 +15,14 @@ import {
   Title,
   useTheme,
 } from 'react-native-paper';
-
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import YoutubePlayer from '~/components/basic/YoutubePlayer';
 
+import YoutubePlayer from '~/components/basic/YoutubePlayer';
+import metrics from '~/style/metrics';
+
+import HTMLHome from './HTMLHome';
 import Signin from './Signin';
 import {ScreenHomeViewProps} from './ScreenHomeTypes';
-import metrics from '~/style/metrics';
 
 const marginVideoPlayer = 16;
 
@@ -72,6 +73,8 @@ const ScreenHomeView = ({
           />
           <Subheading>Authentication</Subheading>
           <Signin />
+          <Subheading>Render HTML</Subheading>
+          <HTMLHome />
           <Title>Other Features</Title>
         </View>
         <View
