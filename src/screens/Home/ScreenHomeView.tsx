@@ -7,24 +7,28 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-import {Button, List, Subheading, Text, Title} from 'react-native-paper';
+import {
+  Button,
+  List,
+  Subheading,
+  Text,
+  Title,
+  useTheme,
+} from 'react-native-paper';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import YoutubePlayer from '~/components/basic/YoutubePlayer';
-import {deviceWidth} from '~/utils/calculationView';
 
 import Signin from './Signin';
 import {ScreenHomeViewProps} from './ScreenHomeTypes';
+import metrics from '~/style/metrics';
 
 const marginVideoPlayer = 16;
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 10,
-  },
   videoPlayer: {
     margin: marginVideoPlayer,
-    width: deviceWidth,
+    width: metrics.deviceWidth,
   },
 });
 
@@ -39,13 +43,22 @@ const ScreenHomeView = ({
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const theme = useTheme();
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <View style={styles.container}>
+        <View
+          style={[
+            theme.spacing.m16,
+            {
+              ...theme.spacing.p0,
+              backgroundColor: theme.colors.custom.amber100,
+            },
+          ]}>
           <Title>Functional Features</Title>
           <Subheading>Remote Config</Subheading>
           <Text>Firebase Remote Config : {textFirebaseConfig.value}</Text>
@@ -55,7 +68,7 @@ const ScreenHomeView = ({
           <YoutubePlayer
             style={styles.videoPlayer}
             videoId="iee2TATGMyI"
-            width={deviceWidth - 2 * marginVideoPlayer}
+            width={metrics.deviceWidth - 2 * marginVideoPlayer}
           />
           <Subheading>Authentication</Subheading>
           <Signin />

@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import type {CustomColor} from './style/color';
+import type {CustomTheme} from './style/theme';
+
 declare global {
   interface window {
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: Function;
@@ -9,15 +13,10 @@ declare global {
   }
   namespace ReactNativePaper {
     interface ThemeColors {
-      // myOwnColor: string;
+      custom: CustomColor;
     }
 
-    interface Theme {
-      card: {
-        borderRadius: number;
-        elevation: number;
-      };
-    }
+    interface Theme extends CustomTheme {}
   }
 }
 
