@@ -1,9 +1,11 @@
 import React from 'react';
 import {View} from 'react-native';
 import {GoogleSigninButton} from '@react-native-google-signin/google-signin';
-import {SigninViewProps} from './signinTypes';
 import {ActivityIndicator, Button} from 'react-native-paper';
+
 import {AuthMethod} from '~/types/user';
+
+import {SigninViewProps} from './signinTypes';
 
 const SigninView = ({
   handleSignin,

@@ -1,10 +1,11 @@
 import React from 'react';
+
 import {logPressHomeList} from '~/services/firebaseAnalytics';
 import {getValue, RemoteConfigKeys} from '~/services/firebaseRemoteConfig';
 import {ScreenName} from '~/types/navigation';
 import {shareMessage} from '~/utils/shareLink';
-import {ListFeature, ScreenHomeContainerProps} from './ScreenHomeTypes';
 
+import {ListFeature, ScreenHomeContainerProps} from './ScreenHomeTypes';
 import ScreenHomeView from './ScreenHomeView';
 
 const ScreenHomeContainer: React.FunctionComponent<ScreenHomeContainerProps> =

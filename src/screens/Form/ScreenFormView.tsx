@@ -1,19 +1,11 @@
 import React from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
-import {Subheading, Title} from 'react-native-paper';
+import {ScrollView} from 'react-native';
+import {Subheading, Title, useTheme} from 'react-native-paper';
 import DatetimePicker from '~/components/basic/Form/DatetimePicker';
 
 import TextInput from '~/components/basic/Form/TextInput';
 
 import {ScreenFormViewProps} from './screenFormTypes';
-
-const styles = StyleSheet.create({
-  container: {
-    paddingLeft: 8,
-    paddingRight: 8,
-    paddingTop: 8,
-  },
-});
 
 const ScreenFormView = ({
   formText,
@@ -23,8 +15,9 @@ const ScreenFormView = ({
   setFormDate,
   setFormTime,
 }: ScreenFormViewProps) => {
+  const theme = useTheme();
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView contentContainerStyle={theme.spacing.p8}>
       <Title>Text Input</Title>
       <Subheading>Normal</Subheading>
       <TextInput
