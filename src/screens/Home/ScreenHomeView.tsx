@@ -20,6 +20,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import YoutubePlayer from '~/components/basic/YoutubePlayer';
 import metrics from '~/style/metrics';
 
+import ClipboardHome from './ClipboardHome';
 import HTMLHome from './HTMLHome';
 import NetworkRead from './NetworkRead';
 import Signin from './Signin';
@@ -78,6 +79,8 @@ const ScreenHomeView = ({
           <HTMLHome />
           <Subheading>Network Read</Subheading>
           <NetworkRead />
+          <Subheading>Clipboard</Subheading>
+          <ClipboardHome />
           <Title>Other Features</Title>
         </View>
         <View
