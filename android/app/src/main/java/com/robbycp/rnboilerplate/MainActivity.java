@@ -1,4 +1,4 @@
-package com.awesometsproject;
+package com.robbycp.rnboilerplate;
 
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
@@ -11,7 +11,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "AwesomeTSProject";
+    return "RNboilerplate";
   }
 
   // Used by react-native-screens, complement with react-navigation

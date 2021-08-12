@@ -17,12 +17,15 @@ import {exceptionJSHandler, exceptionNativeHandler} from '~/utils/errorHandler';
 import {fetchRemoteConfig} from '~/services/firebaseRemoteConfig';
 import {initialAnalytics, logScreen} from '~/services/firebaseAnalytics';
 import {setInAppMessaging} from '~/services/firebaseInAppMessaging';
+import initOneSignal from './services/notificationOneSignal';
 
 const {persistor, store} = configureStore();
 
 const allowInDevMode = false;
 
 setInAppMessaging(true);
+
+initOneSignal();
 
 setJSExceptionHandler(exceptionJSHandler, allowInDevMode);
 setNativeExceptionHandler(exceptionNativeHandler, allowInDevMode);
