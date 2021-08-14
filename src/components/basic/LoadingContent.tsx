@@ -9,7 +9,7 @@ interface Props {
 
 const LoadingContent = ({isVisible, children}: Props) => {
   const theme = useTheme();
-  if (isVisible) {
+  if (!isVisible) {
     return children;
   }
   return (

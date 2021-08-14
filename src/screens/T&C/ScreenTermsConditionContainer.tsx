@@ -11,15 +11,23 @@ const ScreenTermsConditionContainer = () => {
 
   const commonData = useSelector((state: RootState) => state.common);
 
-  React.useEffect(() => {
+  const dispatchGetTermsCondition = () => {
     dispatch(commonFetch({key: CommonData.termsAndCondition}));
+  };
+  const dispatchClearTermsCondition = () => {
+    dispatch(commonClear({key: CommonData.termsAndCondition}));
+  };
+  React.useEffect(() => {
+    dispatchGetTermsCondition();
     return () => {
-      dispatch(commonClear({key: CommonData.termsAndCondition}));
+      dispatchClearTermsCondition();
     };
-  }, [dispatch]);
+  }, []);
   return (
     <ScreenTermsConditionView
       {...{
+        dispatchClearTermsCondition,
+        dispatchGetTermsCondition,
         content: commonData[CommonData.termsAndCondition] || '',
         isLoading: commonData.isLoading,
       }}

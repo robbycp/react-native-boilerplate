@@ -99,4 +99,17 @@ export default StyleSheet.create({
   rotate90Inverse: {
     transform: [{rotate: '-90deg'}],
   },
+  /** Font */
+  textCenter: {
+    textAlign: 'center',
+  },
+  textJustify: {
+    textAlign: 'justify',
+  },
+  textLeft: {
+    textAlign: 'left',
+  },
+  textRight: {
+    textAlign: 'right',
+  },
 });
