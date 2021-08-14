@@ -31,6 +31,11 @@ const ScreenHomeContainer: React.FunctionComponent<ScreenHomeContainerProps> =
         icon: 'google',
         onPress: () => navigateAndAnalytics(ScreenName.WEBVIEW_GOOGLE),
       },
+      {
+        title: 'Terms & Condition',
+        icon: 'google',
+        onPress: () => navigateAndAnalytics(ScreenName.TERMS_CONDITION),
+      },
     ];
     const textFirebaseConfig = getValue(RemoteConfigKeys.AWESOME_NEW_FEATURE);
     const handleShareMessage = () => {
