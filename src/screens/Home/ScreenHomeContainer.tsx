@@ -49,6 +49,7 @@ const ScreenHomeContainer: React.FunctionComponent<ScreenHomeContainerProps> =
         {...{
           handleShareMessage,
           listFeatures,
+          navigation,
           textFirebaseConfig,
         }}
       />

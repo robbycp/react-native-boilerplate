@@ -18,6 +18,11 @@ brew install fastlane
 ```
 2. 
 
+# Guid
+## BottomPanel
+- If full screen bottom panel, use react-navigation screenOptions presentation `modal`
+- If not, use component BottomPanel
+
 # How to clone
 ## Basic
 1. Clone this repo, `git clone <this repo url> <your project name>`
