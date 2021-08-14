@@ -25,6 +25,7 @@ import HTMLHome from './HTMLHome';
 import NetworkRead from './NetworkRead';
 import Signin from './Signin';
 import {ScreenHomeViewProps} from './ScreenHomeTypes';
+import {ScreenName} from '~/types/navigation';
 
 const marginVideoPlayer = 16;
 
@@ -38,6 +39,7 @@ const styles = StyleSheet.create({
 const ScreenHomeView = ({
   handleShareMessage,
   listFeatures,
+  navigation,
   textFirebaseConfig,
 }: ScreenHomeViewProps) => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -81,6 +83,10 @@ const ScreenHomeView = ({
           <NetworkRead />
           <Subheading>Clipboard</Subheading>
           <ClipboardHome />
+          <Subheading>Modal Privacy</Subheading>
+          <Button onPress={() => navigation.navigate(ScreenName.MODAL_PRIVACY)}>
+            Privacy
+          </Button>
           <Title>Other Features</Title>
         </View>
         <View

@@ -6,13 +6,15 @@ export interface ListFeature {
   icon: string;
   onPress: () => void;
 }
-export interface ScreenHomeContainerProps
-  extends NativeStackScreenProps<
-    RootStackParamList,
-    ScreenName.WEBVIEW_GOOGLE
-  > {}
+
+type ScreenHomeNavigation = NativeStackScreenProps<
+  RootStackParamList,
+  ScreenName.WEBVIEW_GOOGLE
+>;
+export interface ScreenHomeContainerProps extends ScreenHomeNavigation {}
 export interface ScreenHomeViewProps {
   handleShareMessage: () => void;
   listFeatures: ListFeature[];
+  navigation: ScreenHomeNavigation['navigation'];
   textFirebaseConfig: RemoteConfigValue;
 }
