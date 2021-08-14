@@ -9,6 +9,7 @@ import {
   authSignout,
   authSignup,
 } from '~/store/slices/auth';
+import {commonFetch} from '~/store/slices/common';
 /* ------------- Sagas ------------- */
 import {init} from '~/store/sagas/app';
 import {
@@ -18,6 +19,7 @@ import {
   authSignoutSaga,
   authSignupSaga,
 } from '~/store/sagas/auth';
+import {commonFetchSaga} from '~/store/sagas/common';
 /* ------------- API ------------- */
 
 // The API we use is only used from Sagas, so we create it here and pass along
@@ -35,5 +37,6 @@ export default function* root() {
     takeLatest(authSignin, authSigninSaga),
     takeLatest(authSignout, authSignoutSaga),
     takeLatest(authSignup, authSignupSaga),
+    takeLatest(commonFetch, commonFetchSaga),
   ]);
 }
