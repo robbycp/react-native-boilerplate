@@ -3,10 +3,21 @@ import {ScrollView} from 'react-native';
 import {Subheading, Title, useTheme} from 'react-native-paper';
 import DatetimePicker from '~/components/basic/Form/DatetimePicker';
 
+import PickerList from '~/components/basic/Form/PickerList';
 import TextInput from '~/components/basic/Form/TextInput';
 
 import {ScreenFormViewProps} from './screenFormTypes';
 
+const list = [
+  {id: '1', title: 'java', description: 'java'},
+  {id: '2', title: 'javascript', description: 'javascript'},
+  {id: '3', title: 'python', description: 'python'},
+  {id: '4', title: 'php', description: 'php'},
+  {id: '5', title: 'swift', description: 'swift'},
+  {id: '6', title: 'kotlin', description: 'kotlin'},
+  {id: '7', title: 'php', description: 'php'},
+  {id: '8', title: 'objective-c', description: 'objective-c'},
+];
 const ScreenFormView = ({
   formText,
   formDate,
@@ -16,8 +27,19 @@ const ScreenFormView = ({
   setFormTime,
 }: ScreenFormViewProps) => {
   const theme = useTheme();
+  const [formLanguange, setformLanguange] = React.useState({
+    id: '',
+    title: '',
+    description: '',
+  });
   return (
     <ScrollView contentContainerStyle={theme.spacing.p8}>
+      <PickerList
+        label="Language"
+        list={list}
+        onChange={val => setformLanguange(val)}
+        value={formLanguange}
+      />
       <Title>Text Input</Title>
       <Subheading>Normal</Subheading>
       <TextInput

@@ -12,7 +12,6 @@ const TEXTINPUT_MODE = 'outlined';
 type RNTextInputProps = React.ComponentProps<typeof TextInput>;
 
 export type TextInputCustomProps = {
-  isPressable?: boolean;
   isShowHelper?: boolean;
   helperMode?: 'error' | 'info';
   onClear?: () => void;
@@ -26,7 +25,6 @@ export type TextInputCustomProps = {
 };
 
 const TextInputCustom = ({
-  isPressable,
   isShowHelper,
   helperMode = 'info',
   onClear = () => {},
@@ -73,7 +71,7 @@ const TextInputCustom = ({
     propsTextInput.secureTextEntry = isSecure;
   }
 
-  const renderTextInput = isPressable ? (
+  const renderTextInput = onPress ? (
     <View pointerEvents="none">
       <TextInput {...propsTextInput} mode={TEXTINPUT_MODE} />
     </View>
