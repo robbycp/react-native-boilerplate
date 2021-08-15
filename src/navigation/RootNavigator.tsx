@@ -14,7 +14,9 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootNavigator: React.FunctionComponent = () => {
   return (
-    <Stack.Navigator initialRouteName={ScreenName.SPLASH}>
+    <Stack.Navigator
+      initialRouteName={ScreenName.SPLASH}
+      screenOptions={{headerShown: false}}>
       <Stack.Group>
         <Stack.Screen
           name={ScreenName.FLATLIST_IMAGE}

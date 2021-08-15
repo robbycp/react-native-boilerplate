@@ -1,11 +1,11 @@
 export enum ScreenName {
-  FLATLIST_IMAGE = 'flatlist_image',
-  FORM = 'form',
-  HOME = 'home',
-  SPLASH = 'splash',
-  MODAL_PRIVACY = 'modal_privacy',
-  TERMS_CONDITION = 'terms_condition',
-  WEBVIEW_GOOGLE = 'webview_google',
+  FLATLIST_IMAGE = 'Flatlist Image',
+  FORM = 'Form',
+  HOME = 'Home',
+  SPLASH = 'Splash',
+  MODAL_PRIVACY = 'Privacy',
+  TERMS_CONDITION = 'Terms Condition',
+  WEBVIEW_GOOGLE = 'Webview Google',
 }
 
 export type RootStackParamList = {

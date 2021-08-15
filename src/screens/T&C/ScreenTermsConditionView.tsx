@@ -2,6 +2,7 @@ import React from 'react';
 import {ScrollView} from 'react-native';
 import {Button, useTheme} from 'react-native-paper';
 import EmptyState from '~/components/basic/EmptyState';
+import Header from '~/components/basic/Header/Header';
 import Html from '~/components/basic/HTML';
 import LoadingContent from '~/components/basic/Loading/LoadingContent';
 
@@ -20,19 +21,22 @@ const ScreenTermsConditionView = ({
 }: Props) => {
   const theme = useTheme();
   return (
-    <ScrollView contentContainerStyle={theme.layout.fill}>
-      <Button onPress={dispatchClearTermsCondition}>Clear content</Button>
-      <LoadingContent isVisible={isLoading}>
-        <EmptyState
-          isVisible={!content}
-          title="Sorry!"
-          subtitle="There was a problem. Please Refresh"
-          textButtonSubmit="Refresh"
-          onSubmit={dispatchGetTermsCondition}>
-          <Html source={{html: content}} />
-        </EmptyState>
-      </LoadingContent>
-    </ScrollView>
+    <>
+      <Header title="Terms Conditions" />
+      <ScrollView contentContainerStyle={theme.layout.fill}>
+        <Button onPress={dispatchClearTermsCondition}>Clear content</Button>
+        <LoadingContent isVisible={isLoading}>
+          <EmptyState
+            isVisible={!content}
+            title="Sorry!"
+            subtitle="There was a problem. Please Refresh"
+            textButtonSubmit="Refresh"
+            onSubmit={dispatchGetTermsCondition}>
+            <Html source={{html: content}} />
+          </EmptyState>
+        </LoadingContent>
+      </ScrollView>
+    </>
   );
 };
 
