@@ -18,7 +18,7 @@ brew install fastlane
 ```
 2. 
 
-# Guid
+# Guide
 ## BottomPanel
 - If full screen bottom panel, use react-navigation screenOptions presentation `modal`
 - If not, use component BottomPanel
@@ -29,8 +29,12 @@ brew install fastlane
 2. Go to project's root directory, `cd <your project name>`
 3. Remove `.git` folder, `rm -rf .git`
 4. Use [React Native Rename](https://github.com/junedomingo/react-native-rename) to update project name `$ npx react-native-rename <newName>`
-5. Change app icon and splach icon [here](https://thecodingmachine.github.io/react-native-boilerplate/docs/Configuration)
-6. Change src/Assets/Images/image-error.png
+5. Change app icon and splash icon. Use this https://appicon.co/ to generate icon to be copied in android and ios
+- For android Copy to /android/app/src/main/res
+- For iOS Copy to /ios/AppName/Images.xcassets/AppIcon.appiconset
+- For iOS, change logo in LaunchScreen.storyboard
+- For javascript, copy to src/assets/images/logo.png
+6. Change src/assets/images/empty-image.png
 7. Change fontFamily in src/Assets/fonts.
   - In terminal `react-native link`
   - Change in src/Theme/PaperTheme/fonts
@@ -38,9 +42,6 @@ brew install fastlane
   - Change color in src/Theme/PaperTheme/index
   - Adjust src/Theme/Fonts as needed (lineHeight and fontSize)
   - Adjust src/Theme/Variables as needed (metric size)
-9. Change app icon
-  - Follow to change icon set [Here](https://aboutreact.com/react-native-change-app-icon/)
-  - Use this website to generate app icon [here](https://appicon.co/)
 
 ## One signal
 1. Create account in firebase. Copy server key and sender id
@@ -56,13 +57,19 @@ brew install fastlane
 ## Admob
 1. Create admob account => create app
 2. App Settings => copy to firebase.json
-## Things for designer
-### Colors
+
+# Things for designer
+## Colors
 - define colors (customColor and defined color if needed) in src/style/color
-### Spacing and Component
+## Spacing and Component
 - defined spacing and component sizes must match with designer
-### Font
+## Font
 - Add custom font if needed
 - define in src/style/font
-### Images
+## Images
 - Set Loading component (LoadingContent, LoadingOverlay) animation or using default Activiy Indicator.
+- Logo for
+  - app icon
+  - icon in splash screen
+  - launch screen for ios
+- Empty state image logo. If something bad happen when image is loading

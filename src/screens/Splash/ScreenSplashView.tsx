@@ -1,10 +1,18 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {StyleSheet, View, Image} from 'react-native';
 
 import {navigationRef} from '~/navigation/navigator';
 import {useDispatch} from 'react-redux';
 import {appStartCheck} from '~/store/slices/app';
 import {useTheme} from 'react-native-paper';
+
+const styles = StyleSheet.create({
+  image: {
+    borderRadius: 16,
+    height: 100,
+    width: 100,
+  },
+});
 
 const ScreenSplashView = () => {
   const dispatch = useDispatch();
@@ -19,7 +27,10 @@ const ScreenSplashView = () => {
 
   return (
     <View style={[theme.layout.center, theme.layout.fill]}>
-      <Text>Splash</Text>
+      <Image
+        source={require('~/assets/images/logo.png')}
+        style={styles.image}
+      />
     </View>
   );
 };
