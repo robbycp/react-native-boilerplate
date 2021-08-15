@@ -3,7 +3,7 @@ import {ScrollView} from 'react-native';
 import {Button, useTheme} from 'react-native-paper';
 import EmptyState from '~/components/basic/EmptyState';
 import Html from '~/components/basic/HTML';
-import LoadingContent from '~/components/basic/LoadingContent';
+import LoadingContent from '~/components/basic/Loading/LoadingContent';
 
 interface Props {
   content: string;

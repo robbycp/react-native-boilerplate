@@ -1,7 +1,7 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
 import Html from '~/components/basic/HTML';
-import LoadingContent from '~/components/basic/LoadingContent';
+import LoadingContent from '~/components/basic/Loading/LoadingContent';
 
 interface Props {
   content: string;
