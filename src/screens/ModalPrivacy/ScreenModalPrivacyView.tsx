@@ -1,5 +1,6 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
+import HeaderModal from '~/components/basic/Header/HeaderModal';
 import Html from '~/components/basic/HTML';
 import LoadingContent from '~/components/basic/Loading/LoadingContent';
 
@@ -10,11 +11,14 @@ interface Props {
 
 const ScreenModalPrivacyView = ({content, isLoading}: Props) => {
   return (
-    <ScrollView>
-      <LoadingContent isVisible={isLoading}>
-        <Html source={{html: content}} />
-      </LoadingContent>
-    </ScrollView>
+    <>
+      <HeaderModal title="Privacy" withBackButton={false} />
+      <ScrollView>
+        <LoadingContent isVisible={isLoading}>
+          <Html source={{html: content}} />
+        </LoadingContent>
+      </ScrollView>
+    </>
   );
 };
 

@@ -4,13 +4,11 @@ import {View, Text} from 'react-native';
 import {navigationRef} from '~/navigation/navigator';
 import {useDispatch} from 'react-redux';
 import {appStartCheck} from '~/store/slices/app';
-
-// interface Props {
-//   navigation: NativeStackNavigationProp<RootStackParamList, ScreenName.SPLASH>;
-// }
+import {useTheme} from 'react-native-paper';
 
 const ScreenSplashView = () => {
   const dispatch = useDispatch();
+  const theme = useTheme();
   const isReady = React.useRef(navigationRef.isReady());
 
   React.useEffect(() => {
@@ -20,7 +18,7 @@ const ScreenSplashView = () => {
   }, [isReady, dispatch]);
 
   return (
-    <View>
+    <View style={[theme.layout.center, theme.layout.fill]}>
       <Text>Splash</Text>
     </View>
   );
