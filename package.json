@@ -32,6 +32,7 @@
     "react-native-exception-handler": "^2.10.10",
     "react-native-fast-image": "^8.3.7",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-modal": "^12.0.3",
     "react-native-modal-datetime-picker": "^10.2.0",
     "react-native-onesignal": "^4.2.0",
     "react-native-paper": "^4.9.2",

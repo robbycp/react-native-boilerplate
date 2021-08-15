@@ -1,6 +1,10 @@
 import {StyleSheet} from 'react-native';
+import colors from './color';
 
 export default StyleSheet.create({
+  backgroundWhite: {
+    backgroundColor: colors.custom.white,
+  },
   /* Column Layouts */
   column: {
     flexDirection: 'column',
