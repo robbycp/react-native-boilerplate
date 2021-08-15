@@ -64,3 +64,5 @@ brew install fastlane
 ### Font
 - Add custom font if needed
 - define in src/style/font
+### Images
+- Set Loading component (LoadingContent, LoadingOverlay) animation or using default Activiy Indicator.

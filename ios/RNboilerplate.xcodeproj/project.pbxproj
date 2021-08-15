@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* RNboilerplateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* RNboilerplateTests.m */; };
+		0378B62C26C932CD00549FBC /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0378B62B26C932CD00549FBC /* Bridge.swift */; };
 		03A42DAE26BE0B130033A516 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03A42DAD26BE0B130033A516 /* GoogleService-Info.plist */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -32,6 +33,8 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* RNboilerplateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNboilerplateTests.m; sourceTree = "<group>"; };
 		03596C7B26C0089300DCD405 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		0378B62A26C932CD00549FBC /* RNboilerplate-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNboilerplate-Bridging-Header.h"; sourceTree = "<group>"; };
+		0378B62B26C932CD00549FBC /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
 		03A42DAD26BE0B130033A516 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* RNboilerplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RNboilerplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = RNboilerplate/AppDelegate.h; sourceTree = "<group>"; };
@@ -119,6 +122,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				0378B62B26C932CD00549FBC /* Bridge.swift */,
 				03596C7B26C0089300DCD405 /* Config.xcconfig */,
 				03A42DAD26BE0B130033A516 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* RNboilerplate */,
@@ -127,6 +131,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				8C1537718656D00B3C1F1121 /* Pods */,
+				0378B62A26C932CD00549FBC /* RNboilerplate-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -213,7 +218,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1250;
 					};
 				};
 			};
@@ -432,6 +437,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				0378B62C26C932CD00549FBC /* Bridge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +456,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D23C7001DF8F26B7D94096A2 /* Pods-RNboilerplate-RNboilerplateTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -477,6 +484,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F79E2B5D43C6ACFFDB7E9C06 /* Pods-RNboilerplate-RNboilerplateTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = RNboilerplateTests/Info.plist;
@@ -517,6 +525,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.robbycp.rnboilerplate;
 				PRODUCT_NAME = RNboilerplate;
+				SWIFT_OBJC_BRIDGING_HEADER = "RNboilerplate-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -542,6 +551,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.robbycp.rnboilerplate;
 				PRODUCT_NAME = RNboilerplate;
+				SWIFT_OBJC_BRIDGING_HEADER = "RNboilerplate-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

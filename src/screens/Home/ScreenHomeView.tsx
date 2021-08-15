@@ -26,6 +26,7 @@ import NetworkRead from './NetworkRead';
 import Signin from './Signin';
 import {ScreenHomeViewProps} from './ScreenHomeTypes';
 import {ScreenName} from '~/types/navigation';
+import LoadingOverlay from '~/components/basic/Loading/LoadingOverlay';
 
 const marginVideoPlayer = 16;
 
@@ -48,6 +49,15 @@ const ScreenHomeView = ({
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const [isLoadingOverlay, setIsLoadingOverlay] = React.useState(false);
+
+  const handleLoadingOverlay = () => {
+    setIsLoadingOverlay(true);
+    setTimeout(() => {
+      setIsLoadingOverlay(false);
+    }, 2000);
+  };
+
   const theme = useTheme();
 
   return (
@@ -56,6 +66,7 @@ const ScreenHomeView = ({
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
+        <LoadingOverlay isVisible={isLoadingOverlay} />
         <View
           style={[
             theme.spacing.m16,
@@ -87,6 +98,8 @@ const ScreenHomeView = ({
           <Button onPress={() => navigation.navigate(ScreenName.MODAL_PRIVACY)}>
             Privacy
           </Button>
+          <Subheading>Loading Overlay</Subheading>
+          <Button onPress={handleLoadingOverlay}>Loading</Button>
           <Title>Other Features</Title>
         </View>
         <View
