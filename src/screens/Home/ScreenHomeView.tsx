@@ -29,6 +29,7 @@ import LanguageOption from './LanguageOption';
 import NetworkRead from './NetworkRead';
 import Signin from './Signin';
 import {ScreenHomeViewProps} from './ScreenHomeTypes';
+import SnackbarHome from './SnackbarHome';
 
 const marginVideoPlayer = 16;
 
@@ -104,9 +105,11 @@ const ScreenHomeView = ({
           </Button>
           <Subheading>{t('common.loading')} Overlay</Subheading>
           <Button onPress={handleLoadingOverlay}>{t('common.loading')}</Button>
-          <Title>{t('home.otherFeature')}</Title>
+          <Subheading>Snackbar</Subheading>
+          <SnackbarHome />
           <Subheading>{t('home.selectLanguage')}</Subheading>
           <LanguageOption />
+          <Title>{t('home.otherFeature')}</Title>
         </View>
         <View
           style={{

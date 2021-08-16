@@ -4,6 +4,7 @@ const image = 'Image';
 const en = {
   translation: {
     common: {
+      dismiss: 'Dismiss',
       image,
       privacy,
       loading: 'Loading',

@@ -1,13 +1,14 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {Provider as StoreProvider} from 'react-redux';
-import {Provider as PaperProvider} from 'react-native-paper';
+import {Provider as StoreProvider, useDispatch, useSelector} from 'react-redux';
+import {Provider as PaperProvider, Snackbar} from 'react-native-paper';
 import {PersistGate} from 'redux-persist/integration/react';
 import {
   setJSExceptionHandler,
   setNativeExceptionHandler,
 } from 'react-native-exception-handler';
+import {StatusBar} from 'react-native';
 
 import RootNavigator from '~/navigation/RootNavigator';
 import {navigationRef} from '~/navigation/navigator';
@@ -18,6 +19,7 @@ import {fetchRemoteConfig} from '~/services/firebaseRemoteConfig';
 import {initialAnalytics, logScreen} from '~/services/firebaseAnalytics';
 import {setInAppMessaging} from '~/services/firebaseInAppMessaging';
 import initOneSignal from './services/notificationOneSignal';
+import {getSnackbarState, snackbarHide} from '~/store/slices/snackbar';
 
 import './translations';
 
@@ -36,6 +38,35 @@ fetchRemoteConfig();
 
 initialAnalytics();
 
+const AppSnackbar = () => {
+  const dispatch = useDispatch();
+  const snackbar = useSelector(getSnackbarState);
+  const onDismissSnackBar = () => dispatch(snackbarHide());
+
+  let backgroundColor = null;
+  if (snackbar.type === 'error') {
+    backgroundColor = theme.colors.error;
+  } else if (snackbar.type === 'success') {
+    backgroundColor = theme.colors.custom.green400;
+  }
+  return (
+    <>
+      <StatusBar barStyle="dark-content" />
+      <RootNavigator />
+      <Snackbar
+        visible={snackbar.isVisible}
+        onDismiss={onDismissSnackBar}
+        duration={snackbar.duration}
+        style={backgroundColor ? {backgroundColor} : {}}
+        action={{
+          label: snackbar.textButton,
+          onPress: onDismissSnackBar,
+        }}>
+        {snackbar.message}
+      </Snackbar>
+    </>
+  );
+};
 const App = () => {
   const routeNameRef = React.useRef<string | undefined>('');
   return (
@@ -59,7 +90,7 @@ const App = () => {
                 }
                 routeNameRef.current = currentRouteName;
               }}>
-              <RootNavigator />
+              <AppSnackbar />
             </NavigationContainer>
           </SafeAreaProvider>
         </PaperProvider>
