@@ -6,6 +6,7 @@ const image = 'gambar';
 const id: Translation = {
   translation: {
     common: {
+      dismiss: 'Tutup',
       image,
       privacy,
       loading: 'Memuat',
