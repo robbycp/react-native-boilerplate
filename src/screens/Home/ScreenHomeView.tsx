@@ -16,17 +16,19 @@ import {
   useTheme,
 } from 'react-native-paper';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {useTranslation} from 'react-i18next';
 
 import YoutubePlayer from '~/components/basic/YoutubePlayer';
 import metrics from '~/style/metrics';
+import {ScreenName} from '~/types/navigation';
+import LoadingOverlay from '~/components/basic/Loading/LoadingOverlay';
 
 import ClipboardHome from './ClipboardHome';
 import HTMLHome from './HTMLHome';
+import LanguageOption from './LanguageOption';
 import NetworkRead from './NetworkRead';
 import Signin from './Signin';
 import {ScreenHomeViewProps} from './ScreenHomeTypes';
-import {ScreenName} from '~/types/navigation';
-import LoadingOverlay from '~/components/basic/Loading/LoadingOverlay';
 
 const marginVideoPlayer = 16;
 
@@ -59,7 +61,7 @@ const ScreenHomeView = ({
   };
 
   const theme = useTheme();
-
+  const {t} = useTranslation();
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
@@ -75,32 +77,36 @@ const ScreenHomeView = ({
               backgroundColor: theme.colors.custom.amber100,
             },
           ]}>
-          <Title>Functional Features</Title>
-          <Subheading>Remote Config</Subheading>
-          <Text>Firebase Remote Config : {textFirebaseConfig.value}</Text>
-          <Subheading>Share link</Subheading>
-          <Button onPress={handleShareMessage}>Share Message</Button>
-          <Subheading>Youtube Player</Subheading>
+          <Title>{t('home.functionalFeatures')}</Title>
+          <Subheading>{t('home.firebaseRemoteConfig')}</Subheading>
+          <Text>
+            {t('home.firebaseRemoteConfig')} : {textFirebaseConfig.value}
+          </Text>
+          <Subheading>{t('home.shareLink')}</Subheading>
+          <Button onPress={handleShareMessage}>{t('home.shareButton')}</Button>
+          <Subheading>{t('home.youtubePlayer')}</Subheading>
           <YoutubePlayer
             style={styles.videoPlayer}
             videoId="iee2TATGMyI"
             width={metrics.deviceWidth - 2 * marginVideoPlayer}
           />
-          <Subheading>Authentication</Subheading>
+          <Subheading>{t('home.authentication')}</Subheading>
           <Signin />
           <Subheading>Render HTML</Subheading>
           <HTMLHome />
-          <Subheading>Network Read</Subheading>
+          <Subheading>{t('home.networkRead')}</Subheading>
           <NetworkRead />
           <Subheading>Clipboard</Subheading>
           <ClipboardHome />
-          <Subheading>Modal Privacy</Subheading>
+          <Subheading>{t('home.modalPrivacy')}</Subheading>
           <Button onPress={() => navigation.navigate(ScreenName.MODAL_PRIVACY)}>
-            Privacy
+            {t('home.privacy')}
           </Button>
-          <Subheading>Loading Overlay</Subheading>
-          <Button onPress={handleLoadingOverlay}>Loading</Button>
-          <Title>Other Features</Title>
+          <Subheading>{t('common.loading')} Overlay</Subheading>
+          <Button onPress={handleLoadingOverlay}>{t('common.loading')}</Button>
+          <Title>{t('home.otherFeature')}</Title>
+          <Subheading>{t('home.selectLanguage')}</Subheading>
+          <LanguageOption />
         </View>
         <View
           style={{

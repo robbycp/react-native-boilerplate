@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {FlatList, View} from 'react-native';
 import {List, RadioButton} from 'react-native-paper';
 
@@ -11,6 +10,7 @@ interface PickerItem {
   id: string;
   title: string;
   description?: string;
+  value: string | number;
 }
 interface PickerListProps {
   label: string;
@@ -77,12 +77,6 @@ const PickerList = ({
       </BottomPanel>
     </View>
   );
-};
-
-PickerList.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  propsTextInput: PropTypes.shape({}).isRequired,
-  list: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default PickerList;

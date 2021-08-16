@@ -10,14 +10,24 @@ import Header from '~/components/basic/Header/Header';
 import {ScreenFormViewProps} from './screenFormTypes';
 
 const list = [
-  {id: '1', title: 'java', description: 'java'},
-  {id: '2', title: 'javascript', description: 'javascript'},
-  {id: '3', title: 'python', description: 'python'},
-  {id: '4', title: 'php', description: 'php'},
-  {id: '5', title: 'swift', description: 'swift'},
-  {id: '6', title: 'kotlin', description: 'kotlin'},
-  {id: '7', title: 'php', description: 'php'},
-  {id: '8', title: 'objective-c', description: 'objective-c'},
+  {id: '1', title: 'java', description: 'java', value: 'java'},
+  {
+    id: '2',
+    title: 'javascript',
+    description: 'javascript',
+    value: 'javascript',
+  },
+  {id: '3', title: 'python', description: 'python', value: 'python'},
+  {id: '4', title: 'php', description: 'php', value: 'php'},
+  {id: '5', title: 'swift', description: 'swift', value: 'swift'},
+  {id: '6', title: 'kotlin', description: 'kotlin', value: 'kotlin'},
+  {id: '7', title: 'php', description: 'php', value: 'php'},
+  {
+    id: '8',
+    title: 'objective-c',
+    description: 'objective-c',
+    value: 'objective-c',
+  },
 ];
 const ScreenFormView = ({
   formText,
@@ -28,11 +38,7 @@ const ScreenFormView = ({
   setFormTime,
 }: ScreenFormViewProps) => {
   const theme = useTheme();
-  const [formLanguange, setformLanguange] = React.useState({
-    id: '',
-    title: '',
-    description: '',
-  });
+  const [formLanguange, setformLanguange] = React.useState(list[0]);
   return (
     <>
       <Header title="Form" />

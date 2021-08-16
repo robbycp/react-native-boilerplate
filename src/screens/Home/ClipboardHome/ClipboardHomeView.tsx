@@ -1,15 +1,17 @@
 import React from 'react';
 import {View} from 'react-native';
 import {Button, Text} from 'react-native-paper';
+import {useTranslation} from 'react-i18next';
 
 import {copyToClipboard, getTextClipboard} from '~/utils/clipboard';
 
 const ClipboardHomeView = () => {
+  const {t} = useTranslation();
   const [copiedText, setCopiedText] = React.useState('');
 
   const handleCopyClipboard = () => {
     const randomNumber = Math.random();
-    copyToClipboard(`hello world ${randomNumber}`);
+    copyToClipboard(`${t('homeClipboard.copiedText')} ${randomNumber}`);
   };
 
   const fetchCopiedText = async () => {
@@ -20,10 +22,10 @@ const ClipboardHomeView = () => {
     <View>
       <View>
         <Button onPress={handleCopyClipboard}>
-          Click here to copy to Clipboard
+          {t('homeClipboard.clickToCopy')}
         </Button>
         <Button onPress={fetchCopiedText}>
-          <Text>View copied text</Text>
+          <Text>{t('homeClipboard.viewCopiedText')}</Text>
         </Button>
       </View>
       <Text>{copiedText}</Text>

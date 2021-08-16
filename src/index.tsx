@@ -19,6 +19,8 @@ import {initialAnalytics, logScreen} from '~/services/firebaseAnalytics';
 import {setInAppMessaging} from '~/services/firebaseInAppMessaging';
 import initOneSignal from './services/notificationOneSignal';
 
+import './translations';
+
 const {persistor, store} = configureStore();
 
 const allowInDevMode = false;

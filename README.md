@@ -19,6 +19,18 @@ brew install fastlane
 2. 
 
 # Guide
+## Folder
+- */assets* put all animation, sound, image, video asset here. Try to make all assets in uri instead of put it here.
+- */components* put all global component here
+  - */basic* here is all component view and the logic here. The basic one without accessing redux
+  - */custom* . Here is some extendable custom component, using component basic or not. Could have redux state here
+- */navigation* put all navigator configuration here
+- */screens* put all screens here, even the screen inside the BottomNavigator or TabNavigator, should be put in line in folder screens. One folder here represent one screen, and child folder represent local component
+- */services* all sdk integration to third party apps should be put in this folder. Connection to internal service, also could be put here, such us creating api class for one api host.
+- */store* config redux, with sagas and action reducer (slice)
+- */style* definition of theme such us spacing, color, layout, and other common styling variable should be put here.
+- */types* global type to be used anywhere in the folder
+- */utils* function helper like string formatter, error handler, clipboard.
 ## BottomPanel
 - If full screen bottom panel, use react-navigation screenOptions presentation `modal`
 - If not, use component BottomPanel
@@ -28,7 +40,9 @@ brew install fastlane
 1. Clone this repo, `git clone <this repo url> <your project name>`
 2. Go to project's root directory, `cd <your project name>`
 3. Remove `.git` folder, `rm -rf .git`
-4. Use [React Native Rename](https://github.com/junedomingo/react-native-rename) to update project name `$ npx react-native-rename <newName>`
+4. Chane app name and Use [React Native Rename](https://github.com/junedomingo/react-native-rename) to update project name
+  - run `npx react-native-rename "<app-name>" -b <id-application>`. Example `npx react-native-rename "siBudi" -b com.sibudi.sianto`
+  - change folder name in android to match with <id-application>
 5. Change app icon and splash icon. Use this https://appicon.co/ to generate icon to be copied in android and ios
 - For android Copy to /android/app/src/main/res
 - For iOS Copy to /ios/AppName/Images.xcassets/AppIcon.appiconset

@@ -1,6 +1,7 @@
 import React from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {Text, useTheme} from 'react-native-paper';
+import {useTranslation} from 'react-i18next';
 import FastImageCustom from '~/components/basic/FastImage';
 import Header from '~/components/basic/Header/Header';
 
@@ -14,6 +15,7 @@ const styles = StyleSheet.create({
 const ScreenFlatListImageView = () => {
   const data = [0, 1, 2, 3, 4, 5, 6, 7];
   const theme = useTheme();
+  const {t} = useTranslation();
   return (
     <>
       <Header title="List Image" />
@@ -30,7 +32,7 @@ const ScreenFlatListImageView = () => {
         )}
         ListHeaderComponent={
           <View style={theme.spacing.p8}>
-            <Text>Fast Image</Text>
+            <Text>{t('flatlistImage.fastImage')}</Text>
           </View>
         }
       />
