@@ -15,7 +15,6 @@ import {
   Title,
   useTheme,
 } from 'react-native-paper';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {useTranslation} from 'react-i18next';
 
 import YoutubePlayer from '~/components/basic/YoutubePlayer';
@@ -48,10 +47,6 @@ const ScreenHomeView = ({
 }: ScreenHomeViewProps) => {
   const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   const [isLoadingOverlay, setIsLoadingOverlay] = React.useState(false);
 
   const handleLoadingOverlay = () => {
@@ -64,11 +59,9 @@ const ScreenHomeView = ({
   const theme = useTheme();
   const {t} = useTranslation();
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
         <LoadingOverlay isVisible={isLoadingOverlay} />
         <View
           style={[
@@ -111,10 +104,7 @@ const ScreenHomeView = ({
           <LanguageOption />
           <Title>{t('home.otherFeature')}</Title>
         </View>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
+        <View>
           {listFeatures.map((item, position) => (
             <List.Item
               key={`${position}-${item.title}`}
