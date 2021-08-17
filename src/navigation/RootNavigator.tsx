@@ -18,7 +18,7 @@ const RootNavigator: React.FunctionComponent = () => {
     <Stack.Navigator
       initialRouteName={ScreenName.SPLASH}
       screenOptions={{headerShown: false}}>
-      <Stack.Group>
+      <Stack.Group screenOptions={{animation: 'slide_from_right'}}>
         <Stack.Screen name={ScreenName.ADS_LIST} component={ScreenAdsList} />
         <Stack.Screen
           name={ScreenName.FLATLIST_IMAGE}
