@@ -1,6 +1,7 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
+import ScreenAdsList from '~/screens/AdsList';
 import ScreenFlatListImage from '~/screens/FlatListImage';
 import ScreenForm from '~/screens/Form';
 import ScreenHome from '~/screens/Home';
@@ -18,6 +19,7 @@ const RootNavigator: React.FunctionComponent = () => {
       initialRouteName={ScreenName.SPLASH}
       screenOptions={{headerShown: false}}>
       <Stack.Group>
+        <Stack.Screen name={ScreenName.ADS_LIST} component={ScreenAdsList} />
         <Stack.Screen
           name={ScreenName.FLATLIST_IMAGE}
           component={ScreenFlatListImage}

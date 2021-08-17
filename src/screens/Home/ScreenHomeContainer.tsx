@@ -17,6 +17,11 @@ const ScreenHomeContainer: React.FunctionComponent<ScreenHomeContainerProps> =
     };
     const listFeatures: ListFeature[] = [
       {
+        title: 'Ads List',
+        icon: 'account-box',
+        onPress: () => navigateAndAnalytics(ScreenName.ADS_LIST),
+      },
+      {
         title: 'Form',
         icon: 'account-box',
         onPress: () => navigateAndAnalytics(ScreenName.FORM),
