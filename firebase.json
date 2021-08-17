@@ -1,6 +1,8 @@
 {
   "react-native": {
     "analytics_auto_collection_enabled": false,
-    "in_app_messaging_auto_collection_enabled": false
+    "in_app_messaging_auto_collection_enabled": false,
+    "admob_android_app_id": "ca-app-pub-3011274995138222~6027651877",
+    "admob_ios_app_id": "ca-app-pub-3011274995138222~3489102536"
   }
 }
