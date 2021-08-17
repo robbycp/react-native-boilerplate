@@ -36,7 +36,7 @@ const RootNavigator: React.FunctionComponent = () => {
           component={ScreenWebviewGoogle}
         />
       </Stack.Group>
-      <Stack.Group screenOptions={{presentation: 'modal'}}>
+      <Stack.Group screenOptions={{presentation: 'containedModal'}}>
         <Stack.Screen
           name={ScreenName.MODAL_PRIVACY}
           component={ScreenModalPrivacy}
