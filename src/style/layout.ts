@@ -1,9 +1,9 @@
 import {StyleSheet} from 'react-native';
-import colors from './color';
+import {customColors} from './color';
 
 export default StyleSheet.create({
   backgroundWhite: {
-    backgroundColor: colors.custom.white,
+    backgroundColor: customColors.white,
   },
   /* Column Layouts */
   column: {

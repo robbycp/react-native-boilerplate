@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type {CustomColor} from './style/color';
-import type {CustomTheme} from './style/theme';
+import type {CustomStyle} from './style/theme';
 
 declare global {
   interface window {
@@ -16,7 +16,7 @@ declare global {
       custom: CustomColor;
     }
 
-    interface Theme extends CustomTheme {}
+    interface Theme extends CustomStyle {}
   }
 }
 

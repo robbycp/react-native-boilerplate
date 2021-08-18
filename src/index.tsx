@@ -2,18 +2,22 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Provider as StoreProvider, useDispatch, useSelector} from 'react-redux';
-import {Provider as PaperProvider, Snackbar} from 'react-native-paper';
+import {
+  Provider as PaperProvider,
+  Snackbar,
+  useTheme,
+} from 'react-native-paper';
 import {PersistGate} from 'redux-persist/integration/react';
 import {
   setJSExceptionHandler,
   setNativeExceptionHandler,
 } from 'react-native-exception-handler';
-import {StatusBar} from 'react-native';
+import {StatusBar, useColorScheme} from 'react-native';
 
 import RootNavigator from '~/navigation/RootNavigator';
 import {navigationRef} from '~/navigation/navigator';
 import configureStore from '~/store';
-import theme from '~/style/theme';
+import {RNDarkTheme, RNLightTheme, darkTheme, lightTheme} from '~/style/theme';
 import {exceptionJSHandler, exceptionNativeHandler} from '~/utils/errorHandler';
 import {fetchRemoteConfig} from '~/services/firebaseRemoteConfig';
 import {initialAnalytics, logScreen} from '~/services/firebaseAnalytics';
@@ -40,6 +44,7 @@ initialAnalytics();
 
 const AppSnackbar = () => {
   const dispatch = useDispatch();
+  const theme = useTheme();
   const snackbar = useSelector(getSnackbarState);
   const onDismissSnackBar = () => dispatch(snackbarHide());
 
@@ -69,12 +74,14 @@ const AppSnackbar = () => {
 };
 const App = () => {
   const routeNameRef = React.useRef<string | undefined>('');
+  const scheme = useColorScheme();
   return (
     <StoreProvider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <PaperProvider theme={theme}>
+        <PaperProvider theme={scheme === 'dark' ? darkTheme : lightTheme}>
           <SafeAreaProvider>
             <NavigationContainer
+              theme={scheme === 'dark' ? RNDarkTheme : RNLightTheme}
               ref={navigationRef}
               onReady={() => {
                 routeNameRef.current =

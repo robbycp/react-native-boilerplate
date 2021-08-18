@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {
   Button,
+  Divider,
   List,
   Subheading,
   Text,
@@ -33,6 +34,7 @@ import SnackbarHome from './SnackbarHome';
 const marginVideoPlayer = 16;
 
 const styles = StyleSheet.create({
+  divider: {height: 3},
   videoPlayer: {
     margin: marginVideoPlayer,
     width: metrics.deviceWidth,
@@ -63,14 +65,7 @@ const ScreenHomeView = ({
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <LoadingOverlay isVisible={isLoadingOverlay} />
-        <View
-          style={[
-            theme.spacing.m16,
-            {
-              ...theme.spacing.p0,
-              backgroundColor: theme.colors.custom.amber100,
-            },
-          ]}>
+        <View style={[theme.spacing.m16, theme.spacing.p0]}>
           <Title>{t('home.functionalFeatures')}</Title>
           <Subheading>{t('home.firebaseRemoteConfig')}</Subheading>
           <Text>
@@ -106,12 +101,18 @@ const ScreenHomeView = ({
         </View>
         <View>
           {listFeatures.map((item, position) => (
-            <List.Item
-              key={`${position}-${item.title}`}
-              title={item.title}
-              onPress={item.onPress}
-              left={props => <List.Icon {...props} icon={item.icon} />}
-            />
+            <>
+              <List.Item
+                key={`${position}-${item.title}`}
+                title={item.title}
+                onPress={item.onPress}
+                left={props => <List.Icon {...props} icon={item.icon} />}
+              />
+              <Divider
+                key={`${position}-${item.title}-divider`}
+                style={styles.divider}
+              />
+            </>
           ))}
         </View>
       </ScrollView>

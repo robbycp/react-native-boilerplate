@@ -1,6 +1,6 @@
-import {Colors, DefaultTheme} from 'react-native-paper';
+import {Colors, DarkTheme, DefaultTheme} from 'react-native-paper';
 
-const customColor = {
+export const customColors = {
   amber50: Colors.amber50,
   amber100: Colors.amber100,
   amber200: Colors.amber200,
@@ -118,15 +118,25 @@ const customColor = {
   surface: '',
   text: '',
  */
-const colors = {
+const primaryColor = {
+  primary: Colors.blueA700,
+  accent: Colors.yellow700,
+};
+export const lightColors: ReactNativePaper.ThemeColors = {
   ...DefaultTheme.colors,
   custom: {
-    ...customColor,
+    ...customColors,
   },
-  accent: 'yellow',
-  primary: 'tomato',
+  ...primaryColor,
+};
+export const darkColors: ReactNativePaper.ThemeColors = {
+  ...DarkTheme.colors,
+  custom: {
+    ...customColors,
+  },
+  ...primaryColor,
+  background: Colors.grey900,
+  surface: Colors.grey800,
 };
 
-export type CustomColor = typeof customColor;
-
-export default colors;
+export type CustomColor = typeof customColors;

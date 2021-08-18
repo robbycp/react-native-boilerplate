@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import Modal from 'react-native-modal';
 import {Divider, IconButton, Title, useTheme} from 'react-native-paper';
-import colors from '~/style/color';
+import {customColors} from '~/style/color';
 
 interface Props {
   children: React.ReactElement;
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 16,
   },
   containerHeader: {
-    borderBottomColor: colors.custom.grey400,
+    borderBottomColor: customColors.grey400,
     borderBottomWidth: 2,
   },
   containerModal: {
