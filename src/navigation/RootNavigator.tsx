@@ -10,6 +10,7 @@ import ScreenSplash from '~/screens/Splash';
 import ScreenWebviewGoogle from '~/screens/WebviewGoogle';
 import {RootStackParamList, ScreenName} from '~/types/navigation';
 import ScreenTermsCondition from '~/screens/T&C';
+import {Platform} from 'react-native';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -36,7 +37,10 @@ const RootNavigator: React.FunctionComponent = () => {
           component={ScreenWebviewGoogle}
         />
       </Stack.Group>
-      <Stack.Group screenOptions={{presentation: 'containedModal'}}>
+      <Stack.Group
+        screenOptions={{
+          presentation: Platform.OS === 'ios' ? 'modal' : 'containedModal',
+        }}>
         <Stack.Screen
           name={ScreenName.MODAL_PRIVACY}
           component={ScreenModalPrivacy}
