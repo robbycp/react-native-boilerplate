@@ -77,7 +77,7 @@ const ScreenHomeView = ({
           <YoutubePlayer
             style={styles.videoPlayer}
             videoId="iee2TATGMyI"
-            width={metrics.deviceWidth - 2 * marginVideoPlayer}
+            width={metrics.deviceWidth - 2 * (16 + marginVideoPlayer)}
           />
           <Subheading>{t('home.authentication')}</Subheading>
           <Signin />
