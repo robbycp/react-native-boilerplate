@@ -14,7 +14,9 @@ type ScreenHomeNavigation = NativeStackScreenProps<
 export interface ScreenHomeContainerProps extends ScreenHomeNavigation {}
 export interface ScreenHomeViewProps {
   handleShareMessage: () => void;
+  isShowFocus: boolean;
   listFeatures: ListFeature[];
   navigation: ScreenHomeNavigation['navigation'];
+  setisShowFocus: React.Dispatch<React.SetStateAction<boolean>>;
   textFirebaseConfig: RemoteConfigValue;
 }

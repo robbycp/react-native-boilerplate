@@ -12,6 +12,7 @@ import {
   Divider,
   List,
   Subheading,
+  Switch,
   Text,
   Title,
   useTheme,
@@ -43,9 +44,11 @@ const styles = StyleSheet.create({
 
 const ScreenHomeView = ({
   handleShareMessage,
+  isShowFocus,
   listFeatures,
   navigation,
   textFirebaseConfig,
+  setisShowFocus,
 }: ScreenHomeViewProps) => {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -97,6 +100,11 @@ const ScreenHomeView = ({
           <SnackbarHome />
           <Subheading>{t('home.selectLanguage')}</Subheading>
           <LanguageOption />
+          <Subheading>{t('home.functionalFocus')}</Subheading>
+          <Switch
+            value={isShowFocus}
+            onValueChange={() => setisShowFocus(!isShowFocus)}
+          />
           <Title>{t('home.otherFeature')}</Title>
         </View>
         <View>

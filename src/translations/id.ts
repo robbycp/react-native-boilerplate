@@ -17,6 +17,7 @@ const id: Translation = {
     home: {
       authentication: 'Autentikasi',
       functionalFeatures: 'Fitur Fungsional',
+      functionalFocus: 'Fungsi Fokus',
       firebaseRemoteConfig: 'Konfigurasi Remote Firebase',
       modalPrivacy: `Modal ${privacy}`,
       otherFeature: 'Fitur lain',

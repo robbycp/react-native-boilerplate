@@ -24,6 +24,7 @@ brew install fastlane
 - */components* put all global component here
   - */basic* here is all component view and the logic here. The basic one without accessing redux
   - */custom* . Here is some extendable custom component, using component basic or not. Could have redux state here
+- */hooks* put custom hooks here
 - */navigation* put all navigator configuration here
 - */screens* put all screens here, even the screen inside the BottomNavigator or TabNavigator, should be put in line in folder screens. One folder here represent one screen, and child folder represent local component
 - */services* all sdk integration to third party apps should be put in this folder. Connection to internal service, also could be put here, such us creating api class for one api host.
