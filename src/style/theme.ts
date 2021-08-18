@@ -1,4 +1,5 @@
 import {
+  configureFonts,
   DarkTheme as PaperDarkTheme,
   DefaultTheme as PaperDefaultTheme,
 } from 'react-native-paper';
@@ -9,12 +10,14 @@ import {
 
 import component from './component';
 import {darkColors, lightColors} from './color';
+import fonts from './fonts';
 import layout from './layout';
 import metrics from './metrics';
 import spacing from './spacing';
 
 const customStyle = {
   component,
+  fonts: configureFonts(fonts),
   layout,
   metrics,
   spacing,
