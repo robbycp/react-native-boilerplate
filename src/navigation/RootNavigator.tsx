@@ -6,6 +6,7 @@ import ScreenFlatListImage from '~/screens/FlatListImage';
 import ScreenForm from '~/screens/Form';
 import ScreenHome from '~/screens/Home';
 import ScreenModalPrivacy from '~/screens/ModalPrivacy';
+import ScreenTabExample from '~/screens/TabExample';
 import ScreenSplash from '~/screens/Splash';
 import ScreenWebviewGoogle from '~/screens/WebviewGoogle';
 import {RootStackParamList, ScreenName} from '~/types/navigation';
@@ -28,6 +29,7 @@ const RootNavigator: React.FunctionComponent = () => {
         <Stack.Screen name={ScreenName.FORM} component={ScreenForm} />
         <Stack.Screen name={ScreenName.HOME} component={ScreenHome} />
         <Stack.Screen name={ScreenName.SPLASH} component={ScreenSplash} />
+        <Stack.Screen name={ScreenName.TABS} component={ScreenTabExample} />
         <Stack.Screen
           name={ScreenName.TERMS_CONDITION}
           component={ScreenTermsCondition}
