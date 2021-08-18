@@ -14,6 +14,7 @@ const en = {
     },
     home: {
       authentication: 'Authentication',
+      functionalFocus: 'Functional Focus',
       functionalFeatures: 'Functional Features',
       firebaseRemoteConfig: 'Firebase Remote Config',
       modalPrivacy: `Modal ${privacy}`,

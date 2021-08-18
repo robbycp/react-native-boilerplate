@@ -1,4 +1,6 @@
 import React from 'react';
+import {Alert} from 'react-native';
+import useFocus from '~/hooks/useFocus';
 
 import {logPressHomeList} from '~/services/firebaseAnalytics';
 import {setInAppMessaging} from '~/services/firebaseInAppMessaging';
@@ -11,10 +13,21 @@ import ScreenHomeView from './ScreenHomeView';
 
 const ScreenHomeContainer: React.FunctionComponent<ScreenHomeContainerProps> =
   ({navigation}) => {
+    const [isShowFocus, setisShowFocus] = React.useState(false);
     const navigateAndAnalytics = (screenName: ScreenName) => {
       logPressHomeList();
       navigation.navigate(screenName);
     };
+    const handleOnFocus = () => {
+      Alert.alert('Focus', 'onFocus');
+    };
+    const handleOnBlur = () => {
+      Alert.alert('Blur', 'onBlur');
+    };
+    useFocus({
+      onFocus: isShowFocus ? handleOnFocus : undefined,
+      onBlur: isShowFocus ? handleOnBlur : undefined,
+    });
     const listFeatures: ListFeature[] = [
       {
         title: 'Ads List',
@@ -59,7 +72,9 @@ const ScreenHomeContainer: React.FunctionComponent<ScreenHomeContainerProps> =
         {...{
           handleShareMessage,
           listFeatures,
+          isShowFocus,
           navigation,
+          setisShowFocus,
           textFirebaseConfig,
         }}
       />
