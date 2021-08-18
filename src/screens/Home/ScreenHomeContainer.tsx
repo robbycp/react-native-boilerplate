@@ -32,6 +32,11 @@ const ScreenHomeContainer: React.FunctionComponent<ScreenHomeContainerProps> =
         onPress: () => navigateAndAnalytics(ScreenName.FLATLIST_IMAGE),
       },
       {
+        title: 'List Tabs',
+        icon: 'image',
+        onPress: () => navigateAndAnalytics(ScreenName.TABS),
+      },
+      {
         title: 'Webview',
         icon: 'google',
         onPress: () => navigateAndAnalytics(ScreenName.WEBVIEW_GOOGLE),
