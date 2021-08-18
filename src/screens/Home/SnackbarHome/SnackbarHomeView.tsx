@@ -32,9 +32,15 @@ const SnackbarHomeView = () => {
   };
   return (
     <View>
-      <Button onPress={dispatchSnackbarShowError}>Error (7s)</Button>
-      <Button onPress={dispatchSnackbarShowSuccess}>Success (7s)</Button>
-      <Button onPress={dispatchSnackbarShowInfo}>Info (1s)</Button>
+      <Button mode="text" onPress={dispatchSnackbarShowError}>
+        Error (7s) btn_text
+      </Button>
+      <Button mode="outlined" onPress={dispatchSnackbarShowSuccess}>
+        Success (7s) btn_outlined
+      </Button>
+      <Button mode="contained" onPress={dispatchSnackbarShowInfo}>
+        Info (1s) btn_contained
+      </Button>
     </View>
   );
 };

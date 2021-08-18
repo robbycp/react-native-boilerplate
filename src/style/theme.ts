@@ -1,7 +1,14 @@
-import {DefaultTheme} from 'react-native-paper';
+import {
+  DarkTheme as PaperDarkTheme,
+  DefaultTheme as PaperDefaultTheme,
+} from 'react-native-paper';
+import {
+  DefaultTheme as RNDefaultTheme,
+  DarkTheme as RNDefaultDarkTheme,
+} from '@react-navigation/native';
 
 import component from './component';
-import customColor from './color';
+import {darkColors, lightColors} from './color';
 import layout from './layout';
 import metrics from './metrics';
 import spacing from './spacing';
@@ -13,14 +20,44 @@ const customStyle = {
   spacing,
 };
 
-const theme = {
-  ...DefaultTheme,
-  ...customStyle,
+export type CustomStyle = typeof customStyle;
+
+export const RNLightTheme = {
+  dark: false,
   colors: {
-    ...customColor,
+    ...RNDefaultTheme.colors,
+    primary: lightColors.primary,
+    background: lightColors.background,
+    card: lightColors.surface,
+    text: lightColors.text,
+    notification: lightColors.notification,
   },
 };
 
-export type CustomTheme = typeof customStyle;
+export const RNDarkTheme = {
+  dark: true,
+  colors: {
+    ...RNDefaultDarkTheme.colors,
+    primary: darkColors.primary,
+    background: darkColors.background,
+    card: darkColors.surface,
+    text: darkColors.text,
+    notification: darkColors.notification,
+  },
+};
 
-export default theme;
+export const lightTheme = {
+  ...PaperDefaultTheme,
+  ...customStyle,
+  colors: {
+    ...lightColors,
+  },
+};
+
+export const darkTheme = {
+  ...PaperDarkTheme,
+  ...customStyle,
+  colors: {
+    ...darkColors,
+  },
+};
