@@ -49,9 +49,10 @@ brew install fastlane
 - For iOS, change logo in LaunchScreen.storyboard
 - For javascript, copy to src/assets/images/logo.png
 6. Change src/assets/images/empty-image.png
-7. Change fontFamily in src/Assets/fonts.
+7. Change fontFamily
+  - copy font.ttf to src/assets/fonts.
   - In terminal `react-native link`
-  - Change in src/Theme/PaperTheme/fonts
+  - Change in src/style/fonts
 8. Change Theme color
   - Change color in src/Theme/PaperTheme/index
   - Adjust src/Theme/Fonts as needed (lineHeight and fontSize)
