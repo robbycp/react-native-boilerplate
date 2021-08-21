@@ -23,7 +23,7 @@
     "@react-native-firebase/remote-config": "^11.5.0",
     "@react-native-google-signin/google-signin": "^6.0.1",
     "@react-navigation/native": "^6.0.0",
-    "@react-navigation/native-stack": "^6.0.0",
+    "@react-navigation/stack": "^6.0.7",
     "@reduxjs/toolkit": "^1.6.1",
     "i18next": "^20.4.0",
     "lottie-ios": "3.2.3",
@@ -52,6 +52,7 @@
     "react-native-vector-icons": "^8.1.0",
     "react-native-webview": "^11.6.6",
     "react-native-youtube-iframe": "^2.1.1",
+    "react-navigation-collapsible": "^6.0.0",
     "react-redux": "^7.2.4",
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.1.3"

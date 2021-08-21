@@ -1,4 +1,4 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {StackScreenProps} from '@react-navigation/stack';
 import {RootStackParamList, ScreenName} from '~/types/navigation';
 
 export interface ListFeature {
@@ -7,7 +7,7 @@ export interface ListFeature {
   onPress: () => void;
 }
 
-type ScreenHomeNavigation = NativeStackScreenProps<
+type ScreenHomeNavigation = StackScreenProps<
   RootStackParamList,
   ScreenName.WEBVIEW_GOOGLE
 >;
