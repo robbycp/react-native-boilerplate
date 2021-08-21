@@ -1,5 +1,10 @@
 export enum ScreenName {
   ADS_LIST = 'Ads List',
+  COLLAPSIBLE_BACKGROUND = 'Collapsible Background',
+  COLLAPSIBLE_CUSTOM = 'Collapsible Custom',
+  COLLAPSIBLE_DEFAULT = 'Collapsible Default',
+  COLLAPSIBLE_STICKY = 'Collapsible Sticky',
+  COLLAPSIBLE_SUBHEADER = 'Collapsible SubHeader',
   FLATLIST_IMAGE = 'Flatlist Image',
   FORM = 'Form',
   HOME = 'Home',
@@ -12,6 +17,11 @@ export enum ScreenName {
 
 export type RootStackParamList = {
   [ScreenName.ADS_LIST]: undefined;
+  [ScreenName.COLLAPSIBLE_BACKGROUND]: undefined;
+  [ScreenName.COLLAPSIBLE_CUSTOM]: undefined;
+  [ScreenName.COLLAPSIBLE_DEFAULT]: undefined;
+  [ScreenName.COLLAPSIBLE_STICKY]: undefined;
+  [ScreenName.COLLAPSIBLE_SUBHEADER]: undefined;
   [ScreenName.FLATLIST_IMAGE]: undefined;
   [ScreenName.FORM]: undefined;
   [ScreenName.HOME]: undefined;

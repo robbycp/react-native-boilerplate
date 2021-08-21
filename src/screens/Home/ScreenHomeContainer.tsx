@@ -40,6 +40,31 @@ const ScreenHomeContainer: React.FunctionComponent<ScreenHomeContainerProps> =
         onPress: () => navigateAndAnalytics(ScreenName.FORM),
       },
       {
+        title: 'Collapsible Background',
+        icon: 'account-box',
+        onPress: () => navigateAndAnalytics(ScreenName.COLLAPSIBLE_BACKGROUND),
+      },
+      {
+        title: 'Collapsible Custom',
+        icon: 'account-box',
+        onPress: () => navigateAndAnalytics(ScreenName.COLLAPSIBLE_CUSTOM),
+      },
+      {
+        title: 'Collapsible Default',
+        icon: 'account-box',
+        onPress: () => navigateAndAnalytics(ScreenName.COLLAPSIBLE_DEFAULT),
+      },
+      {
+        title: 'Collapsible Sticky',
+        icon: 'account-box',
+        onPress: () => navigateAndAnalytics(ScreenName.COLLAPSIBLE_STICKY),
+      },
+      {
+        title: 'Collapsible Subheader',
+        icon: 'account-box',
+        onPress: () => navigateAndAnalytics(ScreenName.COLLAPSIBLE_SUBHEADER),
+      },
+      {
         title: 'List Image',
         icon: 'image',
         onPress: () => navigateAndAnalytics(ScreenName.FLATLIST_IMAGE),
