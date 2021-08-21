@@ -1,6 +1,5 @@
 import React from 'react';
-import {Platform} from 'react-native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createStackNavigator} from '@react-navigation/stack';
 
 import ScreenAdsList from '~/screens/AdsList';
 import ScreenCollapsibleBackground from '~/screens/CollapsibleBackground';
@@ -18,61 +17,56 @@ import ScreenWebviewGoogle from '~/screens/WebviewGoogle';
 import {RootStackParamList, ScreenName} from '~/types/navigation';
 import ScreenTermsCondition from '~/screens/T&C';
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createStackNavigator<RootStackParamList>();
 
 const RootNavigator: React.FunctionComponent = () => {
   return (
-    <Stack.Navigator
-      initialRouteName={ScreenName.SPLASH}
-      screenOptions={{headerShown: false}}>
-      <Stack.Group screenOptions={{animation: 'slide_from_right'}}>
-        <Stack.Screen name={ScreenName.ADS_LIST} component={ScreenAdsList} />
-        <Stack.Screen
-          name={ScreenName.COLLAPSIBLE_BACKGROUND}
-          component={ScreenCollapsibleBackground}
-        />
-        <Stack.Screen
-          name={ScreenName.COLLAPSIBLE_CUSTOM}
-          component={ScreenCollapsibleCustomHeader}
-        />
-        <Stack.Screen
-          name={ScreenName.COLLAPSIBLE_DEFAULT}
-          component={ScreenCollapsibleDefault}
-        />
-        <Stack.Screen
-          name={ScreenName.COLLAPSIBLE_STICKY}
-          component={ScreenCollapsibleSticky}
-        />
-        <Stack.Screen
-          name={ScreenName.COLLAPSIBLE_SUBHEADER}
-          component={ScreenCollapsibleSubHeader}
-        />
-        <Stack.Screen
-          name={ScreenName.FLATLIST_IMAGE}
-          component={ScreenFlatListImage}
-        />
-        <Stack.Screen name={ScreenName.FORM} component={ScreenForm} />
-        <Stack.Screen name={ScreenName.HOME} component={ScreenHome} />
-        <Stack.Screen name={ScreenName.SPLASH} component={ScreenSplash} />
-        <Stack.Screen name={ScreenName.TABS} component={ScreenTabExample} />
-        <Stack.Screen
-          name={ScreenName.TERMS_CONDITION}
-          component={ScreenTermsCondition}
-        />
-        <Stack.Screen
-          name={ScreenName.WEBVIEW_GOOGLE}
-          component={ScreenWebviewGoogle}
-        />
-      </Stack.Group>
-      <Stack.Group
-        screenOptions={{
-          presentation: Platform.OS === 'ios' ? 'modal' : 'containedModal',
-        }}>
-        <Stack.Screen
-          name={ScreenName.MODAL_PRIVACY}
-          component={ScreenModalPrivacy}
-        />
-      </Stack.Group>
+    <Stack.Navigator initialRouteName={ScreenName.SPLASH}>
+      <Stack.Screen name={ScreenName.ADS_LIST} component={ScreenAdsList} />
+      <Stack.Screen
+        name={ScreenName.COLLAPSIBLE_BACKGROUND}
+        component={ScreenCollapsibleBackground}
+      />
+      <Stack.Screen
+        name={ScreenName.COLLAPSIBLE_CUSTOM}
+        component={ScreenCollapsibleCustomHeader}
+      />
+      <Stack.Screen
+        name={ScreenName.COLLAPSIBLE_DEFAULT}
+        component={ScreenCollapsibleDefault}
+      />
+      <Stack.Screen
+        name={ScreenName.COLLAPSIBLE_STICKY}
+        component={ScreenCollapsibleSticky}
+      />
+      <Stack.Screen
+        name={ScreenName.COLLAPSIBLE_SUBHEADER}
+        component={ScreenCollapsibleSubHeader}
+      />
+      <Stack.Screen
+        name={ScreenName.FLATLIST_IMAGE}
+        component={ScreenFlatListImage}
+      />
+      <Stack.Screen name={ScreenName.FORM} component={ScreenForm} />
+      <Stack.Screen
+        name={ScreenName.HOME}
+        component={ScreenHome}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen name={ScreenName.SPLASH} component={ScreenSplash} />
+      <Stack.Screen name={ScreenName.TABS} component={ScreenTabExample} />
+      <Stack.Screen
+        name={ScreenName.TERMS_CONDITION}
+        component={ScreenTermsCondition}
+      />
+      <Stack.Screen
+        name={ScreenName.WEBVIEW_GOOGLE}
+        component={ScreenWebviewGoogle}
+      />
+      <Stack.Screen
+        name={ScreenName.MODAL_PRIVACY}
+        component={ScreenModalPrivacy}
+      />
     </Stack.Navigator>
   );
 };
