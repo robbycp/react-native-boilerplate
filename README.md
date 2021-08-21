@@ -58,6 +58,10 @@ brew install fastlane
   - Change color in src/Theme/PaperTheme/index
   - Adjust src/Theme/Fonts as needed (lineHeight and fontSize)
   - Adjust src/Theme/Variables as needed (metric size)
+9. Setting Deep link
+  - Change prefixes in linking config in src/navigation/linking
+  - Change AndroidManifest.xml with targeted scheme / domain
+  - Change in Info.plist `CFBundleURLSchemes` `sibudi` value with targeted scheme / domain
 
 ## One signal
 1. Create account in firebase. Copy server key and sender id

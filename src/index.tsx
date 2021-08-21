@@ -24,6 +24,7 @@ import {initialAnalytics, logScreen} from '~/services/firebaseAnalytics';
 import {setInAppMessaging} from '~/services/firebaseInAppMessaging';
 import initOneSignal from './services/notificationOneSignal';
 import {getSnackbarState, snackbarHide} from '~/store/slices/snackbar';
+import linking from './navigation/linking';
 
 import './translations';
 
@@ -72,6 +73,7 @@ const AppSnackbar = () => {
     </>
   );
 };
+
 const App = () => {
   const routeNameRef = React.useRef<string | undefined>('');
   const scheme = useColorScheme();
@@ -81,6 +83,7 @@ const App = () => {
         <PaperProvider theme={scheme === 'dark' ? darkTheme : lightTheme}>
           <SafeAreaProvider>
             <NavigationContainer
+              linking={linking}
               theme={scheme === 'dark' ? RNDarkTheme : RNLightTheme}
               ref={navigationRef}
               onReady={() => {
