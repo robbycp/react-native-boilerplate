@@ -2,7 +2,6 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Text} from 'react-native-paper';
 
-import Header from '~/components/basic/Header/Header';
 import Tabs from '~/components/basic/Tabs';
 
 const styles = StyleSheet.create({
@@ -22,7 +21,6 @@ const TabExampleView = () => {
   };
   return (
     <>
-      <Header title="Tabs Example" />
       <View style={styles.containerTabs}>
         <Tabs keysScene={keysScene} />
       </View>

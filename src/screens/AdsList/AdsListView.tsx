@@ -1,11 +1,10 @@
 import {BannerAdSize} from '@react-native-firebase/admob';
 import {NavigationProp, ParamListBase} from '@react-navigation/native';
 import React from 'react';
-import {View, ScrollView} from 'react-native';
+import {ScrollView} from 'react-native';
 import {Button} from 'react-native-paper';
 
 import AdsBanner from '~/components/basic/Ads/AdsBanner';
-import Header from '~/components/basic/Header/Header';
 import {useInterstitial} from '~/services/firebaseAdmob';
 
 const AdsListView = ({
@@ -20,15 +19,12 @@ const AdsListView = ({
     interstitial.show();
   };
   return (
-    <View>
-      <Header title="Ads List" />
-      <ScrollView>
-        <AdsBanner size={BannerAdSize.FULL_BANNER} />
-        {isAdsLoaded && (
-          <Button onPress={handleInterstialAds}>Interstitial ads</Button>
-        )}
-      </ScrollView>
-    </View>
+    <ScrollView>
+      <AdsBanner size={BannerAdSize.FULL_BANNER} />
+      {isAdsLoaded && (
+        <Button onPress={handleInterstialAds}>Interstitial ads</Button>
+      )}
+    </ScrollView>
   );
 };
 

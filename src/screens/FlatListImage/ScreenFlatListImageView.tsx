@@ -17,26 +17,23 @@ const ScreenFlatListImageView = () => {
   const theme = useTheme();
   const {t} = useTranslation();
   return (
-    <>
-      <Header title="List Image" />
-      <FlatList
-        data={data}
-        renderItem={({item}) => (
-          <FastImageCustom
-            key={item}
-            style={[styles.image, theme.spacing.mb8]}
-            source={{
-              uri: 'https://source.unsplash.com/1600x900/?cat,dog,animals',
-            }}
-          />
-        )}
-        ListHeaderComponent={
-          <View style={theme.spacing.p8}>
-            <Text>{t('flatlistImage.fastImage')}</Text>
-          </View>
-        }
-      />
-    </>
+    <FlatList
+      data={data}
+      renderItem={({item}) => (
+        <FastImageCustom
+          key={item}
+          style={[styles.image, theme.spacing.mb8]}
+          source={{
+            uri: 'https://source.unsplash.com/1600x900/?cat,dog,animals',
+          }}
+        />
+      )}
+      ListHeaderComponent={
+        <View style={theme.spacing.p8}>
+          <Text>{t('flatlistImage.fastImage')}</Text>
+        </View>
+      }
+    />
   );
 };
 
