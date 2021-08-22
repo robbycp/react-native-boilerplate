@@ -5,7 +5,6 @@ import {
   CollapsibleSubHeaderAnimator,
   useCollapsibleSubHeader,
 } from 'react-navigation-collapsible';
-import Header from '~/components/basic/Header/Header';
 
 import CollapsibleItem from '~/components/custom/CollapsibleItem';
 
@@ -44,13 +43,7 @@ const MySearchBar = () => {
 
 const ScreenCollapsibleSubHeaderView = () => {
   const {onScroll, containerPaddingTop, scrollIndicatorInsetTop, translateY} =
-    useCollapsibleSubHeader({
-      navigationOptions: {
-        header: () => {
-          return <Header title="Collapsible Sub Header" withBackButton />;
-        },
-      },
-    });
+    useCollapsibleSubHeader();
 
   return (
     <>
