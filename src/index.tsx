@@ -1,4 +1,5 @@
 import React from 'react';
+import codePush from 'react-native-code-push';
 import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Provider as StoreProvider, useDispatch, useSelector} from 'react-redux';
@@ -109,4 +110,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default codePush(App);
