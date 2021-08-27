@@ -3,6 +3,20 @@ apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.grad
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 apply plugin: 'com.google.gms.google-services'
 
+def getPassword(String keyChain) {
+   def stdout = new ByteArrayOutputStream()
+   def stderr = new ByteArrayOutputStream()
+   exec {
+       commandLine 'security', '-q', 'find-generic-password', '-s', keyChain, '-w'
+       standardOutput = stdout
+       errorOutput = stderr
+       ignoreExitValue true
+   }
+   //noinspection GroovyAssignabilityCheck
+      stdout.toString().trim()
+}
+def pass = getPassword("android_keystore")
+
 // onesignal configuration
 buildscript {
     repositories {
@@ -159,7 +173,8 @@ android {
             reset()
             enable enableSeparateBuildPerCPUArchitecture
             universalApk false  // If true, also generate a universal APK
-            include "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
+            // all architecture "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
+            include "arm64-v8a"
         }
     }
     signingConfigs {
@@ -172,9 +187,9 @@ android {
         release {
             if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
                 storeFile file(project.property('MYAPP_UPLOAD_STORE_FILE'))
-                storePassword project.property('MYAPP_UPLOAD_STORE_PASSWORD')
+                storePassword pass
                 keyAlias project.property('MYAPP_UPLOAD_KEY_ALIAS')
-                keyPassword project.property('MYAPP_UPLOAD_KEY_PASSWORD')
+                keyPassword pass
             }
         }
     }
@@ -185,7 +200,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
