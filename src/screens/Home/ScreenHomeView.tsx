@@ -105,8 +105,8 @@ const ScreenHomeView = ({
             value={isShowFocus}
             onValueChange={() => setisShowFocus(!isShowFocus)}
           />
+          <Title>New Feature OTA versi 2</Title>
           <Title>{t('home.otherFeature')}</Title>
-          <Title>New Feature OTA</Title>
         </View>
         <View>
           {listFeatures.map((item, position) => (

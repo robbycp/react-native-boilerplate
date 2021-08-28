@@ -1,0 +1,1 @@
+appcenter codepush release-react -a kudaterbang-test/react-native-boilerplate-android -d Staging
