@@ -5,9 +5,9 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "release:android": "sh ./script/release-android.sh",
-    "dev:android": "sh ./script/dev-android.sh",
-    "codepush:android": "sh ./script/dev-android.sh",
+    "release:android": "sh ./script/release-dist-android.sh",
+    "dev:android": "sh ./script/dev-dist-android.sh",
+    "codepush:android": "sh ./script/dev-push-android.sh",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
