@@ -62,6 +62,8 @@ brew install fastlane
   - Change prefixes in linking config in src/navigation/linking
   - Change AndroidManifest.xml with targeted scheme / domain
   - Change in Info.plist `CFBundleURLSchemes` `sibudi` value with targeted scheme / domain
+10. Env
+  - add value for file .env.staging and .env.production using .env-example template
 
 ## One signal
 1. Create account in firebase. Copy server key and sender id
