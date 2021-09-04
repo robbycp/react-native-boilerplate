@@ -1,6 +1,5 @@
+import Config from 'react-native-config';
 import remoteConfig from '@react-native-firebase/remote-config';
-
-const FIREBASE_REMOTE_CONFIG_CACHE_TIME = __DEV__ ? 1 : 3600;
 
 export enum RemoteConfigKeys {
   AWESOME_NEW_FEATURE = 'awesome_new_feature',
@@ -13,7 +12,7 @@ export const DEFAULT_VALUE = {
 export async function fetchRemoteConfig() {
   try {
     await remoteConfig().setDefaults(DEFAULT_VALUE);
-    await remoteConfig().fetch(+FIREBASE_REMOTE_CONFIG_CACHE_TIME);
+    await remoteConfig().fetch(+Config.FIREBASE_REMOTE_CONFIG_CACHE_TIME);
     const fetchedRemotely = await remoteConfig().activate();
     if (fetchedRemotely) {
       console.info('Configs were retrieved from the backend and activated.');

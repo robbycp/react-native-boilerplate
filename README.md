@@ -72,8 +72,8 @@ brew install fastlane
 4. Copy one signal id to env ONE_SIGNAL_ID
 
 ## Firebase
-1. Create firebase project
-2. Add apps to project
+1. Create two firebase project: Staging and Production
+2. Add android and ios apps to each of environment project
 3. Follow [here](https://rnfirebase.io/) to add `google-services.json` (for Android) and `GoogleService-Info.plist` (for iOS) for firebase credentials
 
 ## Admob

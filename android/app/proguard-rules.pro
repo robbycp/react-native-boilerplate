@@ -9,7 +9,7 @@
 
 # Add any project specific keep options here:
 # react-native-config rules
--keep class com.mypackage.BuildConfig { *; }
+-keep class com.robbycp.rnboilerplate.BuildConfig { *; }
 
 # react-native-fast-image
 -keep public class com.dylanvann.fastimage.* {*;}

@@ -4,10 +4,13 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "android:debug": "react-native run-android --variant=debug --appIdSuffix 'staging'",
+    "android:staging": "react-native run-android --variant=staging --appIdSuffix 'staging'",
+    "android:production": "react-native run-android --variant=release",
     "ios": "react-native run-ios",
-    "release:android": "sh ./script/release-dist-android.sh",
-    "staging:android": "sh ./script/staging-dist-android.sh",
-    "codepush:android": "sh ./script/staging-push-android.sh",
+    "dist:s-android": "sh ./script/s-dist-android.sh",
+    "dist:p-android": "sh ./script/p-dist-android.sh",
+    "codepush:android": "sh ./script/s-push-android.sh",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"

@@ -1,4 +1,5 @@
 import React from 'react';
+import Config from 'react-native-config';
 import {
   SafeAreaView,
   ScrollView,
@@ -70,6 +71,8 @@ const ScreenHomeView = ({
         <LoadingOverlay isVisible={isLoadingOverlay} />
         <View style={[theme.spacing.m16, theme.spacing.p0]}>
           <Title>{t('home.functionalFeatures')}</Title>
+          <Subheading>{t('home.config')}</Subheading>
+          <Text>{Config.ENVIRONMENT}</Text>
           <Subheading>{t('home.firebaseRemoteConfig')}</Subheading>
           <Text>
             {t('home.firebaseRemoteConfig')} : {textFirebaseConfig.value}
