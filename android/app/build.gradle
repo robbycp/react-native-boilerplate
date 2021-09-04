@@ -1,8 +1,17 @@
 apply plugin: "com.android.application"
+
+project.ext.envConfigFiles = [
+  release: ".env.production",
+  debug: ".env.staging",
+  staging: ".env.staging",
+]
+
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 apply plugin: 'com.google.gms.google-services'
 
+// Use keychain access from local mac to get android_keystore password, used by release buildTypes
+// Comment if you use CI / CD for building apps
 def getPassword(String keyChain) {
    def stdout = new ByteArrayOutputStream()
    def stderr = new ByteArrayOutputStream()
@@ -109,6 +118,8 @@ project.ext.react = [
     bundleCommand: "ram-bundle",
     extraPackagerArgs: ["--indexed-ram-bundle"],
     enableHermes: false,  // clean and rebuild if changing
+    devDisabledInStaging: true,
+    bundleInStaging: true,
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -167,14 +178,14 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        resValue "string", "build_config_package", "com.robbycp.rnboilerplate"
     }
     splits {
         abi {
             reset()
             enable enableSeparateBuildPerCPUArchitecture
             universalApk false  // If true, also generate a universal APK
-            // all architecture "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
-            include "arm64-v8a"
+            all architecture "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
         }
     }
     signingConfigs {
@@ -196,11 +207,23 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
+            applicationIdSuffix ".staging"
+            resValue "string", "app_name", "RNBoilerplate Debug"
+            matchingFallbacks = ['debug', 'release']
+        }
+        staging {
+            signingConfig signingConfigs.debug
+            applicationIdSuffix ".staging"
+            resValue "string", "app_name", "RNBoilerplate Staging"
+            matchingFallbacks = ['staging', 'release']
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
             signingConfig signingConfigs.release
+            resValue "string", "app_name", "RNBoilerplate"
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }

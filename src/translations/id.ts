@@ -16,6 +16,7 @@ const id: Translation = {
     },
     home: {
       authentication: 'Autentikasi',
+      config: 'Konfigurasi Lingkungan',
       functionalFeatures: 'Fitur Fungsional',
       functionalFocus: 'Fungsi Fokus',
       firebaseRemoteConfig: 'Konfigurasi Remote Firebase',
