@@ -26,6 +26,16 @@ def getPassword(String keyChain) {
 }
 def pass = getPassword("android_keystore")
 
+// Get branch name
+def getCurrentBranch() {
+    def branch = ""
+    def proc = "git rev-parse --abbrev-ref HEAD".execute()
+    proc.in.eachLine { line -> branch = line }
+    proc.err.eachLine { line -> println line }
+    proc.waitFor()
+    branch.replaceAll('/', '-')
+}
+
 // onesignal configuration
 buildscript {
     repositories {
@@ -177,15 +187,18 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "1.0"
+        versionName "0.0.1"
+        setProperty("archivesBaseName", "RNBoilerplate" + "-" + versionName + "-" + getCurrentBranch())
         resValue "string", "build_config_package", "com.robbycp.rnboilerplate"
     }
     splits {
         abi {
             reset()
             enable enableSeparateBuildPerCPUArchitecture
-            universalApk false  // If true, also generate a universal APK
-            all architecture "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
+            universalApk true  // If true, also generate a universal APK
+            // all architecture "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
+            // most likely used arm64-v8a
+            include "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
         }
     }
     signingConfigs {
@@ -241,7 +254,16 @@ android {
                 output.versionCodeOverride =
                         defaultConfig.versionCode * 1000 + versionCodes.get(abi)
             }
-
+            // // Rename APK file
+            // def builtType = variant.buildType.name // debug, staging, release 
+            // def versionName = variant.versionName
+            // def versionCode = variant.versionCode
+            // def shownAbi = abi == null ? "" : "-${abi}"
+            // if (builtType == "release") {
+            //     output.outputFileName = "RNBoilerplate-${versionName}.aab"
+            // } else {
+            //     output.outputFileName = "RNBoilerplate-${builtType}-${versionName}-${getCurrentBranch()}${shownAbi}.apk"
+            // }
         }
     }
 }
