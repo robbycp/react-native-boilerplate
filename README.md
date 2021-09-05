@@ -95,3 +95,8 @@ brew install fastlane
   - icon in splash screen
   - launch screen for ios
 - Empty state image logo. If something bad happen when image is loading
+
+## Fastlane
+- `fastlane supply init` to set up metadata management at a later point
+### Android
+- add json_key_file from google play console in /android/fastlane/Appfile

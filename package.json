@@ -10,7 +10,12 @@
     "ios": "react-native run-ios",
     "dist:s-android": "sh ./script/s-dist-android.sh",
     "dist:p-android": "sh ./script/p-dist-android.sh",
-    "codepush:android": "sh ./script/s-push-android.sh",
+    "bundle:p-android": "sh ./script/p-bundle-android.sh",
+    "bump-patch": "npm version patch --no-git-tag-version",
+    "bump-minor": "npm version minor --no-git-tag-version && bundle exec fastlane bump",
+    "bump-major": "npm version major --no-git-tag-version && bundle exec fastlane bump",
+    "dist-codepush:s-android": "sh ./script/s-push-android.sh",
+    "dist-codepush:p-android": "sh ./script/s-push-android.sh",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
