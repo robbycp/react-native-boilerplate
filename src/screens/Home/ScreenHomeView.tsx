@@ -64,6 +64,10 @@ const ScreenHomeView = ({
 
   const theme = useTheme();
   const {t} = useTranslation();
+
+  const usingHermes =
+    typeof HermesInternal === 'object' && HermesInternal !== null;
+
   return (
     <SafeAreaView>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
@@ -77,6 +81,8 @@ const ScreenHomeView = ({
           <Text>
             {t('home.firebaseRemoteConfig')} : {textFirebaseConfig.value}
           </Text>
+          <Subheading>Hermes</Subheading>
+          <Text>{usingHermes ? 'True' : 'False'}</Text>
           <Subheading>{t('home.shareLink')}</Subheading>
           <Button onPress={handleShareMessage}>{t('home.shareButton')}</Button>
           <Subheading>{t('home.youtubePlayer')}</Subheading>

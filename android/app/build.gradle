@@ -125,9 +125,9 @@ import com.android.build.OutputFile
  */
 
 project.ext.react = [
-    bundleCommand: "ram-bundle",
-    extraPackagerArgs: ["--indexed-ram-bundle"],
-    enableHermes: false,  // clean and rebuild if changing
+    // bundleCommand: "ram-bundle",
+    // extraPackagerArgs: ["--indexed-ram-bundle"],
+    enableHermes: true,  // clean and rebuild if changing
     devDisabledInStaging: true,
     bundleInStaging: true,
 ]
