@@ -1,7 +1,6 @@
 cd android && ./gradlew assembleStaging
 
-VersionName=`node -p "require('../package.json').version"`
-BranchName=$(git rev-parse --abbrev-ref HEAD)
-BranchNameParsed=${BranchName/\//-}
+uploadFileName=$(find ./app/build/outputs/apk/staging/ -type f -iname "*arm64-v8a-staging.apk")
+echo "upload file to appcenter: $uploadFileName"
 
-appcenter distribute release --app kudaterbang-test/react-native-boilerplate-android --file "./app/build/outputs/apk/staging/RNBoilerplate-${VersionName}-${BranchNameParsed}-arm64-v8a-staging.apk" --group "Collaborators"
+appcenter distribute release --app kudaterbang-test/react-native-boilerplate-android --file "${uploadFileName}" --group "Collaborators"
