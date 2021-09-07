@@ -65,6 +65,40 @@ brew install fastlane
 10. Env
   - add value for file .env.staging and .env.production using .env-example template
 
+## Build, Publish, versioning
+### Caveats
+- Patch / hotfix build distribution is always using codepush
+- Minor and Major build will be build and distributed through app store
+### Development flow
+1. Create branch from branch `main` with branch name prefix `feature/`
+2. Develop feature
+3. Create PR to be merged to branch name prefix `release/`
+4. Testing in feature branch
+  a. build apk from branch feature and distribute to appcenter
+  ```yarn run dist:s-android```
+  b. tester test the app
+  c. QA passed
+5. Merged PR branch `feature/` to branch `release/`
+6. If you want to develop other feature, repeat from step 1 but branched from branch `release`
+7. Final testing to see any regression or not. Build staging and production env apk
+```
+yarn run dist:s-android
+yarn run dist:p-android
+```
+8. Merged PR from branch name prefix `release/` to `main`
+9. Run bump version: hotfix / patch, minor, or major
+```
+yarn run bump-patch
+yarn run bump-minor
+yarn run bump-major
+```
+10. commit and push changes
+11. Run distribute to store
+### How to build and publish patch
+1. git checkout to main branch
+2. Run this to bump version in package.json. Choose based on what version you want to bump, `patch`, `minor`, or `major`. `yarn run bump-patch`
+3. Run this to  `yarn run dist-codepush:s-android`
+
 ## One signal
 1. Create account in firebase. Copy server key and sender id
 2. Create account in one signal
