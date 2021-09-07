@@ -1,3 +1,5 @@
+import groovy.json.JsonSlurper
+
 apply plugin: "com.android.application"
 
 project.ext.envConfigFiles = [
@@ -26,7 +28,7 @@ def getPassword(String keyChain) {
 }
 def pass = getPassword("android_keystore")
 
-// Get branch name
+// Custom version and filename
 def getCurrentBranch() {
     def branch = ""
     def proc = "git rev-parse --abbrev-ref HEAD".execute()
@@ -35,6 +37,19 @@ def getCurrentBranch() {
     proc.waitFor()
     branch.replaceAll('/', '-')
 }
+def getVersionFromNpm() {
+    //  Read and parse package.json file from project root
+    def inputFile = new File("$rootDir/../package.json")
+    def packageJson = new JsonSlurper().parseText(inputFile.text)["version"]
+
+    def (versionMajor, versionMinor, versionPatch) = packageJson.tokenize('.')
+    // Return the version, you can get any value this way
+    def versionCode = versionMajor.toInteger() * 10000 + versionMinor.toInteger() * 100 + versionPatch.toInteger()
+    project.logger.lifecycle('versionCode' + versionCode)
+    return versionCode
+}
+def customVersionCode = getVersionFromNpm()
+def customVersionName = "$customVersionCode-${getCurrentBranch()}"
 
 // onesignal configuration
 buildscript {
@@ -186,9 +201,9 @@ android {
         applicationId "com.robbycp.rnboilerplate"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "0.0.1"
-        setProperty("archivesBaseName", "RNBoilerplate" + "-" + versionName + "-" + getCurrentBranch())
+        versionCode customVersionCode
+        versionName customVersionName
+        setProperty("archivesBaseName", "RNBoilerplate" + "-" + versionName)
         resValue "string", "build_config_package", "com.robbycp.rnboilerplate"
     }
     splits {
@@ -254,16 +269,6 @@ android {
                 output.versionCodeOverride =
                         defaultConfig.versionCode * 1000 + versionCodes.get(abi)
             }
-            // // Rename APK file
-            // def builtType = variant.buildType.name // debug, staging, release 
-            // def versionName = variant.versionName
-            // def versionCode = variant.versionCode
-            // def shownAbi = abi == null ? "" : "-${abi}"
-            // if (builtType == "release") {
-            //     output.outputFileName = "RNBoilerplate-${versionName}.aab"
-            // } else {
-            //     output.outputFileName = "RNBoilerplate-${builtType}-${versionName}-${getCurrentBranch()}${shownAbi}.apk"
-            // }
         }
     }
 }
