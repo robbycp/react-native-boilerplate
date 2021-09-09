@@ -19,6 +19,7 @@ import {
   useTheme,
 } from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
+import {getReadableVersion} from 'react-native-device-info';
 
 import YoutubePlayer from '~/components/basic/YoutubePlayer';
 import metrics from '~/style/metrics';
@@ -75,6 +76,8 @@ const ScreenHomeView = ({
         <LoadingOverlay isVisible={isLoadingOverlay} />
         <View style={[theme.spacing.m16, theme.spacing.p0]}>
           <Title>{t('home.functionalFeatures')}</Title>
+          <Subheading>{t('home.version')}</Subheading>
+          <Text>{getReadableVersion()}</Text>
           <Subheading>{t('home.config')}</Subheading>
           <Text>{Config.ENVIRONMENT}</Text>
           <Subheading>{t('home.firebaseRemoteConfig')}</Subheading>
@@ -114,7 +117,7 @@ const ScreenHomeView = ({
             value={isShowFocus}
             onValueChange={() => setisShowFocus(!isShowFocus)}
           />
-          <Title>New Feature OTA versi 2</Title>
+          <Title>New Feature OTA versi 3</Title>
           <Title>{t('home.otherFeature')}</Title>
         </View>
         <View>

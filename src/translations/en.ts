@@ -25,6 +25,7 @@ const en = {
       selectLanguage: 'Select Language',
       shareLink: 'Share Link',
       shareButton: 'Share Message',
+      version: 'Version',
       youtubePlayer: 'Youtube Player',
     },
     homeClipboard: {
