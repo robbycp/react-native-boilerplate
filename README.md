@@ -93,7 +93,18 @@ yarn run bump-minor
 yarn run bump-major
 ```
 10. commit and push changes
-11. Run distribute to store
+### Distribution
+#### Major and minor version
+Run this to bundle and upload to app store / playstore using fastlane.
+```yarn run dist:android```
+Included in this fastlane lane android
+- Test file
+- Submit to crashlytics
+- [TODO] Upload apps screenshot to description
+- Deploy to google play store
+#### Patch version
+If patch version change in native code, you should run same like major and minor version. Otherwise, you could run this to upload bundleJS to appcenter codepush.
+```yarn run dist-codepush:s-android```
 ### How to build and publish patch
 1. git checkout to main branch
 2. Run this to bump version in package.json. Choose based on what version you want to bump, `patch`, `minor`, or `major`. `yarn run bump-patch`

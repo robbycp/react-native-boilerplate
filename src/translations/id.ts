@@ -27,6 +27,7 @@ const id: Translation = {
       selectLanguage: 'Pilih Bahasa',
       shareLink: 'Bagikan tautan',
       shareButton: 'Bagikan pesan',
+      version: 'Versi',
       youtubePlayer: 'Pemutar Youtube',
     },
     homeClipboard: {
