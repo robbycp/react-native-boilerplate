@@ -117,7 +117,7 @@ const ScreenHomeView = ({
             value={isShowFocus}
             onValueChange={() => setisShowFocus(!isShowFocus)}
           />
-          <Title>Bismillah OTA versi 4</Title>
+          <Title>Bismillah OTA versi 5 dong</Title>
           <Title>{t('home.otherFeature')}</Title>
         </View>
         <View>
