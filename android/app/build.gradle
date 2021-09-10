@@ -213,6 +213,8 @@ android {
         versionName customVersionName
         setProperty("archivesBaseName", "RNBoilerplate" + "-" + versionName)
         resValue "string", "build_config_package", "com.robbycp.rnboilerplate"
+        resValue 'string', "CODE_PUSH_APK_BUILD_TIME", String.format("\"%d\"", System.currentTimeMillis())
+
     }
     splits {
         abi {
