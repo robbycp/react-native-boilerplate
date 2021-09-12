@@ -3,9 +3,9 @@ rm -rf ./CodePush/*
 
 # Build bundleJS
 npx react-native bundle \
-  --platform android \
+  --platform ios \
   --entry-file index.js \
-  --bundle-output ./Codepush/index.android.bundle \
+  --bundle-output ./Codepush/main.jsbundle \
   --assets-dest ./CodePush \
   --dev false
 
@@ -19,7 +19,7 @@ echo Release bundle to appcenter: $PACKAGE_VERSION
 
 # Upload to appcenter
 appcenter codepush release \
-  -a kudaterbang-test/react-native-boilerplate-android \
+  -a kudaterbang-test/react-native-boilerplate-ios \
   -c ./CodePush \
   -t "~$PACKAGE_VERSION" \
   -d Staging
