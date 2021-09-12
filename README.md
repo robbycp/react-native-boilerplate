@@ -125,6 +125,22 @@ If patch version change in native code, you should run same like major and minor
 1. Create admob account => create app
 2. App Settings => copy to firebase.json
 
+## Fastlane
+- `fastlane supply init` to set up metadata management at a later point
+### Android
+- add json_key_file from google play console in /android/fastlane/Appfile
+
+# Monitoring / Debugging
+## React native debugger
+- install react native debugger [here](https://github.com/jhen0409/react-native-debugger)
+- use react native debugger to inspect
+  - redux: state, dispatch action
+  - react navigation: state, dispatch action
+## Flipper
+- install [here](https://fbflipper.com/docs/getting-started/index)
+- use this to monitor / debug
+  - network: all network fetch including fetching data with third party sdk, or fetching image url, will be shown here
+  - performance
 # Things for designer
 ## Colors
 - define colors (customColor and defined color if needed) in src/style/color
@@ -140,8 +156,3 @@ If patch version change in native code, you should run same like major and minor
   - icon in splash screen
   - launch screen for ios
 - Empty state image logo. If something bad happen when image is loading
-
-## Fastlane
-- `fastlane supply init` to set up metadata management at a later point
-### Android
-- add json_key_file from google play console in /android/fastlane/Appfile
