@@ -14,6 +14,7 @@ import {
   setNativeExceptionHandler,
 } from 'react-native-exception-handler';
 import {StatusBar, useColorScheme} from 'react-native';
+import {useReduxDevToolsExtension} from '@react-navigation/devtools';
 
 import RootNavigator from '~/navigation/RootNavigator';
 import {navigationRef} from '~/navigation/navigator';
@@ -78,6 +79,7 @@ const AppSnackbar = () => {
 const App = () => {
   const routeNameRef = React.useRef<string | undefined>('');
   const scheme = useColorScheme();
+  useReduxDevToolsExtension(navigationRef);
   return (
     <StoreProvider store={store}>
       <PersistGate loading={null} persistor={persistor}>
