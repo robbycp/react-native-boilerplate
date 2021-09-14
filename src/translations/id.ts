@@ -12,6 +12,8 @@ const id: Translation = {
       loading: 'Memuat',
     },
     flatlistImage: {
+      description:
+        'Gunakan layar ini sebagai eksperimen untuk optimisasi performa',
       fastImage: 'Gambar Cepat',
     },
     home: {

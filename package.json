@@ -54,7 +54,6 @@
     "react-native-onesignal": "^4.2.0",
     "react-native-pager-view": "^5.4.0",
     "react-native-paper": "^4.9.2",
-    "react-native-performance": "^2.0.0",
     "react-native-reanimated": "^2.2.0",
     "react-native-render-html": "^6.0.5",
     "react-native-safe-area-context": "^3.2.0",
@@ -87,7 +86,9 @@
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.64.0",
     "react-native-flipper": "^0.108.0",
+    "react-native-performance": "^2.0.0",
     "react-native-performance-flipper-reporter": "^2.0.0",
+    "react-native-performance-monitor": "^1.2.1",
     "react-test-renderer": "17.0.1",
     "typescript": "^3.8.3"
   },

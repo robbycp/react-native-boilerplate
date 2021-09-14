@@ -10,6 +10,7 @@ const en = {
       loading: 'Loading',
     },
     flatlistImage: {
+      description: 'Use this screen as a performance playground',
       fastImage: 'Fast Image',
     },
     home: {

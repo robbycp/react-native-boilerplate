@@ -18,7 +18,6 @@ import ScreenWebviewGoogle from '~/screens/WebviewGoogle';
 import {RootStackParamList, ScreenName} from '~/types/navigation';
 import ScreenTermsCondition from '~/screens/T&C';
 import Header from '~/components/basic/Header/Header';
-import HeaderModal from '~/components/basic/Header/HeaderModal';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
