@@ -20,6 +20,7 @@ const en = {
       firebaseRemoteConfig: 'Firebase Remote Config',
       modalPrivacy: `Modal ${privacy}`,
       otherFeature: 'Other Features',
+      performance: 'Performance',
       privacy,
       networkRead: 'Network Read',
       selectLanguage: 'Select Language',

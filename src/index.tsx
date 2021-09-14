@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Profiler} from 'react';
 import codePush from 'react-native-code-push';
 import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
@@ -27,8 +27,15 @@ import {setInAppMessaging} from '~/services/firebaseInAppMessaging';
 import initOneSignal from './services/notificationOneSignal';
 import {getSnackbarState, snackbarHide} from '~/store/slices/snackbar';
 import linking from './navigation/linking';
+import {
+  setResourceLogging,
+  traceRender,
+  usePerformance,
+} from '~/utils/performance';
 
 import './translations';
+
+setResourceLogging();
 
 const {persistor, store} = configureStore();
 
@@ -80,35 +87,38 @@ const App = () => {
   const routeNameRef = React.useRef<string | undefined>('');
   const scheme = useColorScheme();
   useReduxDevToolsExtension(navigationRef);
+  usePerformance();
   return (
-    <StoreProvider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <PaperProvider theme={scheme === 'dark' ? darkTheme : lightTheme}>
-          <SafeAreaProvider>
-            <NavigationContainer
-              linking={linking}
-              theme={scheme === 'dark' ? RNDarkTheme : RNLightTheme}
-              ref={navigationRef}
-              onReady={() => {
-                routeNameRef.current =
-                  navigationRef.current?.getCurrentRoute()?.name;
-              }}
-              onStateChange={async () => {
-                const previousRouteName = routeNameRef.current;
-                const currentRouteName =
-                  navigationRef.current?.getCurrentRoute()?.name;
+    <Profiler id="App.render()" onRender={traceRender}>
+      <StoreProvider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <PaperProvider theme={scheme === 'dark' ? darkTheme : lightTheme}>
+            <SafeAreaProvider>
+              <NavigationContainer
+                linking={linking}
+                theme={scheme === 'dark' ? RNDarkTheme : RNLightTheme}
+                ref={navigationRef}
+                onReady={() => {
+                  routeNameRef.current =
+                    navigationRef.current?.getCurrentRoute()?.name;
+                }}
+                onStateChange={async () => {
+                  const previousRouteName = routeNameRef.current;
+                  const currentRouteName =
+                    navigationRef.current?.getCurrentRoute()?.name;
 
-                if (previousRouteName !== currentRouteName) {
-                  logScreen(currentRouteName);
-                }
-                routeNameRef.current = currentRouteName;
-              }}>
-              <AppSnackbar />
-            </NavigationContainer>
-          </SafeAreaProvider>
-        </PaperProvider>
-      </PersistGate>
-    </StoreProvider>
+                  if (previousRouteName !== currentRouteName) {
+                    logScreen(currentRouteName);
+                  }
+                  routeNameRef.current = currentRouteName;
+                }}>
+                <AppSnackbar />
+              </NavigationContainer>
+            </SafeAreaProvider>
+          </PaperProvider>
+        </PersistGate>
+      </StoreProvider>
+    </Profiler>
   );
 };
 

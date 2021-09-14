@@ -6347,6 +6347,11 @@ react-native-performance-flipper-reporter@^2.0.0:
   resolved "https://registry.yarnpkg.com/react-native-performance-flipper-reporter/-/react-native-performance-flipper-reporter-2.0.0.tgz#e48534aeb817fa44b39a12f95e498aaae71b658d"
   integrity sha512-ccOgq99eK3OvrNNhpJDC4ydNk/1JGgWZPo2FLrPDLUHXAR4EcE9cUAtb46oGOpvHk5ZOb5aEDofc/CS9OEGcag==
 
+react-native-performance@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-performance/-/react-native-performance-2.0.0.tgz#6742c1a4417bf5069586200d40b3a5b805cf8a9c"
+  integrity sha512-jKM9Qg0SkL9D9ad377nxb1VV+OXJSyYyIrBHKmM6CABNxfrLVA5xkQMEibjmZQde7b0ndJOZoQAiObgJjjc4VQ==
+
 react-native-reanimated@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.2.0.tgz#a6412c56b4e591d1f00fac949f62d0c72c357c78"
