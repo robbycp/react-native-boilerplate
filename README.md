@@ -142,6 +142,10 @@ If patch version change in native code, you should run same like major and minor
 - use this to monitor / debug
   - network: all network fetch including fetching data with third party sdk, or fetching image url, will be shown here
   - performance: metrics such us startup time
+## react-native-performance-monitoring
+- Use react-native-performance-monitoring package to debug render performance
+- See more options and how to use [here](https://github.com/Flagsmith/react-native-performance-monitor)
+- Use ScreenFlatListImage as playground
 # Things for designer
 ## Colors
 - define colors (customColor and defined color if needed) in src/style/color

@@ -23,13 +23,6 @@ export const traceRender: ProfilerOnRenderCallback = (
   commitTime, // when React committed this update
   interactions, // the Set of interactions belonging to this update
 ) => {
-  console.log('id', id);
-  console.log('phase', phase);
-  console.log('actualDuration', actualDuration);
-  console.log('baseDuration', baseDuration);
-  console.log('startTime', startTime);
-  console.log('commitTime', commitTime);
-  console.log('interactions', interactions);
   return performance.measure(id, {
     start: performance.timeOrigin + startTime,
     duration: actualDuration,
@@ -89,9 +82,9 @@ export const usePerformance = () => {
     }).observe({type: 'resource', buffered: true});
   }, []);
 
-  console.info('[Performance] metrics', metrics);
-  console.info('[Performance] nativeMarks', nativeMarks);
-  console.info('[Performance] resources', resources);
+  // console.info('[Performance] metrics', metrics);
+  // console.info('[Performance] nativeMarks', nativeMarks);
+  // console.info('[Performance] resources', resources);
 
   return {
     metrics,
