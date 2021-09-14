@@ -136,11 +136,12 @@ If patch version change in native code, you should run same like major and minor
 - use react native debugger to inspect
   - redux: state, dispatch action
   - react navigation: state, dispatch action
+  - performance: using react dev tools to watch Profiler, see what components takes much rendering
 ## Flipper
 - install [here](https://fbflipper.com/docs/getting-started/index)
 - use this to monitor / debug
   - network: all network fetch including fetching data with third party sdk, or fetching image url, will be shown here
-  - performance
+  - performance: metrics such us startup time
 # Things for designer
 ## Colors
 - define colors (customColor and defined color if needed) in src/style/color

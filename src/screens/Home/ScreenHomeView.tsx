@@ -21,10 +21,10 @@ import {
 import {useTranslation} from 'react-i18next';
 import {getReadableVersion} from 'react-native-device-info';
 
+import LoadingOverlay from '~/components/basic/Loading/LoadingOverlay';
 import YoutubePlayer from '~/components/basic/YoutubePlayer';
 import metrics from '~/style/metrics';
 import {ScreenName} from '~/types/navigation';
-import LoadingOverlay from '~/components/basic/Loading/LoadingOverlay';
 
 import ClipboardHome from './ClipboardHome';
 import HTMLHome from './HTMLHome';
@@ -43,6 +43,8 @@ const styles = StyleSheet.create({
     width: metrics.deviceWidth,
   },
 });
+
+declare const global: {HermesInternal: null | {}};
 
 const ScreenHomeView = ({
   handleShareMessage,
@@ -67,7 +69,7 @@ const ScreenHomeView = ({
   const {t} = useTranslation();
 
   const usingHermes =
-    typeof HermesInternal === 'object' && HermesInternal !== null;
+    typeof global.HermesInternal === 'object' && global.HermesInternal !== null;
 
   return (
     <SafeAreaView>
@@ -117,21 +119,28 @@ const ScreenHomeView = ({
             value={isShowFocus}
             onValueChange={() => setisShowFocus(!isShowFocus)}
           />
-          <Title>Bismillah OTA versi 6 jancuk</Title>
+          <Subheading>Bismillah OTA versi 6 jancuk</Subheading>
+          <Subheading>{t('home.performance')}</Subheading>
           <Title>{t('home.otherFeature')}</Title>
         </View>
         <View>
           {listFeatures.map((item, position) => (
             <>
               <List.Item
-                key={`${position}-${item.title}`}
+                key={`${position}-${item.title}-${item.icon}-title`}
                 title={item.title}
                 onPress={item.onPress}
-                left={props => <List.Icon {...props} icon={item.icon} />}
+                left={props => (
+                  <List.Icon
+                    key={`${position}-${item.title}-${item.icon}-icon`}
+                    {...props}
+                    icon={item.icon}
+                  />
+                )}
               />
               <Divider
                 key={`${position}-${item.title}-divider`}
-                style={styles.divider}
+                style={[styles.divider]}
               />
             </>
           ))}

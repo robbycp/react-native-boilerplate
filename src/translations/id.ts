@@ -22,6 +22,7 @@ const id: Translation = {
       firebaseRemoteConfig: 'Konfigurasi Remote Firebase',
       modalPrivacy: `Modal ${privacy}`,
       otherFeature: 'Fitur lain',
+      performance: 'Performa',
       privacy,
       networkRead: 'Membaca Jaringan',
       selectLanguage: 'Pilih Bahasa',
