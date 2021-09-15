@@ -19,6 +19,9 @@ const id: Translation = {
     home: {
       authentication: 'Autentikasi',
       config: 'Konfigurasi Lingkungan',
+      error: 'Kesalahan Sentry',
+      errorSendJS: 'Kirim kesalahan JS',
+      errorSendNative: 'Kirim kesalahan Native',
       functionalFeatures: 'Fitur Fungsional',
       functionalFocus: 'Fungsi Fokus',
       firebaseRemoteConfig: 'Konfigurasi Remote Firebase',
