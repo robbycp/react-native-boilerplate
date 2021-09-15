@@ -1,5 +1,6 @@
 import React, {Profiler} from 'react';
 import codePush from 'react-native-code-push';
+import * as Sentry from '@sentry/react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Provider as StoreProvider, useDispatch, useSelector} from 'react-redux';
@@ -20,7 +21,11 @@ import RootNavigator from '~/navigation/RootNavigator';
 import {navigationRef} from '~/navigation/navigator';
 import configureStore from '~/store';
 import {RNDarkTheme, RNLightTheme, darkTheme, lightTheme} from '~/style/theme';
-import {exceptionJSHandler, exceptionNativeHandler} from '~/utils/errorHandler';
+import {
+  exceptionJSHandler,
+  exceptionNativeHandler,
+  routingInstrumentation,
+} from '~/utils/errorHandler';
 import {fetchRemoteConfig} from '~/services/firebaseRemoteConfig';
 import {initialAnalytics, logScreen} from '~/services/firebaseAnalytics';
 import {setInAppMessaging} from '~/services/firebaseInAppMessaging';
@@ -101,6 +106,9 @@ const App = () => {
                 onReady={() => {
                   routeNameRef.current =
                     navigationRef.current?.getCurrentRoute()?.name;
+                  routingInstrumentation.registerNavigationContainer(
+                    navigationRef,
+                  );
                 }}
                 onStateChange={async () => {
                   const previousRouteName = routeNameRef.current;
@@ -122,4 +130,4 @@ const App = () => {
   );
 };
 
-export default codePush(App);
+export default Sentry.wrap(codePush(App));

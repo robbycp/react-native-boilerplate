@@ -20,6 +20,7 @@ import {
 } from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 import {getReadableVersion} from 'react-native-device-info';
+import * as Sentry from '@sentry/react-native';
 
 import LoadingOverlay from '~/components/basic/Loading/LoadingOverlay';
 import YoutubePlayer from '~/components/basic/YoutubePlayer';
@@ -121,6 +122,19 @@ const ScreenHomeView = ({
           />
           <Subheading>Bismillah OTA versi 6 jancuk</Subheading>
           <Subheading>{t('home.performance')}</Subheading>
+          <Subheading>{t('home.error')}</Subheading>
+          <Button
+            onPress={() => {
+              throw new Error('My first Sentry error!');
+            }}>
+            {t('home.errorSendJS')}
+          </Button>
+          <Button
+            onPress={() => {
+              Sentry.nativeCrash();
+            }}>
+            {t('home.errorSendNative')}
+          </Button>
           <Title>{t('home.otherFeature')}</Title>
         </View>
         <View>

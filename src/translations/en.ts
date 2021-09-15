@@ -16,6 +16,9 @@ const en = {
     home: {
       authentication: 'Authentication',
       config: 'Config Environment',
+      error: 'Error Sentry',
+      errorSendJS: 'Send Error JS',
+      errorSendNative: 'Send Error Native',
       functionalFocus: 'Functional Focus',
       functionalFeatures: 'Functional Features',
       firebaseRemoteConfig: 'Firebase Remote Config',
