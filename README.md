@@ -74,13 +74,18 @@ brew install fastlane
 2. Develop feature
 3. Create PR to be merged to branch name prefix `release/`
 4. Testing in feature branch
-  a. build apk from branch feature and distribute to appcenter
-  ```yarn run dist:s-android```
+  a. build apk from branch feature and distribute to appcenter. If you want to build apk with environment production from branch feature, run second command
+  ```
+  // run with env staging
+  yarn run dist:s-android
+  // run with env production
+  yarn run dist:s-android release
+  ```
   b. tester test the app
   c. QA passed
 5. Merged PR branch `feature/` to branch `release/`
 6. If you want to develop other feature, repeat from step 1 but branched from branch `release`
-7. Final testing to see any regression or not. Build staging and production env apk
+7. Final testing to see any regression or not. Build staging and production env apk from branch `/release`
 ```
 yarn run dist:s-android
 yarn run dist:p-android
