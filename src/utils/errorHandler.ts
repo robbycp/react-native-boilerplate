@@ -1,4 +1,5 @@
-import {Alert, DevSettings} from 'react-native';
+import {Alert, AlertButton, AlertOptions} from 'react-native';
+import RNRestart from 'react-native-restart';
 import * as Sentry from '@sentry/react-native';
 import Config from 'react-native-config';
 
@@ -9,7 +10,7 @@ Sentry.init({
   dsn: Config.SENTRY_DSN,
   debug: __DEV__,
   environment: Config.ENVIRONMENT,
-  tracesSampleRate: Config.ENVIRONMENT === 'staging' ? 1.0 : 0.2,
+  tracesSampleRate: Config.ENVIRONMENT === 'production' ? 0.2 : 1.0,
   integrations: [
     new Sentry.ReactNativeTracing({
       routingInstrumentation,
@@ -17,27 +18,45 @@ Sentry.init({
   ],
 });
 
-export const exceptionJSHandler = (error: Error, isFatal: boolean) => {
-  if (isFatal) {
-    Alert.alert(
-      'Unexpected error occurred',
-      `
-        Error: ${isFatal ? 'Fatal:' : ''} ${error.name} ${error.message}
+interface ShowAlertInput {
+  data: {
+    title: string;
+    message: string;
+    options?: AlertOptions;
+  };
+  actions: AlertButton[];
+}
 
-        We will need to restart the app.
-        `,
-      [
-        {
-          text: 'Restart',
-          onPress: () => {
-            DevSettings.reload();
-          },
+export function showAlert(
+  data: ShowAlertInput['data'],
+  actions: ShowAlertInput['actions'],
+) {
+  Alert.alert(data.title, data.message, actions, data.options);
+}
+
+export const exceptionJSHandler = (error: Error, isFatal: boolean) => {
+  Sentry.captureException(error);
+  if (isFatal) {
+    const actions = [
+      {
+        text: 'Restart',
+        onPress: () => {
+          RNRestart.Restart();
         },
-      ],
+      },
+    ];
+    showAlert(
+      {
+        title: 'Unexpected error occurred',
+        message: `
+        Error: ${error.name} ${error.message}
+        We have reported this to our team ! Please press restart or close the App!
+        `,
+      },
+      actions,
     );
   } else {
-    Sentry.captureException(error);
-    console.log(error); // So that we can see it in the ADB logs in case of Android if needed
+    // console.error(e) // So that we can see it in the ADB logs in case of Android if needed
   }
 };
 
