@@ -1,12 +1,12 @@
 # Remove previous bundle
-rm -rf ./CodePush/*
+rm -rf ./sourcemap/*
 
 # Build bundleJS
 npx react-native bundle \
   --platform android \
   --entry-file index.js \
-  --bundle-output ./Codepush/index.android.bundle \
-  --assets-dest ./CodePush \
+  --bundle-output ./sourcemap/index.android.bundle \
+  --assets-dest ./sourcemap \
   --dev false
 
 # Get version
@@ -20,6 +20,6 @@ echo Release bundle to appcenter: $PACKAGE_VERSION
 # Upload to appcenter
 appcenter codepush release \
   -a kudaterbang-test/react-native-boilerplate-android \
-  -c ./CodePush \
+  -c ./sourcemap \
   -t "~$PACKAGE_VERSION" \
   -d Staging

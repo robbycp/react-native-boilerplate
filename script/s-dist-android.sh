@@ -1,5 +1,5 @@
 echo "command $1"
-buildType="staging"
+buildType="stagingRelease"
 
 # Get last version
 lastVersion=""
@@ -24,17 +24,17 @@ if [ "$buildType" = "release" ]; then
 fi
 
 echo "bump prelease staging version: $versionName"
-if ["$buildType" = "release"]
-  then
-    npm version prerelease --preid $versionName --no-git-tag-version
-  else
-    npm version prerelease --preid $versionName
+if [ "$buildType" = "release" ]; then
+  npm version prerelease --preid $versionName --no-git-tag-version
+else
+  npm version prerelease --preid $versionName
+fi
 
 # # Build apk
-cd android && ./gradlew assembleStaging
+cd android && ./gradlew assembleStagingRelease
 
 # # Upload apk to appcenter
-uploadFileName=$(find ./app/build/outputs/apk/$buildType/ -type f -iname "*arm64-v8a-staging.apk")
+uploadFileName=$(find ./app/build/outputs/apk/$buildType/ -type f -iname "*arm64-v8a-stagingRelease.apk")
 echo "upload file to appcenter: $uploadFileName"
 appcenter distribute release --app kudaterbang-test/react-native-boilerplate-android --file "${uploadFileName}" --group "Collaborators"
 echo "upload successfull"

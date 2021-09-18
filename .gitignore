@@ -67,5 +67,5 @@ buck-out/
 # Firebase
 google-services.json
 
-# Codepush
-/CodePUsh/*
+# sourcemap for sentry and codepush
+/sourcemap

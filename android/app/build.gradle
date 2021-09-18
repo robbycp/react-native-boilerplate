@@ -3,9 +3,9 @@ import groovy.json.JsonSlurper
 apply plugin: "com.android.application"
 
 project.ext.envConfigFiles = [
-  release: ".env.production",
   debug: ".env.staging",
-  staging: ".env.staging",
+  release: ".env.production",
+  stagingRelease: ".env.staging",
 ]
 
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
@@ -120,8 +120,8 @@ project.ext.react = [
     // bundleCommand: "ram-bundle",
     // extraPackagerArgs: ["--indexed-ram-bundle"],
     enableHermes: true,  // clean and rebuild if changing
-    devDisabledInStaging: true,
-    bundleInStaging: true,
+    devDisabledInStagingRelease: true,
+    bundleInStagingRelease: true,
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -238,11 +238,11 @@ android {
             resValue "string", "app_name", "RNBoilerplate Debug"
             matchingFallbacks = ['debug', 'release']
         }
-        staging {
+        stagingRelease {
             signingConfig signingConfigs.debug
             applicationIdSuffix ".staging"
             resValue "string", "app_name", "RNBoilerplate Staging"
-            matchingFallbacks = ['staging', 'release']
+            matchingFallbacks = ['stagingRelease', 'release']
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
@@ -295,7 +295,7 @@ dependencies {
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";
         debugImplementation files(hermesPath + "hermes-debug.aar")
-        stagingImplementation files(hermesPath + "hermes-release.aar")
+        stagingReleaseImplementation files(hermesPath + "hermes-release.aar")
         releaseImplementation files(hermesPath + "hermes-release.aar")
     } else {
         implementation jscFlavor

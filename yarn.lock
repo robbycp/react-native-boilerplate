@@ -1722,6 +1722,13 @@
   dependencies:
     ts-toolbelt "^6.15.1"
 
+"@types/react-native-restart@^0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@types/react-native-restart/-/react-native-restart-0.0.14.tgz#e694e7b92c413a1e95e1cfa299946763bde2ca38"
+  integrity sha512-scqrU+LZy05HsOOk0OgxoSBkxtoGhUmZ7CGNkn5/9XaTGGW+/Is7WPs6UCxu4SLiWBs3R7gkC1WZRY5LGAqJNA==
+  dependencies:
+    react-native-restart "*"
+
 "@types/react-native@^0.64.5":
   version "0.64.12"
   resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.64.12.tgz#1c6a3226c26d7a5949cdf8878e6cfe95fe0951d6"
@@ -7145,6 +7152,11 @@ react-native-render-html@^6.0.5:
     ramda "^0.27.1"
     stringify-entities "^3.1.0"
     urijs "^1.19.6"
+
+react-native-restart@*, react-native-restart@^0.0.22:
+  version "0.0.22"
+  resolved "https://registry.yarnpkg.com/react-native-restart/-/react-native-restart-0.0.22.tgz#81fcb7f31e35951d85410c68b9556acf3ab88705"
+  integrity sha512-XwCqAMAKsO8yCM3xACPFKvkDQZe41lcavOuO0gUEu803IuTLtciualCq/qs83ryRDCDh1jkXYRqFjsGjLMCN3Q==
 
 react-native-safe-area-context@^3.2.0:
   version "3.2.0"
