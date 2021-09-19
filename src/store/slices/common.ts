@@ -3,13 +3,13 @@ import {CommonData, CommonKey} from '~/types/common';
 
 import {ReduxModule} from '~/types/redux';
 
-interface CommonState {
+export interface CommonState {
   [CommonData.privacyPolicy]: string | undefined;
   [CommonData.termsAndCondition]: string | undefined;
   isLoading: boolean;
 }
 
-const initialState: CommonState = {
+export const initialState: CommonState = {
   [CommonData.privacyPolicy]: '',
   [CommonData.termsAndCondition]: '',
   isLoading: false,

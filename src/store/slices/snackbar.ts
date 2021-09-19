@@ -4,7 +4,7 @@ import i18n from '~/translations';
 import {ReduxModule} from '~/types/redux';
 import {RootState} from '../rootReducers';
 
-interface SnackbarState {
+export interface SnackbarState {
   action: {
     type: string;
     payload: any;
@@ -16,7 +16,7 @@ interface SnackbarState {
   type: 'info' | 'success' | 'error' | 'warning';
 }
 
-const initialState: SnackbarState = {
+export const initialState: SnackbarState = {
   action: {
     type: '',
     payload: {},
@@ -24,7 +24,7 @@ const initialState: SnackbarState = {
   duration: 7000,
   isVisible: false,
   message: '',
-  textButton: 'dismiss',
+  textButton: i18n.t('common.dismiss'),
   type: 'info',
 };
 

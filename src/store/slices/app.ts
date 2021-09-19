@@ -2,11 +2,11 @@ import {createSlice} from '@reduxjs/toolkit';
 
 import {ReduxModule} from '~/types/redux';
 
-interface AppState {
+export interface AppState {
   isLoading: boolean;
 }
 
-const initialState: AppState = {
+export const initialState: AppState = {
   isLoading: false,
 };
 
