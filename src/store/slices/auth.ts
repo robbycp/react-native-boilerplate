@@ -2,7 +2,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {ReduxModule} from '~/types/redux';
 import {Auth, AuthMethod, ClientData} from '~/types/user';
 
-interface AuthState {
+export interface AuthState {
   check: {
     error: Error | null;
     isLoading: boolean;
@@ -31,7 +31,7 @@ interface AuthState {
   };
 }
 
-const initialState: AuthState = {
+export const initialState: AuthState = {
   check: {
     error: null,
     isLoading: false,
@@ -82,6 +82,7 @@ export const authSlice = createSlice({
   reducers: {
     authCheckRequest: state => {
       state.check.isLoading = true;
+      state.check.error = null;
     },
     authCheckFailed: (state, action: PayloadAction<Error>) => {
       state.check.isLoading = false;
@@ -111,7 +112,7 @@ export const authSlice = createSlice({
     },
     authSigninFailed: (state, action: PayloadAction<Error>) => {
       state.signin.isLoading = false;
-      state.me.error = action.payload;
+      state.signin.error = action.payload;
     },
     authSigninSuccess: state => {
       state.signin.isLoading = false;
@@ -124,7 +125,7 @@ export const authSlice = createSlice({
     },
     authSignupFailed: (state, action: PayloadAction<Error>) => {
       state.signup.isLoading = false;
-      state.me.error = action.payload;
+      state.signup.error = action.payload;
     },
     authSignupSuccess: state => {
       state.signup.isLoading = false;
@@ -138,7 +139,7 @@ export const authSlice = createSlice({
     },
     authSignoutFailed: (state, action: PayloadAction<Error>) => {
       state.signout.isLoading = false;
-      state.me.error = action.payload;
+      state.signout.error = action.payload;
     },
     authSignoutSuccess: state => {
       state.signout.isLoading = false;
