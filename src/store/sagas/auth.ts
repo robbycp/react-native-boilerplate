@@ -1,5 +1,6 @@
 import {call, getContext, put} from 'redux-saga/effects';
 import {FirebaseAuthTypes} from '@react-native-firebase/auth';
+import type {PayloadAction} from '@reduxjs/toolkit';
 
 import ModelUser from '~/services/FirestoreModel/User';
 import {
@@ -20,8 +21,8 @@ import {
 import {currentUser, signInGoogle, signOut} from '~/services/firebaseAuth';
 import {ContextName, RootContext} from '../rootContext';
 import {ScreenName} from '~/types/navigation';
-import {ClientData, FirebaseUserCredential} from '~/types/user';
 import {FirestoreData} from '~/services/firebaseFirestore';
+import type {ClientData, FirebaseUserCredential} from '~/types/user';
 
 export function* authCheckSaga() {
   try {
@@ -35,7 +36,7 @@ export function* authCheckSaga() {
   }
 }
 
-export function* authMeSaga(action) {
+export function* authMeSaga(action: PayloadAction<string>) {
   try {
     const userId = action.payload;
     const userData: FirestoreData<ClientData> = yield call(
@@ -104,7 +105,7 @@ export function* authSigninSaga() {
   }
 }
 
-export function* authSignupSaga(action) {
+export function* authSignupSaga(action: PayloadAction<ClientData>) {
   const navigator: RootContext[ContextName.NAVIGATOR] = yield getContext(
     ContextName.NAVIGATOR,
   );
