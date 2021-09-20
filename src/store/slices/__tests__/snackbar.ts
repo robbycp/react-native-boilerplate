@@ -48,4 +48,43 @@ describe('Reducers :', () => {
       reducer(previousState, ducksSnackbar.snackbarShow(snackbarData)),
     ).toEqual(expectedState);
   });
+  test('should handle show snackbar when payload only contains message', () => {
+    const snackbarMessage = {
+      message: 'show snackbar',
+    };
+    const previousState: SnackbarState = {
+      ...ducksSnackbar.initialState,
+    };
+    const expectedState: SnackbarState = {
+      ...ducksSnackbar.initialState,
+      message: snackbarMessage.message,
+      isVisible: true,
+    };
+    expect(
+      reducer(previousState, ducksSnackbar.snackbarShow(snackbarMessage)),
+    ).toEqual(expectedState);
+  });
+  test('should handle show snackbar when action.payload is empty', () => {
+    const snackbarEmpty = {
+      action: {
+        type: 'info',
+      },
+      message: 'test',
+    };
+    const previousState: SnackbarState = {
+      ...ducksSnackbar.initialState,
+    };
+    const expectedState: SnackbarState = {
+      ...ducksSnackbar.initialState,
+      ...snackbarEmpty,
+      action: {
+        type: snackbarEmpty.action.type,
+        payload: {},
+      },
+      isVisible: true,
+    };
+    expect(
+      reducer(previousState, ducksSnackbar.snackbarShow(snackbarEmpty)),
+    ).toEqual(expectedState);
+  });
 });

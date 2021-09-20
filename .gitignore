@@ -69,3 +69,6 @@ google-services.json
 
 # sourcemap for sentry and codepush
 /sourcemap
+
+# test
+/coverage
