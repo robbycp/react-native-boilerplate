@@ -16,7 +16,7 @@
     "bump-minor": "npm version minor --no-git-tag-version",
     "bump-major": "npm version major --no-git-tag-version",
     "start": "react-native start",
-    "test": "jest",
+    "test": "jest --coverage",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
@@ -108,6 +108,9 @@
       "jsx",
       "json",
       "node"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(@react-native|react-native|react-native-code-push|@sentry/react-native|react-native-iphone-x-helper|react-native-exception-handler)/)"
     ]
   }
 }

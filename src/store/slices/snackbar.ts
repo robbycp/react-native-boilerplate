@@ -7,7 +7,7 @@ import {RootState} from '../rootReducers';
 export interface SnackbarState {
   action: {
     type: string;
-    payload: any;
+    payload?: any | undefined;
   };
   duration: number;
   isVisible: boolean;
@@ -57,7 +57,7 @@ export const snackbarSlice = createSlice({
     ) => {
       state.isVisible = true;
       state.message = action.payload.message;
-      state.textButton = action.payload.textButton || i18n.t('common.dismiss');
+      state.textButton = action.payload.textButton || initialState.textButton;
       state.duration = action.payload.duration || initialState.duration;
       state.type = action.payload.type || initialState.type;
       if (action.payload.action) {
