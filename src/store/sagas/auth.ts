@@ -44,8 +44,8 @@ export function* authMeSaga(action: PayloadAction<string>) {
       userId,
     );
     const userDataClient = userData.data();
-    if (userData.exists) {
-      yield put(authSignout);
+    if (!userData.exists) {
+      yield put(authSignout());
       return;
     }
     yield put(
@@ -67,11 +67,11 @@ export function* authSigninSaga() {
     ContextName.NAVIGATOR,
   );
   try {
-    let userAuth: FirebaseUserCredential;
-    let userData: FirestoreData<ClientData>;
-
-    userAuth = yield call(signInGoogle);
-    userData = yield call(ModelUser.getDataById, userAuth.user.uid);
+    let userAuth: FirebaseUserCredential = yield call(signInGoogle);
+    let userData: FirestoreData<ClientData> = yield call(
+      ModelUser.getDataById,
+      userAuth.user.uid,
+    );
 
     yield put(authSigninSuccess());
 
