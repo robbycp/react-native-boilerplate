@@ -1,6 +1,7 @@
 import Config from 'react-native-config';
-import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
+import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import type {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 GoogleSignin.configure({
   webClientId: Config.GOOGLE_CLIENT_ID,

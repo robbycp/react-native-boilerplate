@@ -17,6 +17,7 @@
     "bump-major": "npm version major --no-git-tag-version",
     "start": "react-native start",
     "test": "jest --coverage",
+    "test-all": "jest --coverage --collectCoverageFrom=src/**/*.{ts,tsx}",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
@@ -94,6 +95,7 @@
     "react-native-performance-flipper-reporter": "^2.0.0",
     "react-native-performance-monitor": "^1.2.1",
     "react-test-renderer": "17.0.1",
+    "redux-saga-test-plan": "^4.0.3",
     "typescript": "^3.8.3"
   },
   "resolutions": {

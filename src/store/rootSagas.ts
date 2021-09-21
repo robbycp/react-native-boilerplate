@@ -11,7 +11,7 @@ import {
 } from '~/store/slices/auth';
 import {commonFetch} from '~/store/slices/common';
 /* ------------- Sagas ------------- */
-import {init} from '~/store/sagas/app';
+import {appStartCheckSaga} from '~/store/sagas/app';
 import {
   authCheckSaga,
   authMeSaga,
@@ -31,7 +31,7 @@ import {commonFetchSaga} from '~/store/sagas/common';
 
 export default function* root() {
   yield all([
-    takeLatest(appStartCheck, init),
+    takeLatest(appStartCheck, appStartCheckSaga),
     takeLatest(authCheckRequest, authCheckSaga),
     takeLatest(authMe, authMeSaga),
     takeLatest(authSignin, authSigninSaga),

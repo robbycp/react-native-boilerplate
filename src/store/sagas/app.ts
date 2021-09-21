@@ -5,7 +5,7 @@ import {appStartCheckSuccess} from '~/store/slices/app';
 import {ScreenName} from '~/types/navigation';
 import {ContextName, RootContext} from '~/store/rootContext';
 
-export function* init() {
+export function* appStartCheckSaga() {
   const navigator: RootContext[ContextName.NAVIGATOR] = yield getContext(
     ContextName.NAVIGATOR,
   );
