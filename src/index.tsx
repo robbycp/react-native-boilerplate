@@ -10,10 +10,7 @@ import {
   useTheme,
 } from 'react-native-paper';
 import {PersistGate} from 'redux-persist/integration/react';
-import {
-  setJSExceptionHandler,
-  setNativeExceptionHandler,
-} from 'react-native-exception-handler';
+import ExceptionHandler from 'react-native-exception-handler';
 import {StatusBar, useColorScheme} from 'react-native';
 import {useReduxDevToolsExtension} from '@react-navigation/devtools';
 
@@ -50,8 +47,11 @@ setInAppMessaging(true);
 
 initOneSignal();
 
-setJSExceptionHandler(exceptionJSHandler, allowInDevMode);
-setNativeExceptionHandler(exceptionNativeHandler, allowInDevMode);
+ExceptionHandler.setJSExceptionHandler(exceptionJSHandler, allowInDevMode);
+ExceptionHandler.setNativeExceptionHandler(
+  exceptionNativeHandler,
+  allowInDevMode,
+);
 
 fetchRemoteConfig();
 
