@@ -77,6 +77,8 @@
     "@babel/preset-env": "^7.15.6",
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
+    "@testing-library/jest-native": "^4.0.2",
+    "@testing-library/react-native": "^7.2.0",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.9.1",
     "@types/react-native": "^0.64.5",
@@ -94,7 +96,7 @@
     "react-native-performance": "^2.0.0",
     "react-native-performance-flipper-reporter": "^2.0.0",
     "react-native-performance-monitor": "^1.2.1",
-    "react-test-renderer": "17.0.1",
+    "react-test-renderer": "17.0.2",
     "redux-saga-test-plan": "^4.0.3",
     "typescript": "^3.8.3"
   },
@@ -111,8 +113,10 @@
       "json",
       "node"
     ],
+    "setupFiles": ["./jest/setup.ts"],
+    "setupFilesAfterEnv": ["@testing-library/jest-native/extend-expect"],
     "transformIgnorePatterns": [
-      "node_modules/(?!(@react-native|react-native|react-native-code-push|@sentry/react-native|react-native-iphone-x-helper|react-native-exception-handler)/)"
+      "node_modules/(?!(jest-)?@react-native|react-native|@react-native-community|@react-navigation)"
     ]
   }
 }

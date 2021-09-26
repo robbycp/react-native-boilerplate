@@ -2,7 +2,8 @@ import React from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {Text, useTheme} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
-import withPerformanceMonitor from 'react-native-performance-monitor/provider';
+// Uncomment to use withPerformanceMonitor
+// import withPerformanceMonitor from 'react-native-performance-monitor/provider';
 
 import FastImageCustom from '~/components/basic/FastImage';
 
@@ -48,9 +49,9 @@ const ScreenFlatListImageView = () => {
  * config about additional options could be found here
  * https://github.com/Flagsmith/react-native-performance-monitor#connecting-to-a-real-device
  */
-// export default ScreenFlatListImageView;
-export default withPerformanceMonitor(
-  ScreenFlatListImageView,
-  'FlatList Image',
-  '192.168.1.101',
-);
+// export default withPerformanceMonitor(
+//   ScreenFlatListImageView,
+//   'FlatList Image',
+//   '192.168.1.101',
+// );
+export default ScreenFlatListImageView;

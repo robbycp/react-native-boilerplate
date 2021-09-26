@@ -1,4 +1,5 @@
-import Share, {ShareOptions} from 'react-native-share';
+import Share from 'react-native-share';
+import type {ShareOptions} from 'react-native-share';
 
 function shareLink(options: ShareOptions) {
   Share.open(options)
