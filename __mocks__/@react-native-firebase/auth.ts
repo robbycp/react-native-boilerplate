@@ -1,8 +1,7 @@
-jest.mock('@react-native-firebase/auth', () => () => ({
-  auth: () => ({
-    currentUser: {},
-    signInWithCredential: () => ({}),
-    signOut: () => ({}),
-  }),
-  FirebaseAuthTypes: {},
-}));
+export const FirebaseAuthTypes = {};
+
+export default () => ({
+  currentUser: null,
+  signInWithCredential: () => ({}),
+  signOut: () => ({}),
+});

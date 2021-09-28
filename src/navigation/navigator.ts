@@ -1,18 +1,14 @@
 import {
   CommonActions,
   createNavigationContainerRef,
-  NavigationContainerRefWithCurrent,
   StackActions,
 } from '@react-navigation/native';
 import {RootStackParamList} from '~/types/navigation';
 
-export const navigationRef =
-  createNavigationContainerRef<
-    NavigationContainerRefWithCurrent<RootStackParamList>
-  >();
+export const navigationRef = createNavigationContainerRef<RootStackParamList>();
 
 export function navigate(name: string, params?: object) {
-  navigationRef.current?.dispatch(
+  navigationRef.dispatch(
     CommonActions.navigate({
       name,
       params,
@@ -20,8 +16,8 @@ export function navigate(name: string, params?: object) {
   );
 }
 export function popToTop() {
-  navigationRef.current?.dispatch(StackActions.popToTop());
+  navigationRef.dispatch(StackActions.popToTop());
 }
 export function replace(name: string, params?: object) {
-  navigationRef.current?.dispatch(StackActions.replace(name, params));
+  navigationRef.dispatch(StackActions.replace(name, params));
 }

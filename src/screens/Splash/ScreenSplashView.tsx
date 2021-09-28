@@ -1,8 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Image} from 'react-native';
 
-import {navigationRef} from '~/navigation/navigator';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {appStartCheck} from '~/store/slices/app';
 import {useTheme} from 'react-native-paper';
 
@@ -17,8 +16,7 @@ const styles = StyleSheet.create({
 const ScreenSplashView = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
-  const isReady = React.useRef(navigationRef.isReady());
-
+  const isReady = useSelector(state => state.app.isNavigationReady);
   React.useEffect(() => {
     if (isReady) {
       dispatch(appStartCheck());

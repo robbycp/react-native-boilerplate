@@ -1,5 +1,6 @@
 class Test {
   constructor() {}
+  registerNavigationContainer = jest.fn(() => ({}));
 }
 export const ReactNavigationInstrumentation = Test;
 export const ReactNativeTracing = Test;

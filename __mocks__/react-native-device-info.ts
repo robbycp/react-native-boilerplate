@@ -1,3 +1,1 @@
-jest.mock('react-native-device-info', () => ({
-  getReadableVersion: jest.fn(() => ({})),
-}));
+export const getReadableVersion = jest.fn(() => '1.0.0');
