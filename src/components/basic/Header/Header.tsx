@@ -28,7 +28,7 @@ const Header = ({
   return (
     <Appbar.Header style={headerStyle}>
       {withBackButton && <Appbar.BackAction onPress={navigation.goBack} />}
-      <Appbar.Content title={title} subtitle={subtitle} />
+      <Appbar.Content testID="headerTitle" title={title} subtitle={subtitle} />
       {customRightIcon}
     </Appbar.Header>
   );

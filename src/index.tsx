@@ -26,16 +26,16 @@ import {
 import {fetchRemoteConfig} from '~/services/firebaseRemoteConfig';
 import {initialAnalytics, logScreen} from '~/services/firebaseAnalytics';
 import {setInAppMessaging} from '~/services/firebaseInAppMessaging';
-import initOneSignal from './services/notificationOneSignal';
+import initOneSignal from '~/services/notificationOneSignal';
+import {appNavigationReady} from '~/store/slices/app';
 import {getSnackbarState, snackbarHide} from '~/store/slices/snackbar';
-import linking from './navigation/linking';
+import linking from '~/navigation/linking';
 import {
   setResourceLogging,
   traceRender,
   usePerformance,
 } from '~/utils/performance';
-
-import './translations';
+import '~/translations';
 
 setResourceLogging();
 
@@ -60,6 +60,8 @@ initialAnalytics();
 const AppSnackbar = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
+  const scheme = useColorScheme();
+  const routeNameRef = React.useRef<string | undefined>('');
   const snackbar = useSelector(getSnackbarState);
   const onDismissSnackBar = () => dispatch(snackbarHide());
 
@@ -70,60 +72,53 @@ const AppSnackbar = () => {
     backgroundColor = theme.colors.custom.green400;
   }
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <RootNavigator />
-      <Snackbar
-        visible={snackbar.isVisible}
-        onDismiss={onDismissSnackBar}
-        duration={snackbar.duration}
-        style={backgroundColor ? {backgroundColor} : {}}
-        action={{
-          label: snackbar.textButton,
-          onPress: onDismissSnackBar,
-        }}>
-        {snackbar.message}
-      </Snackbar>
-    </>
+    <PaperProvider theme={scheme === 'dark' ? darkTheme : lightTheme}>
+      <SafeAreaProvider>
+        <NavigationContainer
+          linking={linking}
+          theme={scheme === 'dark' ? RNDarkTheme : RNLightTheme}
+          ref={navigationRef}
+          onReady={() => {
+            routeNameRef.current = navigationRef.getCurrentRoute()?.name;
+            routingInstrumentation.registerNavigationContainer(navigationRef);
+            dispatch(appNavigationReady());
+          }}
+          onStateChange={() => {
+            const previousRouteName = routeNameRef.current;
+            const currentRouteName = navigationRef.getCurrentRoute()?.name;
+
+            if (previousRouteName !== currentRouteName) {
+              logScreen(currentRouteName);
+            }
+            routeNameRef.current = currentRouteName;
+          }}>
+          <StatusBar barStyle="dark-content" />
+          <RootNavigator />
+          <Snackbar
+            visible={snackbar.isVisible}
+            onDismiss={onDismissSnackBar}
+            duration={snackbar.duration}
+            style={backgroundColor ? {backgroundColor} : {}}
+            action={{
+              label: snackbar.textButton,
+              onPress: onDismissSnackBar,
+            }}>
+            {snackbar.message}
+          </Snackbar>
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </PaperProvider>
   );
 };
 
 const App = () => {
-  const routeNameRef = React.useRef<string | undefined>('');
-  const scheme = useColorScheme();
   useReduxDevToolsExtension(navigationRef);
   usePerformance();
   return (
     <Profiler id="App.render()" onRender={traceRender}>
       <StoreProvider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <PaperProvider theme={scheme === 'dark' ? darkTheme : lightTheme}>
-            <SafeAreaProvider>
-              <NavigationContainer
-                linking={linking}
-                theme={scheme === 'dark' ? RNDarkTheme : RNLightTheme}
-                ref={navigationRef}
-                onReady={() => {
-                  routeNameRef.current =
-                    navigationRef.current?.getCurrentRoute()?.name;
-                  routingInstrumentation.registerNavigationContainer(
-                    navigationRef,
-                  );
-                }}
-                onStateChange={async () => {
-                  const previousRouteName = routeNameRef.current;
-                  const currentRouteName =
-                    navigationRef.current?.getCurrentRoute()?.name;
-
-                  if (previousRouteName !== currentRouteName) {
-                    logScreen(currentRouteName);
-                  }
-                  routeNameRef.current = currentRouteName;
-                }}>
-                <AppSnackbar />
-              </NavigationContainer>
-            </SafeAreaProvider>
-          </PaperProvider>
+          <AppSnackbar />
         </PersistGate>
       </StoreProvider>
     </Profiler>

@@ -82,7 +82,7 @@ const ScreenHomeView = ({
           <Subheading>{t('home.version')}</Subheading>
           <Text>{getReadableVersion()}</Text>
           <Subheading>{t('home.config')}</Subheading>
-          <Text>{Config.ENVIRONMENT}</Text>
+          <Text testID="environmentValue">{Config.ENVIRONMENT}</Text>
           <Subheading>{t('home.firebaseRemoteConfig')}</Subheading>
           <Text>
             {t('home.firebaseRemoteConfig')} : {textFirebaseConfig.value}
@@ -139,9 +139,8 @@ const ScreenHomeView = ({
         </View>
         <View>
           {listFeatures.map((item, position) => (
-            <>
+            <View key={`${position}-${item.title}-${item.icon}-title`}>
               <List.Item
-                key={`${position}-${item.title}-${item.icon}-title`}
                 title={item.title}
                 onPress={item.onPress}
                 left={props => (
@@ -156,7 +155,7 @@ const ScreenHomeView = ({
                 key={`${position}-${item.title}-divider`}
                 style={[styles.divider]}
               />
-            </>
+            </View>
           ))}
         </View>
       </ScrollView>

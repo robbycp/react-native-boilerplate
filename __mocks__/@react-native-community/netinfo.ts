@@ -1,3 +1,3 @@
-jest.mock('@react-native-community/netinfo', () => ({
-  useNetInfo: jest.fn(isOnline => isOnline),
+export const useNetInfo = jest.fn(isOnline => ({
+  isConnected: isOnline,
 }));

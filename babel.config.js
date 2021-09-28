@@ -1,4 +1,4 @@
-const presets = ['@babel/preset-env', 'module:metro-react-native-babel-preset'];
+const presets = ['module:metro-react-native-babel-preset'];
 const plugins = [];
 
 plugins.push([

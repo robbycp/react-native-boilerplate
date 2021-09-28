@@ -687,7 +687,9 @@ PODS:
     - React-Core
   - react-native-performance (2.0.0):
     - React-Core
-  - react-native-safe-area-context (3.2.0):
+  - react-native-restart (0.0.22):
+    - React-Core
+  - react-native-safe-area-context (3.3.2):
     - React-Core
   - react-native-tracking-transparency (0.1.1):
     - React
@@ -903,6 +905,7 @@ DEPENDENCIES:
   - react-native-onesignal (from `../node_modules/react-native-onesignal`)
   - react-native-pager-view (from `../node_modules/react-native-pager-view`)
   - react-native-performance (from `../node_modules/react-native-performance/ios`)
+  - react-native-restart (from `../node_modules/react-native-restart`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-tracking-transparency (from `../node_modules/react-native-tracking-transparency`)
   - react-native-webview (from `../node_modules/react-native-webview`)
@@ -1039,6 +1042,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-pager-view"
   react-native-performance:
     :path: "../node_modules/react-native-performance/ios"
+  react-native-restart:
+    :path: "../node_modules/react-native-restart"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-tracking-transparency:
@@ -1179,7 +1184,8 @@ SPEC CHECKSUMS:
   react-native-onesignal: a7e433eec906c928954de4f124b6886418386bb4
   react-native-pager-view: 54970cc27fdef14db2dcfedadb091d711e88065d
   react-native-performance: 6bd6cfac80594775fb782405fceaaf206becf53b
-  react-native-safe-area-context: f0906bf8bc9835ac9a9d3f97e8bde2a997d8da79
+  react-native-restart: 733a51ad137f15b0f8dc34c4082e55af7da00979
+  react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
   react-native-tracking-transparency: b2029ff756f1128b1f2c7c7c7f3003bc3c950f9f
   react-native-webview: e6eddf2722f5e7220eae7229b516efabb1ed0acd
   React-perflogger: aad6d4b4a267936b3667260d1f649b6f6069a675

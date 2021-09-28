@@ -4,16 +4,21 @@ import {ReduxModule} from '~/types/redux';
 
 export interface AppState {
   isLoading: boolean;
+  isNavigationReady: boolean;
 }
 
 export const initialState: AppState = {
   isLoading: false,
+  isNavigationReady: false,
 };
 
 export const appSlice = createSlice({
   name: ReduxModule.APP,
   initialState,
   reducers: {
+    appNavigationReady: state => {
+      state.isNavigationReady = true;
+    },
     appStartCheck: state => {
       state.isLoading = true;
     },
@@ -26,7 +31,11 @@ export const appSlice = createSlice({
   },
 });
 
-export const {appStartCheck, appStartCheckFailed, appStartCheckSuccess} =
-  appSlice.actions;
+export const {
+  appNavigationReady,
+  appStartCheck,
+  appStartCheckFailed,
+  appStartCheckSuccess,
+} = appSlice.actions;
 
 export default appSlice.reducer;
