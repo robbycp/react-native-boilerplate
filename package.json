@@ -18,7 +18,10 @@
     "start": "react-native start",
     "test": "jest --coverage",
     "test-all": "jest --coverage --collectCoverageFrom=src/**/*.{ts,tsx}",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "prestorybook": "rnstl",
+    "storybook": "start-storybook -p 7007 -h 0.0.0.0",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.5",
@@ -76,6 +79,13 @@
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
+    "@storybook/addon-actions": "^5.3",
+    "@storybook/addon-knobs": "^5.3",
+    "@storybook/addon-links": "^5.3",
+    "@storybook/addon-ondevice-actions": "^5.3.23",
+    "@storybook/addon-ondevice-knobs": "^5.3.25",
+    "@storybook/react-native": "^5.3.25",
+    "@storybook/react-native-server": "^5.3.23",
     "@testing-library/jest-native": "^4.0.2",
     "@testing-library/react-native": "^7.2.0",
     "@types/jest": "^27.0.1",
@@ -86,21 +96,31 @@
     "@types/react-test-renderer": "^16.9.2",
     "@types/webpack-env": "^1.16.2",
     "babel-jest": "^26.6.3",
+    "babel-loader": "^8.2.2",
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-plugin-root-import": "^6.6.0",
     "eslint": "^7.14.0",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.64.0",
+    "react-dom": "17.0.1",
     "react-native-flipper": "^0.108.0",
     "react-native-performance": "^2.0.0",
     "react-native-performance-flipper-reporter": "^2.0.0",
     "react-native-performance-monitor": "^1.2.1",
+    "react-native-storybook-loader": "^2.0.4",
     "react-test-renderer": "17.0.2",
     "redux-saga-test-plan": "^4.0.3",
     "typescript": "^3.8.3"
   },
   "resolutions": {
     "@types/react": "^17"
+  },
+  "config": {
+    "react-native-storybook-loader": {
+      "searchDir": ["./storybook/stories"],
+      "pattern": "**/*.stories.js",
+      "outputFile": "./storybook/storyLoader.js"
+    }
   },
   "jest": {
     "preset": "react-native",
