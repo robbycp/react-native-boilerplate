@@ -2412,6 +2412,21 @@
     react-native-modal-selector "^2.0.2"
     tinycolor2 "^1.4.1"
 
+"@storybook/addon-ondevice-notes@^5.3.23":
+  version "5.3.23"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-ondevice-notes/-/addon-ondevice-notes-5.3.23.tgz#3e2d9aac3a75c261095d5cc34010150aea858f5c"
+  integrity sha512-xzVtZd+wYZ/P7dpGLtmpRYvMLIcsrbhu09J3zgCDPcLRZgLAns5vj8kmFHXYojjeil5F/eTv0YE+BXUbjMprnA==
+  dependencies:
+    "@emotion/core" "^10.0.20"
+    "@storybook/addons" "5.3.21"
+    "@storybook/api" "5.3.21"
+    "@storybook/client-api" "5.3.21"
+    "@storybook/client-logger" "5.3.21"
+    "@storybook/core-events" "5.3.21"
+    core-js "^3.0.1"
+    prop-types "^15.7.2"
+    react-native-simple-markdown "^1.1.0"
+
 "@storybook/addons@5.3.21":
   version "5.3.21"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-5.3.21.tgz#ee312c738c33e8c34dc11777ef93522c3c36e56a"
@@ -9282,7 +9297,7 @@ lodash@4.17.15:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
-lodash@^4.0.1, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.21, lodash@^4.7.0:
+lodash@^4.0.1, lodash@^4.15.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.21, lodash@^4.7.0:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -11609,6 +11624,14 @@ react-native-share@^7.0.0:
   resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-7.0.0.tgz#38a1e875c216bf39564e40edcef246c7f5d95615"
   integrity sha512-2ImJYJotFg3bTihNrQIqDKCAJ2xV0/MjGmH5MaC1GXDvGTeuU1L2/sFrJLHTAYi+K6D6VTWGbv5h9SzXtuo39Q==
 
+react-native-simple-markdown@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-simple-markdown/-/react-native-simple-markdown-1.1.0.tgz#4d462f8ced26393c5230467420c61a50cc6a8095"
+  integrity sha1-TUYvjO0mOTxSMEZ0IMYaUMxqgJU=
+  dependencies:
+    lodash "^4.15.0"
+    simple-markdown "git://github.com/CharlesMangwa/simple-markdown.git"
+
 react-native-storybook-loader@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/react-native-storybook-loader/-/react-native-storybook-loader-2.0.4.tgz#37bf37193e69b42a0b2aa0daeed4de8dbfeeae28"
@@ -12566,6 +12589,10 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.3.tgz#a1410c2edd8f077b08b4e253c8eacfcaf057461c"
   integrity sha512-VUJ49FC8U1OxwZLxIbTTrDvLnf/6TDgxZcK8wxR8zs13xpx7xbG60ndBlhNrFi2EMuFRoeDoJO7wthSLq42EjA==
+
+"simple-markdown@git://github.com/CharlesMangwa/simple-markdown.git":
+  version "0.1.1"
+  resolved "git://github.com/CharlesMangwa/simple-markdown.git#33d963c760b8196bee01b1a5ba9974bc7f669af1"
 
 simple-plist@^1.0.0:
   version "1.1.1"

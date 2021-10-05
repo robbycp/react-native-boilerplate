@@ -7,9 +7,9 @@ import TextInput, {TextInputCustomProps} from './TextInput';
 
 interface DateTimePickerProps {
   textInputProps?: TextInputCustomProps;
-  mode: 'date' | 'time';
+  mode?: 'date' | 'time' | 'datetime';
   onChange: (val: Date) => void;
-  value: Date | undefined;
+  value: string;
 }
 
 const format = {
@@ -51,7 +51,7 @@ const DatetimePicker = ({
         }}
       />
       <DateTimePickerModal
-        date={value}
+        date={new Date(value)}
         isVisible={isShowModal}
         mode={mode}
         onConfirm={handleConfirm}
