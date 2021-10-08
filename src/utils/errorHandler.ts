@@ -2,6 +2,7 @@ import {Alert, AlertButton, AlertOptions} from 'react-native';
 import RNRestart from 'react-native-restart';
 import * as Sentry from '@sentry/react-native';
 import Config from 'react-native-config';
+import i18n from '~/translations';
 
 export const routingInstrumentation =
   new Sentry.ReactNavigationInstrumentation();
@@ -27,6 +28,15 @@ interface ShowAlertInput {
   actions: AlertButton[];
 }
 
+const restartActions = [
+  {
+    text: 'Restart',
+    onPress: () => {
+      RNRestart.Restart();
+    },
+  },
+];
+
 export function showAlert(
   data: ShowAlertInput['data'],
   actions: ShowAlertInput['actions'],
@@ -34,17 +44,19 @@ export function showAlert(
   Alert.alert(data.title, data.message, actions, data.options);
 }
 
+export const showAlertRestart = () => {
+  showAlert(
+    {
+      title: i18n.t('errorMessage.fatal.title'),
+      message: i18n.t('errorMessage.fatal.message'),
+    },
+    restartActions,
+  );
+};
+
 export const exceptionJSHandler = (error: Error, isFatal: boolean) => {
   Sentry.captureException(error);
   if (isFatal) {
-    const actions = [
-      {
-        text: 'Restart',
-        onPress: () => {
-          RNRestart.Restart();
-        },
-      },
-    ];
     showAlert(
       {
         title: 'Unexpected error occurred',
@@ -53,7 +65,7 @@ export const exceptionJSHandler = (error: Error, isFatal: boolean) => {
         We have reported this to our team ! Please press restart or close the App!
         `,
       },
-      actions,
+      restartActions,
     );
   } else {
     // console.error(e) // So that we can see it in the ADB logs in case of Android if needed

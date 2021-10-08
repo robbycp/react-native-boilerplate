@@ -9,6 +9,13 @@ const en = {
       privacy,
       loading: 'Loading',
     },
+    errorMessage: {
+      fatal: {
+        message:
+          'We already receive the error message. Please restart our apps',
+        title: 'Something went wrong',
+      },
+    },
     flatlistImage: {
       description: 'Use this screen as a performance playground',
       fastImage: 'Fast Image',
