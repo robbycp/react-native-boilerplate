@@ -11,6 +11,13 @@ const id: Translation = {
       privacy,
       loading: 'Memuat',
     },
+    errorMessage: {
+      fatal: {
+        message:
+          'Kami telah menerima laporan kesalahan. Mohon untuk membuka ulang aplikasi',
+        title: 'Terjadi Kesalahan',
+      },
+    },
     flatlistImage: {
       description:
         'Gunakan layar ini sebagai eksperimen untuk optimisasi performa',

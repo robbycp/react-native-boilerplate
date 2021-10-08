@@ -95,5 +95,9 @@
 	<string>$(CODEPUSH_DEPLOYMENT_IOS)</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>itms-apps</string>
+	</array>
 ***REMOVED***
 ***REMOVED***

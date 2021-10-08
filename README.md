@@ -35,6 +35,7 @@ brew install fastlane
 ## BottomPanel
 - If full screen bottom panel, use react-navigation screenOptions presentation `modal`
 - If not, use component BottomPanel
+##
 
 # How to clone
 ## Basic
@@ -64,11 +65,20 @@ brew install fastlane
   - Change in Info.plist `CFBundleURLSchemes` `sibudi` value with targeted scheme / domain
 10. Env
   - add value for file .env.staging and .env.production using .env-example template
+11. in app update functionality
+  - This functionality is requiring apps to be uploaded in play store. If this blocks your development, you can set WITH_APP_VERSION_CHECK to false in your .env . [Reference](https://stackoverflow.com/questions/60718191/in-app-update-gives-installexception-error-api-not-available)
 
 ## Build, Publish, versioning
 ### Caveats
-- Patch / hotfix build distribution is always using codepush
-- Minor and Major build will be build and distributed through app store
+- Publish using codepush
+  - update hotfix / patch
+  - breaking change API, update major. New request or response payload form API for example.
+- Publish using app store
+  - new feature added or update minor
+  - upgrade package or install new package
+  - soft update
+    - by default, update type is flexible
+  - force update
 ### Development flow
 1. Create branch from branch `main` with branch name prefix `feature/`
 2. Develop feature
