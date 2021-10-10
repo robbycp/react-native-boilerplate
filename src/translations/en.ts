@@ -38,6 +38,7 @@ const en = {
       shareLink: 'Share Link',
       shareButton: 'Share Message',
       version: 'Version',
+      whatsappButton: 'Send text to whatsapp',
       youtubePlayer: 'Youtube Player',
     },
     homeClipboard: {

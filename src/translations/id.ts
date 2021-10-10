@@ -41,6 +41,7 @@ const id: Translation = {
       shareLink: 'Bagikan tautan',
       shareButton: 'Bagikan pesan',
       version: 'Versi',
+      whatsappButton: 'Kirim pesan melalui whatsapp',
       youtubePlayer: 'Pemutar Youtube',
     },
     homeClipboard: {

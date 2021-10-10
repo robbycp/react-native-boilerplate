@@ -4,11 +4,13 @@ import remoteConfig from '@react-native-firebase/remote-config';
 export enum RemoteConfigKeys {
   AWESOME_NEW_FEATURE = 'awesome_new_feature',
   UPDATE_APP_TYPE = 'update_app_type',
+  WHATSAPP_NUMBER = 'whatsapp_number',
 }
 
 export const DEFAULT_VALUE = {
   [RemoteConfigKeys.AWESOME_NEW_FEATURE]: 'disabled',
   [RemoteConfigKeys.UPDATE_APP_TYPE]: 'flexible',
+  [RemoteConfigKeys.WHATSAPP_NUMBER]: '',
 };
 
 export async function fetchRemoteConfig() {

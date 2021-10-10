@@ -14,6 +14,7 @@ type ScreenHomeNavigation = StackScreenProps<
 export interface ScreenHomeContainerProps extends ScreenHomeNavigation {}
 export interface ScreenHomeViewProps {
   handleShareMessage: () => void;
+  handleSendWhatsapp: () => void;
   isShowFocus: boolean;
   listFeatures: ListFeature[];
   navigation: ScreenHomeNavigation['navigation'];

@@ -49,6 +49,7 @@ declare const global: {HermesInternal: null | {}};
 
 const ScreenHomeView = ({
   handleShareMessage,
+  handleSendWhatsapp,
   isShowFocus,
   listFeatures,
   navigation,
@@ -113,7 +114,11 @@ const ScreenHomeView = ({
           <Button onPress={handleLoadingOverlay}>{t('common.loading')}</Button>
           <Subheading>Snackbar</Subheading>
           <SnackbarHome />
+          <Subheading>Whatsapp</Subheading>
           <Subheading>{t('home.selectLanguage')}</Subheading>
+          <Button onPress={handleSendWhatsapp}>
+            {t('home.whatsappButton')}
+          </Button>
           <LanguageOption />
           <Subheading>{t('home.functionalFocus')}</Subheading>
           <Switch
