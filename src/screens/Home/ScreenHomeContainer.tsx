@@ -1,4 +1,5 @@
 import React from 'react';
+import {Linking} from 'react-native';
 import {Alert} from 'react-native';
 import useFocus from '~/hooks/useFocus';
 
@@ -86,6 +87,14 @@ const ScreenHomeContainer: React.FunctionComponent<ScreenHomeContainerProps> =
       },
     ];
     const textFirebaseConfig = getValue(RemoteConfigKeys.AWESOME_NEW_FEATURE);
+    const contactWhatsapp = getValue(RemoteConfigKeys.WHATSAPP_NUMBER).value;
+    const handleSendWhatsapp = () => {
+      const sendText = 'Hi I need help';
+      const basicLink = `https://wa.me/${contactWhatsapp}?text=${sendText}`;
+      const sendLink = encodeURI(basicLink);
+      console.log('sendLInk', sendLink);
+      Linking.openURL(sendLink);
+    };
     const handleShareMessage = () => {
       shareMessage('Hello share is working');
     };
@@ -96,6 +105,7 @@ const ScreenHomeContainer: React.FunctionComponent<ScreenHomeContainerProps> =
       <ScreenHomeView
         {...{
           handleShareMessage,
+          handleSendWhatsapp,
           listFeatures,
           isShowFocus,
           navigation,
