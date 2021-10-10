@@ -64,11 +64,15 @@ buck-out/
 # CocoaPods
 /ios/Pods/
 
-# Firebase
-google-services.json
-
 # sourcemap for sentry and codepush
 /sourcemap
 
 # test
 /coverage
+
+# credential
+## Sentry
+sentry.properties
+## Firebase
+GoogleService-Info.plist
+google-services.json
