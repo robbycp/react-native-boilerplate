@@ -1,7 +1,7 @@
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -22,36 +22,36 @@
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
 	<array>
-		***REMOVED***
+		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>$(GOOGLE_REVERSED_CLIENT_ID)</string>
 			</array>
-		***REMOVED***
-		***REMOVED***
+		</dict>
+		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>sibudi</string>
 			</array>
-		***REMOVED***
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-***REMOVED***
+	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
-	***REMOVED***
+	<dict>
 		<key>NSExceptionDomains</key>
-		***REMOVED***
+		<dict>
 			<key>localhost</key>
-			***REMOVED***
+			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
-			***REMOVED***
-		***REMOVED***
-	***REMOVED***
+			</dict>
+		</dict>
+	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSUserTrackingUsageDescription</key>
@@ -99,5 +99,5 @@
 	<array>
 		<string>itms-apps</string>
 	</array>
-***REMOVED***
-***REMOVED***
+</dict>
+</plist>
