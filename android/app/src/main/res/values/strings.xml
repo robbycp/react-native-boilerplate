@@ -1,0 +1,3 @@
+<resources>
+    <string moduleConfig="true" name="CodePushDeploymentKey">@string/CODEPUSH_DEPLOYMENT_ANDROID</string>
+</resources>
