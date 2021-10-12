@@ -15,15 +15,16 @@ import ScreenModalPrivacy from '~/screens/ModalPrivacy';
 import ScreenTabExample from '~/screens/TabExample';
 import ScreenSplash from '~/screens/Splash';
 import ScreenWebviewGoogle from '~/screens/WebviewGoogle';
-import {RootStackParamList, ScreenName} from '~/types/navigation';
 import ScreenTermsCondition from '~/screens/T&C';
 import Header from '~/components/basic/Header/Header';
+
+import type {RootStackParamList} from '~/types/navigation';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
 const RootNavigator: React.FunctionComponent = () => {
   return (
-    <Stack.Navigator initialRouteName={ScreenName.SPLASH}>
+    <Stack.Navigator initialRouteName="Splash">
       <Stack.Group
         screenOptions={{
           ...(Platform.OS === 'android'
@@ -33,51 +34,42 @@ const RootNavigator: React.FunctionComponent = () => {
             return <Header title={route.name} />;
           },
         }}>
-        <Stack.Screen name={ScreenName.ADS_LIST} component={ScreenAdsList} />
+        <Stack.Screen name="Ads List" component={ScreenAdsList} />
         <Stack.Screen
-          name={ScreenName.COLLAPSIBLE_BACKGROUND}
+          name="Collapsible Background"
           component={ScreenCollapsibleBackground}
         />
         <Stack.Screen
-          name={ScreenName.COLLAPSIBLE_CUSTOM}
+          name="Collapsible Custom"
           component={ScreenCollapsibleCustomHeader}
         />
         <Stack.Screen
-          name={ScreenName.COLLAPSIBLE_DEFAULT}
+          name="Collapsible Default"
           component={ScreenCollapsibleDefault}
         />
         <Stack.Screen
-          name={ScreenName.COLLAPSIBLE_STICKY}
+          name="Collapsible Sticky"
           component={ScreenCollapsibleSticky}
         />
         <Stack.Screen
-          name={ScreenName.COLLAPSIBLE_SUBHEADER}
+          name="Collapsible Subheader"
           component={ScreenCollapsibleSubHeader}
         />
+        <Stack.Screen name="FlatList Image" component={ScreenFlatListImage} />
+        <Stack.Screen name="Form" component={ScreenForm} />
         <Stack.Screen
-          name={ScreenName.FLATLIST_IMAGE}
-          component={ScreenFlatListImage}
-        />
-        <Stack.Screen name={ScreenName.FORM} component={ScreenForm} />
-        <Stack.Screen
-          name={ScreenName.HOME}
+          name="Home"
           component={ScreenHome}
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name={ScreenName.SPLASH}
+          name="Splash"
           component={ScreenSplash}
           options={{headerShown: false}}
         />
-        <Stack.Screen name={ScreenName.TABS} component={ScreenTabExample} />
-        <Stack.Screen
-          name={ScreenName.TERMS_CONDITION}
-          component={ScreenTermsCondition}
-        />
-        <Stack.Screen
-          name={ScreenName.WEBVIEW_GOOGLE}
-          component={ScreenWebviewGoogle}
-        />
+        <Stack.Screen name="Tabs" component={ScreenTabExample} />
+        <Stack.Screen name="Terms Condition" component={ScreenTermsCondition} />
+        <Stack.Screen name="Webview Google" component={ScreenWebviewGoogle} />
       </Stack.Group>
       <Stack.Group
         screenOptions={{
@@ -91,10 +83,7 @@ const RootNavigator: React.FunctionComponent = () => {
             );
           },
         }}>
-        <Stack.Screen
-          name={ScreenName.MODAL_PRIVACY}
-          component={ScreenModalPrivacy}
-        />
+        <Stack.Screen name="Modal Privacy" component={ScreenModalPrivacy} />
       </Stack.Group>
     </Stack.Navigator>
   );

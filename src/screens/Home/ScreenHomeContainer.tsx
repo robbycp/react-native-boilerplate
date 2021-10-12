@@ -6,16 +6,16 @@ import useFocus from '~/hooks/useFocus';
 import {logPressHomeList} from '~/services/firebaseAnalytics';
 import {setInAppMessaging} from '~/services/firebaseInAppMessaging';
 import {getValue, RemoteConfigKeys} from '~/services/firebaseRemoteConfig';
-import {ScreenName} from '~/types/navigation';
 import {shareMessage} from '~/utils/shareLink';
+import type {RootStackParamList} from '~/types/navigation';
 
-import {ListFeature, ScreenHomeContainerProps} from './ScreenHomeTypes';
 import ScreenHomeView from './ScreenHomeView';
+import type {ListFeature, ScreenHomeContainerProps} from './ScreenHomeTypes';
 
 const ScreenHomeContainer: React.FunctionComponent<ScreenHomeContainerProps> =
   ({navigation}) => {
     const [isShowFocus, setisShowFocus] = React.useState(false);
-    const navigateAndAnalytics = (screenName: ScreenName) => {
+    const navigateAndAnalytics = (screenName: keyof RootStackParamList) => {
       logPressHomeList();
       navigation.navigate(screenName);
     };
@@ -33,57 +33,57 @@ const ScreenHomeContainer: React.FunctionComponent<ScreenHomeContainerProps> =
       {
         title: 'Ads List',
         icon: 'account-box',
-        onPress: () => navigateAndAnalytics(ScreenName.ADS_LIST),
+        onPress: () => navigateAndAnalytics('Ads List'),
       },
       {
         title: 'Form',
         icon: 'account-box',
-        onPress: () => navigateAndAnalytics(ScreenName.FORM),
+        onPress: () => navigateAndAnalytics('Form'),
       },
       {
         title: 'Collapsible Background',
         icon: 'account-box',
-        onPress: () => navigateAndAnalytics(ScreenName.COLLAPSIBLE_BACKGROUND),
+        onPress: () => navigateAndAnalytics('Collapsible Background'),
       },
       {
         title: 'Collapsible Custom',
         icon: 'account-box',
-        onPress: () => navigateAndAnalytics(ScreenName.COLLAPSIBLE_CUSTOM),
+        onPress: () => navigateAndAnalytics('Collapsible Custom'),
       },
       {
         title: 'Collapsible Default',
         icon: 'account-box',
-        onPress: () => navigateAndAnalytics(ScreenName.COLLAPSIBLE_DEFAULT),
+        onPress: () => navigateAndAnalytics('Collapsible Default'),
       },
       {
         title: 'Collapsible Sticky',
         icon: 'account-box',
-        onPress: () => navigateAndAnalytics(ScreenName.COLLAPSIBLE_STICKY),
+        onPress: () => navigateAndAnalytics('Collapsible Sticky'),
       },
       {
         title: 'Collapsible Subheader',
         icon: 'account-box',
-        onPress: () => navigateAndAnalytics(ScreenName.COLLAPSIBLE_SUBHEADER),
+        onPress: () => navigateAndAnalytics('Collapsible Subheader'),
       },
       {
         title: 'List Image',
         icon: 'image',
-        onPress: () => navigateAndAnalytics(ScreenName.FLATLIST_IMAGE),
+        onPress: () => navigateAndAnalytics('FlatList Image'),
       },
       {
         title: 'List Tabs',
         icon: 'image',
-        onPress: () => navigateAndAnalytics(ScreenName.TABS),
+        onPress: () => navigateAndAnalytics('Tabs'),
       },
       {
         title: 'Webview',
         icon: 'google',
-        onPress: () => navigateAndAnalytics(ScreenName.WEBVIEW_GOOGLE),
+        onPress: () => navigateAndAnalytics('Webview Google'),
       },
       {
         title: 'Terms & Condition',
         icon: 'google',
-        onPress: () => navigateAndAnalytics(ScreenName.TERMS_CONDITION),
+        onPress: () => navigateAndAnalytics('Terms Condition'),
       },
     ];
     const textFirebaseConfig = getValue(RemoteConfigKeys.AWESOME_NEW_FEATURE);

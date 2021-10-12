@@ -3,7 +3,6 @@
   "version": "0.0.2-feature-init-project.2",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
     "android:debug": "react-native run-android --variant=debug --appIdSuffix staging",
     "android:staging": "react-native run-android --variant=stagingRelease --appIdSuffix staging",
     "android:production": "react-native run-android --variant=release",
@@ -21,7 +20,8 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "prestorybook": "rnstl",
     "storybook": "start-storybook -p 7007 -h 0.0.0.0",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "bundle-visualizer": "npx react-native-bundle-visualizer"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.5",

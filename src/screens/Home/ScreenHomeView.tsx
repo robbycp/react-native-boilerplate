@@ -24,7 +24,6 @@ import * as Sentry from '@sentry/react-native';
 
 import LoadingOverlay from '~/components/basic/Loading/LoadingOverlay';
 import metrics from '~/style/metrics';
-import {ScreenName} from '~/types/navigation';
 
 import ClipboardHome from './ClipboardHome';
 import HTMLHome from './HTMLHome';
@@ -100,7 +99,7 @@ const ScreenHomeView = ({
           <Subheading>Clipboard</Subheading>
           <ClipboardHome />
           <Subheading>{t('home.modalPrivacy')}</Subheading>
-          <Button onPress={() => navigation.navigate(ScreenName.MODAL_PRIVACY)}>
+          <Button onPress={() => navigation.navigate('Modal Privacy')}>
             {t('home.privacy')}
           </Button>
           <Subheading>{t('common.loading')} Overlay</Subheading>

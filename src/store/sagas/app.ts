@@ -10,7 +10,6 @@ import {getVersion} from 'react-native-device-info';
 
 import {authCheckRequest} from '~/store/slices/auth';
 import {appStartCheckSuccess} from '~/store/slices/app';
-import {ScreenName} from '~/types/navigation';
 import {ContextName, RootContext} from '~/store/rootContext';
 import {RemoteConfigKeys} from '~/services/firebaseRemoteConfig';
 import {showAlertRestart} from '~/utils/errorHandler';
@@ -63,7 +62,7 @@ export function* appStartCheckSaga() {
     }
     yield put(authCheckRequest());
     yield put(appStartCheckSuccess());
-    navigator.replace(ScreenName.HOME);
+    navigator.replace('Home');
   } catch (error) {
     console.log('[error appstartcheck] ', error);
     showAlertRestart();
