@@ -8,6 +8,7 @@ import ScreenCollapsibleCustomHeader from '~/screens/CollapsibleCustomHeader';
 import ScreenCollapsibleDefault from '~/screens/CollapsibleDefault';
 import ScreenCollapsibleSticky from '~/screens/CollapsibleSticky';
 import ScreenCollapsibleSubHeader from '~/screens/CollapsibleSubHeader';
+import ScreenFetchApi from '~/screens/FetchApi';
 import ScreenFlatListImage from '~/screens/FlatListImage';
 import ScreenForm from '~/screens/Form';
 import ScreenHome from '~/screens/Home';
@@ -55,6 +56,7 @@ const RootNavigator: React.FunctionComponent = () => {
           name="Collapsible Subheader"
           component={ScreenCollapsibleSubHeader}
         />
+        <Stack.Screen name="Fetch Api" component={ScreenFetchApi} />
         <Stack.Screen name="FlatList Image" component={ScreenFlatListImage} />
         <Stack.Screen name="Form" component={ScreenForm} />
         <Stack.Screen

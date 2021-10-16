@@ -5,6 +5,7 @@ export type RootStackParamList = {
   'Collapsible Default': undefined;
   'Collapsible Sticky': undefined;
   'Collapsible Subheader': undefined;
+  'Fetch Api': undefined;
   'FlatList Image': undefined;
   Form: undefined;
   Home: undefined;

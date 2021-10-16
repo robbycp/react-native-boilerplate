@@ -66,6 +66,11 @@ const ScreenHomeContainer: React.FunctionComponent<ScreenHomeContainerProps> =
         onPress: () => navigateAndAnalytics('Collapsible Subheader'),
       },
       {
+        title: 'Fetch Api',
+        icon: 'account-box',
+        onPress: () => navigateAndAnalytics('Fetch Api'),
+      },
+      {
         title: 'List Image',
         icon: 'image',
         onPress: () => navigateAndAnalytics('FlatList Image'),
