@@ -1,8 +1,13 @@
 import React from 'react';
-import apiCrud from '~/services/api/apiCrud';
 
 import TabCrudView from './TabCrudView';
-import type {Todo} from './TabCrudView';
+import {
+  useTodoCreate,
+  useTodoDelete,
+  useTodosGet,
+  useTodoUpdate,
+} from '~/hooks/dataState/crud.hooks';
+import type {Todo} from '~/services/api/apiCrud';
 
 const initialForm: Todo = {
   _id: '',
@@ -11,45 +16,38 @@ const initialForm: Todo = {
 
 const TabCrudContainer = () => {
   const [formTodo, setFormTodo] = React.useState<Todo>(initialForm);
-  const [todos, setTodos] = React.useState<Todo[]>([]);
+  const todosQuery = useTodosGet();
+  const todoUpdate = useTodoUpdate();
+  const todoDelete = useTodoDelete();
+  const todoCreate = useTodoCreate();
 
-  const handleGetTodo = async () => {
-    const fetchedTodos = (await apiCrud.getTodos()) as unknown as {
-      data: Todo[];
-    };
-    setTodos(fetchedTodos.data);
-  };
   const handleDeleteTodo = (id: string) => {
-    apiCrud.deleteTodos({
-      params: {id},
-    });
-    handleGetTodo();
+    todoDelete.mutate(id);
   };
   const handleSubmitTodo = () => {
     if (formTodo._id) {
-      apiCrud.putTodos({
-        params: {id: formTodo._id},
-        data: {...formTodo},
+      todoUpdate.mutate({
+        ...formTodo,
       });
     } else {
-      apiCrud.postTodos({
-        data: {...formTodo},
+      todoCreate.mutate({
+        ...formTodo,
       });
     }
-    setFormTodo(initialForm);
-    handleGetTodo();
   };
 
   React.useEffect(() => {
-    handleGetTodo();
-  }, []);
+    if (todoCreate.isSuccess || todoUpdate.isSuccess) {
+      setFormTodo(initialForm);
+    }
+  }, [todoCreate.isSuccess, todoUpdate.isSuccess]);
 
   const propsView = {
     formTodo,
     handleDeleteTodo,
     handleSubmitTodo,
     setFormTodo,
-    todos,
+    todosQuery,
   };
   return <TabCrudView {...propsView} />;
 };

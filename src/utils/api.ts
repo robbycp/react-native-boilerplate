@@ -2,8 +2,8 @@ import axios, {AxiosResponse} from 'axios';
 import UrlPattern from 'url-pattern';
 import type {Endpoint} from '~/types/api';
 
-interface ApiOptions {
-  endpoint?: Endpoint;
+interface ApiOptions<ResponseType> {
+  endpoint?: Endpoint<ResponseType>;
   params?: Record<string, unknown>;
   query?: Record<string, unknown>;
   data?: Record<string, unknown>;
@@ -22,31 +22,33 @@ const getUrl = (urlPattern: string, params: Record<string, unknown>) => {
 
 type CreateAxios = (
   apiConfig: ApiConfig,
-) => (
-  apiOptions?: ApiOptions,
-) => Promise<AxiosResponse<Record<string, unknown>>>;
+) => <ResponseType>(
+  apiOptions?: ApiOptions<ResponseType>,
+) => Promise<AxiosResponse<ResponseType>>;
 
-type ApiInstance = (
-  apiOptions?: ApiOptions,
-) => Promise<AxiosResponse<Record<string, unknown>>>;
+interface ApiInstance<ResponseType> {
+  (apiOptions?: ApiOptions<ResponseType>): Promise<AxiosResponse<ResponseType>>;
+}
 
-type ExportedEndpoint = <T>(
-  apiInstance: ApiInstance,
-  endpoints: T,
-) => Record<keyof T, ApiInstance>;
+interface ExportedEndpoint {
+  <Type extends Record<keyof Type, Endpoint<Type[keyof Type]['response']>>>(
+    apiInstance: ReturnType<CreateAxios>,
+    endpoints: Type,
+  ): Record<keyof Type, ApiInstance<Type[keyof Type]['response']>>;
+}
 
 export const createAxios: CreateAxios = ({baseURL, baseHeaders}) => {
   return apiOptions => {
     const {
-      endpoint = ['get', ''],
+      endpoint = {method: 'get', path: ''},
       params = {},
       query,
       data,
       config = {},
     } = apiOptions || {};
 
-    const method = endpoint[0];
-    const url = getUrl(endpoint[1], params);
+    const method = endpoint.method;
+    const url = getUrl(endpoint.path, params);
 
     const headers: Record<string, unknown> = {};
 
@@ -62,7 +64,7 @@ export const createAxios: CreateAxios = ({baseURL, baseHeaders}) => {
         'Cache-Control': 'no-store',
         'Content-Type': 'application/json',
       },
-    })[method];
+    });
 
     const axiosOptions = {
       ...config,
@@ -70,10 +72,11 @@ export const createAxios: CreateAxios = ({baseURL, baseHeaders}) => {
       data,
     };
 
-    if (['post', 'put', 'patch'].includes(method)) {
-      return axiosInstance(url, data, axiosOptions);
-    }
-    return axiosInstance(url, axiosOptions);
+    return axiosInstance.request({
+      ...axiosOptions,
+      method,
+      url,
+    });
   };
 };
 
@@ -82,19 +85,15 @@ export const createExportedEndpoint: ExportedEndpoint = (
   endpoints,
 ) => {
   return {
-    ...Object.entries(endpoints)
-      .map(([key, value]): [string, ApiInstance] => [
-        key,
-        (apiOptions?: Omit<ApiOptions, 'endpoint'>) =>
-          apiInstance({
-            ...apiOptions,
-            endpoint: value,
-          }),
-      ])
-      .reduce((prev, cur) => {
-        const key = cur[0] as keyof typeof endpoints;
-        prev[key] = cur[1];
-        return prev;
-      }, {} as Record<keyof typeof endpoints, ApiInstance>),
+    ...Object.keys(endpoints).reduce((prev, key) => {
+      const newKeys = key as keyof typeof endpoints;
+      const endpoint = endpoints[newKeys];
+      prev[newKeys] = apiOptions =>
+        apiInstance<typeof endpoints[keyof typeof endpoints]['response']>({
+          ...apiOptions,
+          endpoint,
+        });
+      return prev;
+    }, {} as Record<keyof typeof endpoints, ApiInstance<typeof endpoints[keyof typeof endpoints]['response']>>),
   };
 };

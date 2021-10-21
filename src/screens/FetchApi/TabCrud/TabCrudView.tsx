@@ -9,12 +9,9 @@ import {
   useTheme,
 } from 'react-native-paper';
 
+import LoadingContent from '~/components/basic/Loading/LoadingContent';
 import TextInputCustom from '~/components/basic/Form/TextInput';
-
-export interface Todo {
-  _id: string;
-  description: string;
-}
+import {Todo} from '~/services/api/apiCrud';
 
 interface Props {
   formTodo: Todo;
@@ -29,8 +26,9 @@ const TabCrudView = ({
   handleDeleteTodo,
   handleSubmitTodo,
   setFormTodo,
-  todos,
+  todosQuery,
 }: Props) => {
+  console.log('todosQuery', todosQuery);
   const theme = useTheme();
   return (
     <View>
@@ -51,9 +49,9 @@ const TabCrudView = ({
         </Button>
       </View>
       <Title>List of Todo</Title>
-      <View>
+      <LoadingContent isVisible={todosQuery.isLoading}>
         <FlatList
-          data={todos}
+          data={todosQuery.data?.data || []}
           keyExtractor={item => `${item._id}`}
           renderItem={({item}) => (
             <Card mode="elevated" style={theme.spacing.mb8}>
@@ -72,7 +70,7 @@ const TabCrudView = ({
             </Card>
           )}
         />
-      </View>
+      </LoadingContent>
     </View>
   );
 };

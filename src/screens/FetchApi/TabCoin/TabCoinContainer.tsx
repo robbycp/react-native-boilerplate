@@ -1,28 +1,14 @@
 import React from 'react';
-import apiCoinCap from '~/services/api/apiCoinCap';
+import {useCoincapGet} from '~/hooks/dataState/coincap.hooks';
 
-import TabCoinView, {Asset} from './TabCoinView';
+import TabCoinView from './TabCoinView';
 
 const TabCoinContainer = () => {
-  const [dataAssets, setDataAssets] = React.useState<Asset[]>([]);
-  React.useEffect(() => {
-    const fetchData = async () => {
-      const dataCoin = await apiCoinCap.getAssets({
-        query: {
-          search: '',
-          ids: '',
-          limit: '',
-          offset: '',
-        },
-      });
-      console.log('data coin', dataCoin);
-      setDataAssets(dataCoin.data.data as Asset[]);
-    };
-    fetchData();
-  }, []);
+  const {data, isLoading} = useCoincapGet();
 
   const propsView = {
-    dataAssets,
+    data: data?.data.data,
+    isLoading,
   };
   return <TabCoinView {...propsView} />;
 };
