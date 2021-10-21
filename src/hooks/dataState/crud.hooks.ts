@@ -1,9 +1,10 @@
 import {useMutation, useQuery, useQueryClient} from 'react-query';
+import type {AxiosError, AxiosResponse} from 'axios';
 
 import apiCrud from '~/services/api/apiCrud';
-import type {Todo} from '~/services/api/apiCrud';
 import {useDispatch} from 'react-redux';
 import {snackbarShow} from '~/store/slices/snackbar';
+import type {Todo} from '~/services/api/apiCrud';
 
 enum ServerStateKeysTodo {
   TodosGet = 'todos-get',
@@ -15,7 +16,7 @@ export const useTodosGet = () => {
 export const useTodoCreate = () => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
-  return useMutation(
+  return useMutation<AxiosResponse<Todo>, AxiosError, Todo>(
     newTodo => {
       return apiCrud.todosPost({
         data: {
@@ -47,9 +48,9 @@ export const useTodoCreate = () => {
 export const useTodoUpdate = () => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
-  return useMutation(
+  return useMutation<AxiosResponse<Todo>, AxiosError, Todo>(
     updatedTodo => {
-      const {_id, ...data} = updatedTodo as unknown as Todo;
+      const {_id, ...data} = updatedTodo;
       return apiCrud.todosPut({
         params: {id: _id},
         data: {...data},
@@ -69,7 +70,7 @@ export const useTodoUpdate = () => {
         dispatch(
           snackbarShow({
             type: 'error',
-            message: `fail to update todo ${data._id}`,
+            message: `fail to update todo: ${data.message}`,
           }),
         );
       },

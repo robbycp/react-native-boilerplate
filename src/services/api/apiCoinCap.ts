@@ -18,12 +18,18 @@ export interface Asset {
 const apiCoinCapBase = createAxios({
   baseURL: 'https://api.coincap.io/v2',
 });
-export const endpoints = {
+export interface ResponseCoinCap {
+  assetsGet: Endpoint<{
+    data: Asset[];
+    timestamp: number;
+  }>;
+}
+export const endpoints: ResponseCoinCap = {
   assetsGet: {
     method: 'get',
     path: '/assets',
     response: {data: [], timestamp: 0},
-  } as Endpoint<{data: Asset[]; timestamp: number}>,
+  },
 };
 
 export default createExportedEndpoint(apiCoinCapBase, endpoints);

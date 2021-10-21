@@ -1,8 +1,9 @@
-import axios, {AxiosResponse} from 'axios';
+import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
 import UrlPattern from 'url-pattern';
 import type {Endpoint} from '~/types/api';
 
-interface ApiOptions<ResponseType> {
+interface ApiOptions<ResponseType>
+  extends Omit<AxiosRequestConfig, 'url' | 'method'> {
   endpoint?: Endpoint<ResponseType>;
   params?: Record<string, unknown>;
   query?: Record<string, unknown>;
@@ -31,10 +32,16 @@ interface ApiInstance<ResponseType> {
 }
 
 interface ExportedEndpoint {
-  <Type extends Record<keyof Type, Endpoint<Type[keyof Type]['response']>>>(
+  <
+    Type extends {
+      [Property in keyof Type]: Endpoint<Type[keyof Type]['response']>;
+    },
+  >(
     apiInstance: ReturnType<CreateAxios>,
     endpoints: Type,
-  ): Record<keyof Type, ApiInstance<Type[keyof Type]['response']>>;
+  ): {
+    [Property in keyof Type]: ApiInstance<Type[Property]['response']>;
+  };
 }
 
 export const createAxios: CreateAxios = ({baseURL, baseHeaders}) => {
@@ -85,15 +92,40 @@ export const createExportedEndpoint: ExportedEndpoint = (
   endpoints,
 ) => {
   return {
-    ...Object.keys(endpoints).reduce((prev, key) => {
-      const newKeys = key as keyof typeof endpoints;
-      const endpoint = endpoints[newKeys];
-      prev[newKeys] = apiOptions =>
-        apiInstance<typeof endpoints[keyof typeof endpoints]['response']>({
-          ...apiOptions,
-          endpoint,
-        });
-      return prev;
-    }, {} as Record<keyof typeof endpoints, ApiInstance<typeof endpoints[keyof typeof endpoints]['response']>>),
+    ...Object.keys(endpoints).reduce(
+      (prev, key) => {
+        const newKeys = key as keyof typeof endpoints;
+        const endpoint = endpoints[newKeys];
+        prev[newKeys] = apiOptions =>
+          apiInstance<typeof endpoint['response']>({
+            ...apiOptions,
+            endpoint,
+          });
+        return prev;
+      },
+      {} as {
+        [Property in keyof typeof endpoints]: ApiInstance<
+          typeof endpoints[keyof typeof endpoints]['response']
+        >;
+      },
+    ),
   };
 };
+
+interface Misal {
+  nani: {
+    nano: string;
+  };
+  nani1: {
+    nano: string;
+  };
+}
+const misal: Misal = {
+  nani: {
+    nano: 'nano',
+  },
+  nani1: {
+    nano: 'nano',
+  },
+};
+console.log(misal);
