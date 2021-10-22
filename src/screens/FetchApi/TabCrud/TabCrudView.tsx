@@ -12,13 +12,14 @@ import {
 import LoadingContent from '~/components/basic/Loading/LoadingContent';
 import TextInputCustom from '~/components/basic/Form/TextInput';
 import {Todo} from '~/services/api/apiCrud';
+import {useTodosGet} from '~/hooks/dataState/crud.hooks';
 
 interface Props {
   formTodo: Todo;
   handleDeleteTodo: (id: string) => void;
   handleSubmitTodo: () => void;
   setFormTodo: React.Dispatch<React.SetStateAction<Todo>>;
-  todos: Todo[];
+  todosQuery: ReturnType<typeof useTodosGet>;
 }
 
 const TabCrudView = ({
@@ -28,7 +29,6 @@ const TabCrudView = ({
   setFormTodo,
   todosQuery,
 }: Props) => {
-  console.log('todosQuery', todosQuery);
   const theme = useTheme();
   return (
     <View>

@@ -2,13 +2,14 @@ import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
 import UrlPattern from 'url-pattern';
 import type {Endpoint} from '~/types/api';
 
-interface ApiOptions<ResponseType>
-  extends Omit<AxiosRequestConfig, 'url' | 'method'> {
-  endpoint?: Endpoint<ResponseType>;
-  params?: Record<string, unknown>;
-  query?: Record<string, unknown>;
-  data?: Record<string, unknown>;
-  config?: Record<string, unknown>;
+type AxiosRequest<RequestType> = Omit<
+  AxiosRequestConfig<RequestType>,
+  'url' | 'method'
+>;
+interface ApiOptions<RequestType, ResponseType>
+  extends AxiosRequest<RequestType> {
+  endpoint?: Endpoint<RequestType, ResponseType>;
+  paramsUrl?: Record<string, unknown>;
 }
 
 interface ApiConfig {
@@ -23,39 +24,42 @@ const getUrl = (urlPattern: string, params: Record<string, unknown>) => {
 
 type CreateAxios = (
   apiConfig: ApiConfig,
-) => <ResponseType>(
-  apiOptions?: ApiOptions<ResponseType>,
+) => <RequestType, ResponseType>(
+  apiOptions?: ApiOptions<RequestType, ResponseType>,
 ) => Promise<AxiosResponse<ResponseType>>;
 
-interface ApiInstance<ResponseType> {
-  (apiOptions?: ApiOptions<ResponseType>): Promise<AxiosResponse<ResponseType>>;
+interface ApiInstance<RequestType, ResponseType> {
+  (apiOptions?: ApiOptions<RequestType, ResponseType>): Promise<
+    AxiosResponse<ResponseType>
+  >;
 }
 
 interface ExportedEndpoint {
   <
     Type extends {
-      [Property in keyof Type]: Endpoint<Type[keyof Type]['response']>;
+      [Property in keyof Type]: Endpoint<
+        Type[Property]['requestData'],
+        Type[Property]['response']
+      >;
     },
   >(
     apiInstance: ReturnType<CreateAxios>,
     endpoints: Type,
   ): {
-    [Property in keyof Type]: ApiInstance<Type[Property]['response']>;
+    [Property in keyof Type]: ApiInstance<
+      Type[Property]['requestData'],
+      Type[Property]['response']
+    >;
   };
 }
 
 export const createAxios: CreateAxios = ({baseURL, baseHeaders}) => {
   return apiOptions => {
-    const {
-      endpoint = {method: 'get', path: ''},
-      params = {},
-      query,
-      data,
-      config = {},
-    } = apiOptions || {};
+    const {endpoint = {method: 'get', path: ''}, paramsUrl = {}} =
+      apiOptions || {};
 
     const method = endpoint.method;
-    const url = getUrl(endpoint.path, params);
+    const url = getUrl(endpoint.path, paramsUrl);
 
     const headers: Record<string, unknown> = {};
 
@@ -74,16 +78,12 @@ export const createAxios: CreateAxios = ({baseURL, baseHeaders}) => {
     });
 
     const axiosOptions = {
-      ...config,
-      params: query,
-      data,
-    };
-
-    return axiosInstance.request({
-      ...axiosOptions,
+      ...apiOptions,
       method,
       url,
-    });
+    };
+
+    return axiosInstance.request({...axiosOptions});
   };
 };
 
@@ -97,7 +97,10 @@ export const createExportedEndpoint: ExportedEndpoint = (
         const newKeys = key as keyof typeof endpoints;
         const endpoint = endpoints[newKeys];
         prev[newKeys] = apiOptions =>
-          apiInstance<typeof endpoint['response']>({
+          apiInstance<
+            typeof endpoint['requestData'],
+            typeof endpoint['response']
+          >({
             ...apiOptions,
             endpoint,
           });
@@ -105,27 +108,10 @@ export const createExportedEndpoint: ExportedEndpoint = (
       },
       {} as {
         [Property in keyof typeof endpoints]: ApiInstance<
+          typeof endpoints[keyof typeof endpoints]['requestData'],
           typeof endpoints[keyof typeof endpoints]['response']
         >;
       },
     ),
   };
 };
-
-interface Misal {
-  nani: {
-    nano: string;
-  };
-  nani1: {
-    nano: string;
-  };
-}
-const misal: Misal = {
-  nani: {
-    nano: 'nano',
-  },
-  nani1: {
-    nano: 'nano',
-  },
-};
-console.log(misal);

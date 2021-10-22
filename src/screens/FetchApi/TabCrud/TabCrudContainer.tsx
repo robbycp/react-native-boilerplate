@@ -22,7 +22,7 @@ const TabCrudContainer = () => {
   const todoCreate = useTodoCreate();
 
   const handleDeleteTodo = (id: string) => {
-    todoDelete.mutate(id);
+    todoDelete.mutate({id});
   };
   const handleSubmitTodo = () => {
     if (formTodo._id) {

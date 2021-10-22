@@ -80,7 +80,7 @@ export const useTodoUpdate = () => {
 export const useTodoDelete = () => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
-  return useMutation(
+  return useMutation<unknown, AxiosResponse, {id: string}>(
     todoId =>
       apiCrud.todosDelete({
         params: {id: todoId},

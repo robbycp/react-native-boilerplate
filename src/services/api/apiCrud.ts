@@ -14,14 +14,14 @@ const apiCrudBase = createAxios({
   baseURL: 'https://crudcrud.com/api/3cf771bd91bd4b46bc0b1d25b512fcf4',
 });
 
-export interface ResponseCrud {
-  todosGet: Endpoint<Todo[]>;
-  todosPost: Endpoint<Todo>;
-  todosPut: Endpoint<Todo>;
-  todosDelete: Endpoint<Todo>;
+export interface AxioCrud {
+  todosGet: Endpoint<{}, Todo[]>;
+  todosPost: Endpoint<Omit<Todo, '_id'>, Todo>;
+  todosPut: Endpoint<Omit<Todo, '_id'>, Todo>;
+  todosDelete: Endpoint<Todo, Todo>;
 }
 
-const endpoints: ResponseCrud = {
+const endpoints: AxioCrud = {
   todosGet: {
     method: 'get',
     path: '/todos',
