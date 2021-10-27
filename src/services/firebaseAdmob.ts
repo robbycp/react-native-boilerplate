@@ -49,6 +49,7 @@ export function useInterstitial(
     return () => {
       eventListener();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return [loaded, interstitial];
