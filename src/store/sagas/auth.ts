@@ -20,7 +20,6 @@ import {
 } from '~/store/slices/auth';
 import {currentUser, signInGoogle, signOut} from '~/services/firebaseAuth';
 import {ContextName, RootContext} from '../rootContext';
-import {ScreenName} from '~/types/navigation';
 import {FirestoreData} from '~/services/firebaseFirestore';
 import type {ClientData, FirebaseUserCredential} from '~/types/user';
 
@@ -86,7 +85,7 @@ export function* authSigninSaga() {
           username: userDataClient?.username || null,
         }),
       );
-      navigator.navigate(ScreenName.HOME);
+      navigator.navigate('Home');
     } else {
       const userEmail = userAuth.user.email;
       yield put(
@@ -116,7 +115,7 @@ export function* authSignupSaga(action: PayloadAction<ClientData>) {
     );
     yield put(authSignupSuccess());
     yield put(authMeSuccess(createdUser));
-    navigator.navigate(ScreenName.HOME);
+    navigator.navigate('Home');
   } catch (error) {
     yield put(authSignupFailed(error));
   }

@@ -13,6 +13,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 import ExceptionHandler from 'react-native-exception-handler';
 import {StatusBar, useColorScheme} from 'react-native';
 import {useReduxDevToolsExtension} from '@react-navigation/devtools';
+import {QueryClient, QueryClientProvider} from 'react-query';
 
 import RootNavigator from '~/navigation/RootNavigator';
 import {navigationRef} from '~/navigation/navigator';
@@ -57,10 +58,12 @@ fetchRemoteConfig();
 
 initialAnalytics();
 
+const queryClient = new QueryClient();
+
 const AppSnackbar = () => {
   const dispatch = useDispatch();
-  const theme = useTheme();
   const scheme = useColorScheme();
+  const theme = useTheme();
   const routeNameRef = React.useRef<string | undefined>('');
   const snackbar = useSelector(getSnackbarState);
   const onDismissSnackBar = () => dispatch(snackbarHide());
@@ -72,55 +75,58 @@ const AppSnackbar = () => {
     backgroundColor = theme.colors.custom.green400;
   }
   return (
-    <PaperProvider theme={scheme === 'dark' ? darkTheme : lightTheme}>
-      <SafeAreaProvider>
-        <NavigationContainer
-          linking={linking}
-          theme={scheme === 'dark' ? RNDarkTheme : RNLightTheme}
-          ref={navigationRef}
-          onReady={() => {
-            routeNameRef.current = navigationRef.getCurrentRoute()?.name;
-            routingInstrumentation.registerNavigationContainer(navigationRef);
-            dispatch(appNavigationReady());
-          }}
-          onStateChange={() => {
-            const previousRouteName = routeNameRef.current;
-            const currentRouteName = navigationRef.getCurrentRoute()?.name;
+    <SafeAreaProvider>
+      <NavigationContainer
+        linking={linking}
+        theme={scheme === 'dark' ? RNDarkTheme : RNLightTheme}
+        ref={navigationRef}
+        onReady={() => {
+          routeNameRef.current = navigationRef.getCurrentRoute()?.name;
+          routingInstrumentation.registerNavigationContainer(navigationRef);
+          dispatch(appNavigationReady());
+        }}
+        onStateChange={() => {
+          const previousRouteName = routeNameRef.current;
+          const currentRouteName = navigationRef.getCurrentRoute()?.name;
 
-            if (previousRouteName !== currentRouteName) {
-              logScreen(currentRouteName);
-            }
-            routeNameRef.current = currentRouteName;
+          if (previousRouteName !== currentRouteName) {
+            logScreen(currentRouteName);
+          }
+          routeNameRef.current = currentRouteName;
+        }}>
+        <StatusBar barStyle="dark-content" />
+        <RootNavigator />
+        <Snackbar
+          visible={snackbar.isVisible}
+          onDismiss={onDismissSnackBar}
+          duration={snackbar.duration}
+          style={backgroundColor ? {backgroundColor} : {}}
+          action={{
+            label: snackbar.textButton,
+            onPress: onDismissSnackBar,
           }}>
-          <StatusBar barStyle="dark-content" />
-          <RootNavigator />
-          <Snackbar
-            visible={snackbar.isVisible}
-            onDismiss={onDismissSnackBar}
-            duration={snackbar.duration}
-            style={backgroundColor ? {backgroundColor} : {}}
-            action={{
-              label: snackbar.textButton,
-              onPress: onDismissSnackBar,
-            }}>
-            {snackbar.message}
-          </Snackbar>
-        </NavigationContainer>
-      </SafeAreaProvider>
-    </PaperProvider>
+          {snackbar.message}
+        </Snackbar>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };
 
 const App = () => {
   useReduxDevToolsExtension(navigationRef);
   usePerformance();
+  const scheme = useColorScheme();
   return (
     <Profiler id="App.render()" onRender={traceRender}>
-      <StoreProvider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <AppSnackbar />
-        </PersistGate>
-      </StoreProvider>
+      <QueryClientProvider client={queryClient}>
+        <StoreProvider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <PaperProvider theme={scheme === 'dark' ? darkTheme : lightTheme}>
+              <AppSnackbar />
+            </PaperProvider>
+          </PersistGate>
+        </StoreProvider>
+      </QueryClientProvider>
     </Profiler>
   );
 };

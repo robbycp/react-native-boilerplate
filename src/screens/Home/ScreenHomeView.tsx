@@ -23,9 +23,7 @@ import {getReadableVersion} from 'react-native-device-info';
 import * as Sentry from '@sentry/react-native';
 
 import LoadingOverlay from '~/components/basic/Loading/LoadingOverlay';
-import YoutubePlayer from '~/components/basic/YoutubePlayer';
 import metrics from '~/style/metrics';
-import {ScreenName} from '~/types/navigation';
 
 import ClipboardHome from './ClipboardHome';
 import HTMLHome from './HTMLHome';
@@ -92,12 +90,6 @@ const ScreenHomeView = ({
           <Text>{usingHermes ? 'True' : 'False'}</Text>
           <Subheading>{t('home.shareLink')}</Subheading>
           <Button onPress={handleShareMessage}>{t('home.shareButton')}</Button>
-          <Subheading>{t('home.youtubePlayer')}</Subheading>
-          <YoutubePlayer
-            style={styles.videoPlayer}
-            videoId="iee2TATGMyI"
-            width={metrics.deviceWidth - 2 * (16 + marginVideoPlayer)}
-          />
           <Subheading>{t('home.authentication')}</Subheading>
           <Signin />
           <Subheading>Render HTML</Subheading>
@@ -107,7 +99,7 @@ const ScreenHomeView = ({
           <Subheading>Clipboard</Subheading>
           <ClipboardHome />
           <Subheading>{t('home.modalPrivacy')}</Subheading>
-          <Button onPress={() => navigation.navigate(ScreenName.MODAL_PRIVACY)}>
+          <Button onPress={() => navigation.navigate('Modal Privacy')}>
             {t('home.privacy')}
           </Button>
           <Subheading>{t('common.loading')} Overlay</Subheading>

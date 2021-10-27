@@ -15,14 +15,23 @@ const FirstRoute = () => <View style={styles.containerFirst} />;
 const SecondRoute = () => <View style={styles.containerSecond} />;
 
 const TabExampleView = () => {
-  const keysScene = {
-    first: FirstRoute,
-    second: SecondRoute,
-  };
   return (
     <>
       <View style={styles.containerTabs}>
-        <Tabs keysScene={keysScene} />
+        <Tabs
+          tabs={[
+            {
+              key: 'first',
+              title: 'First',
+              scene: FirstRoute,
+            },
+            {
+              key: 'second',
+              title: 'Second',
+              scene: SecondRoute,
+            },
+          ]}
+        />
       </View>
       <Text>Below Text</Text>
     </>

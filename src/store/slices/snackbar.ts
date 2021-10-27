@@ -15,6 +15,16 @@ export interface SnackbarState {
   textButton: string;
   type: 'info' | 'success' | 'error' | 'warning';
 }
+export interface SnackbarShowProps {
+  message: string;
+  type?: SnackbarState['type'];
+  textButton?: string;
+  duration?: number;
+  action?: {
+    type: string;
+    payload?: {};
+  };
+}
 
 export const initialState: SnackbarState = {
   action: {
@@ -42,19 +52,7 @@ export const snackbarSlice = createSlice({
         ...initialState.action,
       };
     },
-    snackbarShow: (
-      state,
-      action: PayloadAction<{
-        message: string;
-        type?: SnackbarState['type'];
-        textButton?: string;
-        duration?: number;
-        action?: {
-          type: string;
-          payload?: {};
-        };
-      }>,
-    ) => {
+    snackbarShow: (state, action: PayloadAction<SnackbarShowProps>) => {
       state.isVisible = true;
       state.message = action.payload.message;
       state.textButton = action.payload.textButton || initialState.textButton;

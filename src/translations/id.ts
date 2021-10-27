@@ -42,7 +42,6 @@ const id: Translation = {
       shareButton: 'Bagikan pesan',
       version: 'Versi',
       whatsappButton: 'Kirim pesan melalui whatsapp',
-      youtubePlayer: 'Pemutar Youtube',
     },
     homeClipboard: {
       clickToCopy: 'Tekan untuk salin',

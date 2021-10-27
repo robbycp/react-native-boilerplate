@@ -1,12 +1,12 @@
 import {LinkingOptions} from '@react-navigation/native';
-import {RootStackParamList, ScreenName} from '~/types/navigation';
+import type {RootStackParamList} from '~/types/navigation';
 
 const linking: LinkingOptions<RootStackParamList> = {
   prefixes: ['https://sibudi.id', 'sibudi://'],
   config: {
-    initialRouteName: ScreenName.SPLASH,
+    initialRouteName: 'Splash',
     screens: {
-      [ScreenName.ADS_LIST]: 'ads',
+      'Ads List': 'ads',
     },
   },
 };
