@@ -10,6 +10,10 @@
 - Webview
 - Redux Saga
 - React Native Share
+- AppCenter
+  - We're using appcenter to distribute apk to QA / other engineer to be tested in staging / production environment if needed.
+- Github Action
+  - We're using github action and github flow to automatically increase versioning when creating new feature branch, merge to release branch
 
 # Global and Tools installed
 1. Install fastlane
@@ -67,6 +71,12 @@ brew install fastlane
   - add value for file .env.staging and .env.production using .env-example template
 11. in app update functionality
   - This functionality is requiring apps to be uploaded in play store. If this blocks your development, you can set WITH_APP_VERSION_CHECK to false in your .env . [Reference](https://stackoverflow.com/questions/60718191/in-app-update-gives-installexception-error-api-not-available)
+12. Add git label in Pull Request (PR). It will be used for automated workflow.
+  - `Type:Fix` : this PR fixing small / minor changes.
+  - `Type:Feature` : this PR has new / modified features
+  - `Type:Major` : this PR contain breaking changes. Ex: major refactor code, deprecated API response / request
+  - `QAPassed` : when QA engineer already pass manual QA
+  - `lockDeploy` : label for branch `release/` to stop other branch to be merged to branch `release/`
 
 ## Build, Publish, versioning
 ### Caveats
@@ -80,22 +90,29 @@ brew install fastlane
     - by default, update type is flexible
   - force update
 ### Development flow
-1. Create branch from branch `main` with branch name prefix `feature/`
-2. Develop feature
-3. Create PR to be merged to branch name prefix `release/`
-4. Testing in feature branch
-  a. build apk from branch feature and distribute to appcenter. If you want to build apk with environment production from branch feature, run second command
+1. Create feature / fix branch (dev branch) from branch `main` with branch name prefix `feature/` or `fix/`
+2. Develop in feature branch. Automated unit test will run every time developer want to make a push to origin. Commit couldn't be done if unit test is failed.
+3. Create PR with template `template_feature` and follow rules for title
+  - Should have prefix: fix | modify | feature | breaking. Ex:
+    - fix - image not showing
+    - modify - remove screen product information detail
+    - feature - youtube player in product information
+    - breaking - modify api response v2/products
+  - Should follow above format since it will break automated github action
+4. Manual testing in dev branch
+  a. build apk from branch feature and distribute to appcenter.
   ```
   // run with env staging
   yarn run dist:s-android
   // run with env production
   yarn run dist:s-android release
   ```
-  b. tester test the app
-  c. QA passed
-5. Merged PR branch `feature/` to branch `release/`
-6. If you want to develop other feature, repeat from step 1 but branched from branch `release`
-7. Final testing to see any regression or not. Build staging and production env apk from branch `/release`
+  b. QA engineer test the app
+  c. QA passed and give label `QAPassed` in dev Pull Request.
+5. Create PR to be merged to branch name prefix `release/` if it doesn't exist. Caveat: only one release branch in one time development cycle.
+6. Merged PR branch `feature/` to branch `release/`
+7. If you want to develop other feature, repeat from step 1 but branched from branch `release`
+8. When it's time to release, you could stop other engineer to merge new branch to branch `release/` by adding label to Pull Request branh `release` with Final testing to see any regression or not. Build staging and production env apk from branch `/release`
 ```
 yarn run dist:s-android
 yarn run dist:p-android
@@ -223,3 +240,4 @@ gradle(
 - upload appcenter
 - fastlane set previous custom versionName and versionCode
 #### Release - prerelease build
+
