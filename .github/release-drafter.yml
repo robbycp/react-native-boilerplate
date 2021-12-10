@@ -1,0 +1,47 @@
+name-template: '$RESOLVED_VERSION'
+tag-template: '$RESOLVED_VERSION'
+exclude-labels:
+  - 'release'
+include-labels:
+  - 'QAPassed'
+categories:
+  - title: '🚀 Features'
+    labels:
+      - 'feature'
+      - 'enhancement'
+      - 'modify'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'fix'
+      - 'bugfix'
+      - 'bug'
+  - title: '🧰 Breaking'
+    label: 'breaking'
+change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
+autolabeler:
+  - label: 'bug'
+    title:
+      - '/[B|b]ug/i'
+      - '/[F|f]ix/i'
+  - label: 'enhancement'
+    title:
+      - '/[M|m]odify/i'
+      - '/[F|f]eature/i'
+  - label: 'breaking'
+    title:
+      - '/[B|b]reaking/i'
+version-resolver:
+  major:
+    labels:
+      - 'breaking'
+  minor:
+    labels:
+      - 'enhancement'
+  patch:
+    labels:
+      - 'bug'
+      - 'fix'
+  default: patch
+template: |
+  $CHANGES

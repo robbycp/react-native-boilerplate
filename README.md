@@ -51,9 +51,9 @@ Production-ready react native boilerplate. This repo is still under active devel
   - All github configuration for workflows and pull request template
 - */e2e*
   - End to end testing setup and configuration
-- */scriptGithub*
-  - All script used by github workflows
 - */script*
+  - */github*
+    - All script used by github workflows
   - All script used to build staging / production apk and release to code push
 - */src*
   - */assets* put all animation, sound, image, video asset here. Try to make all assets in uri instead of put it here.
