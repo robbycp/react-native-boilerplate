@@ -1,5 +1,5 @@
 # react-native-boilerplate
-Production-ready react native boilerplate. This repo is still under active development. We're improving this repo by build production released apps.
+This repo is still under active development please use carefully. Production-ready react native boilerplate. This repo is still under active development. We're improving this repo by build production released apps.
 
 ## Getting Started
 To create new project, run this command
