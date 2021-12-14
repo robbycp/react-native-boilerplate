@@ -2,7 +2,7 @@
   "name": "@robbycp/react-native-boilerplate",
   "version": "0.1.0",
   "description": "Production ready React Native boilerplate",
-  "repository": "https://github.com/robbycp/react-native-boilerplate.git",
+  "repository": "github:robbycp/react-native-boilerplate",
   "author": "Robby Caesar Putra <robbycaesar@gmail.com>",
   "license": "MIT"
 }
