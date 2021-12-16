@@ -7,8 +7,8 @@ To create new project, run this command
 npx react-native init MyApp --template https://github.com/robbycp/react-native-boilerplate
 ```
 # Roadmap
-[x] Create react native template instead of git clone
-[ ] Fastlane to upload apps screenshot to play store / app store
+- [x] Create react native template instead of git clone
+- [ ] Fastlane to upload apps screenshot to play store / app store
 # Features
 - Typescript
 - [React Navigation](https://reactnavigation.org/docs/getting-started)
