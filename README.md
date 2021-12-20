@@ -9,6 +9,7 @@ npx react-native init MyApp --template https://github.com/robbycp/react-native-b
 # Roadmap
 - [x] Create react native template instead of git clone
 - [ ] Fastlane to upload apps screenshot to play store / app store
+- [ ] Github workflows to stop development branch to be merged to staging branch
 # Features
 - Typescript
 - [React Navigation](https://reactnavigation.org/docs/getting-started)
