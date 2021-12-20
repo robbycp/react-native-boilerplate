@@ -5,6 +5,63 @@ Production-ready react native boilerplate. This repo is still under active devel
 - Install fastlane
 
 # Guide
+## Getting Started
+### Things for developer
+- Setting Deep link
+  - Change prefixes in linking config in src/navigation/linking
+  - Change AndroidManifest.xml with targeted scheme / domain
+  - Change in Info.plist `CFBundleURLSchemes` `sibudi` value with targeted scheme / domain
+- Env
+  - add value for file .env.staging and .env.production using .env-example template
+- In app update functionality
+  - This functionality is requiring apps to be uploaded in play store. If this blocks your development, you can set WITH_APP_VERSION_CHECK to false in your .env . [Reference](https://stackoverflow.com/questions/60718191/in-app-update-gives-installexception-error-api-not-available)
+- (Optional) If you're using github to store your codebase, you could optionally make used of github workflows from this template. Add git label in repository Pull Request (PR) or Issues. It will be used for automated workflow for auto draft release version and pull request release.
+  - `bug` : this PR should fixing bugs.
+  - `enhancement` : this PR has new / modified features.
+  - `breaking` : this PR has breaking changes. Ex: new api request or response.
+  - `QAPassed` : when Quality Assurance has been passed
+  - `dev` : PR related to bug, enhancement, breaking
+  - `release` : PR from staging to main branch. It's collection of merged `bug`, `enhancement`, and `breaking` PR.
+#### Using Firebase
+1. Create two firebase project: Staging and Production
+2. Add android and ios apps to each of environment project
+3. Follow [here](https://rnfirebase.io/) to add `google-services.json` (for Android) and `GoogleService-Info.plist` (for iOS) for firebase credentials
+
+#### Using One signal as Push Notification
+1. Create account in firebase. Copy server key and sender id
+2. Create account in one signal
+3. Paste server id and key from firebase to one signal
+4. Copy one signal id to env ONE_SIGNAL_ID
+
+#### Admob
+1. Create admob account => create app
+2. App Settings => copy to firebase.json
+#### Fastlane
+- `fastlane supply init` to set up metadata management at a later point
+#### Android Play Store
+- add json_key_file from google play console in /android/fastlane/Appfile
+### Things for designer
+#### Colors
+- define colors (customColor and defined color if needed) in src/style/color
+- Change color in src/Theme/PaperTheme/index
+  - Adjust src/Theme/Fonts as needed (lineHeight and fontSize)
+  - Adjust src/Theme/Variables as needed (metric size)
+#### Spacing and Component
+- defined spacing and component sizes must match with designer
+#### Font
+- Add custom font if needed
+  - copy font.ttf to src/assets/fonts.
+  - In terminal `react-native link`
+  - Change in src/style/fonts
+#### Images
+- Set Loading component (LoadingContent, LoadingOverlay) animation or using default Activiy Indicator.
+- Change app icon and splash icon. Use this https://appicon.co/ to generate icon to be copied in android and ios
+  - For android Copy to /android/app/src/main/res
+  - For iOS Copy to /ios/AppName/Images.xcassets/AppIcon.appiconset
+  - For iOS, change logo in LaunchScreen.storyboard
+  - For javascript, copy to src/assets/images/logo.png
+- Empty state image logo. If something bad happen or broken with image link.
+  - Change src/assets/images/empty-image.png
 ## Folder
 - */.github*
   - All github configuration for workflows and pull request template
@@ -17,8 +74,8 @@ Production-ready react native boilerplate. This repo is still under active devel
 - */src*
   - */assets* put all animation, sound, image, video asset here. Try to make all assets in uri instead of put it here.
   - */components* put all global component here
-    - */basic* here is all component view and the logic here. The basic one without accessing redux
-    - */custom* . Here is some extendable custom component, using component basic or not. Could have redux state here
+    - */basic* here is all component view and the logic here. The basic one without accessing redux or global state.
+    - */custom* . Here is some extendable custom component, using component basic or not. Could have global state from redux here
   - */hooks* put custom hooks here
   - */navigation* put all navigator configuration here
   - */screens* put all screens here, even the screen inside the BottomNavigator or TabNavigator, should be put in line in folder screens. One folder here represent one screen, and child folder represent local component
@@ -30,22 +87,12 @@ Production-ready react native boilerplate. This repo is still under active devel
 - */storybook*
   - Storybook setup and configuration
 ## Development
-![Development process](./docs/development-process.png)
+![Development process](docs/development_process.png?raw=true)
 ### Caveats
-- Use codepush to publish
-  - update hotfix / patch
-  - breaking change API or update major without any additional minor feature. New request or response payload form API for example.
-- Publish using app store
-  - new feature added or update minor
-  - upgrade package or install new package
-  - change / add native code
-  - soft update
-    - by default, update type is flexible
-  - force update
-- Label used as types of changes compared to version increment
-  - fix, bug: patch
-  - feature, modify, enhancement: minor
-  - breaking: major
+- Labels used as types of changes compared to version increment:
+  - patch: fix, bug
+  - minor: feature, modify, enhancement
+  - major: breaking
 ### Flow
 1. Create feature / fix branch (dev branch) from branch `staging` with branch name prefix `feature/` or `fix/`
 2. Develop in feature branch. Automated unit test will run every time developer want to make a push to origin. Commit couldn't be done if unit test is failed.
@@ -55,97 +102,48 @@ Production-ready react native boilerplate. This repo is still under active devel
     - modify - remove screen product information detail
     - feature - youtube player in product information
     - breaking - modify api response v2/products
-  - Should follow above format since it will break automated github action to determine next semantic version
+  - If you choose to use github workflows, you should follow above format since it will break automated github workflows.
 4. Manual testing in dev branch
   a. build apk from branch feature and distribute to appcenter.
   ```
   // run with env staging
   yarn run dist:s-android
-  // run with env production
+  // run with env production if needed
   yarn run dist:s-android release
   ```
   b. QA engineer test the app
   c. QA passed and give label `QAPassed` in dev Pull Request.
-5. Merged dev PR from branch `feature/` to branch `staging`. Note: only PR's that have been tested could be merged to branch staging.
-6. If you want to develop other feature, repeat from step 1, but checkout from branch `staging`
+5. Merged dev PR from branch `feature/` to branch `staging`. Note: only PR's that have been tested (has label QAPassed) could be merged to branch staging.
+6. If you want to develop other feature, repeat from step 1.
 7. When it's time to release, you could stop other engineer to merge new branch to branch `staging`.
-8. Build staging and production env apk from branch `staging`
+8. Build staging and production env apk from branch `staging` and do testing.
 ```
 yarn run dist:s-android
 yarn run dist:p-android
 ```
-9. Merged PR from branch `staging` to `main`
-10. Publish new release and tag
+9. QAPassed
+10. Merged PR from branch `staging` to `main`
+11. Publish new release and tag
 ## Distribution
 ### App store / play store
-Run this to bundle and upload to app store / playstore using fastlane.
+- Here are the reason if you want to publish using app store
+  - new feature added or update minor
+  - upgrade package or install new package
+  - change / add native code
+  - soft update
+    - by default, update type is flexible
+  - force update
+- Run this to bundle and upload to app store / playstore using fastlane.
 ```yarn run dist:android```
-Included in this fastlane lane android
-- Test file
-- Submit to crashlytics
-- Deploy to google play store
 ### Code push
+- Here are the reason if you use codepush to publish
+  - update hotfix / patch
+  - breaking change API or update major without any additional minor feature. New request or response payload form API for example.
+- Run this command to publish from codepush
 ```yarn run dist-codepush:s-android```
 ## Create BottomPanel
 - If bottom panel is full screen, use react-navigation screenOptions presentation `modal`
 - If not, use component BottomPanel
-# How to clone
-## Basic
-1. Clone this repo, `git clone <this repo url> <your project name>`
-2. Go to project's root directory, `cd <your project name>`
-3. Remove `.git` folder, `rm -rf .git`
-4. Change app name and Use [React Native Rename](https://github.com/junedomingo/react-native-rename) to update project name
-  - run `npx react-native-rename "<app-name>" -b <id-application>`. Example `npx react-native-rename "siBudi" -b com.sibudi.sianto`
-  - change folder name in android to match with <id-application>
-5. Change app icon and splash icon. Use this https://appicon.co/ to generate icon to be copied in android and ios
-- For android Copy to /android/app/src/main/res
-- For iOS Copy to /ios/AppName/Images.xcassets/AppIcon.appiconset
-- For iOS, change logo in LaunchScreen.storyboard
-- For javascript, copy to src/assets/images/logo.png
-6. Change src/assets/images/empty-image.png
-7. Change fontFamily
-  - copy font.ttf to src/assets/fonts.
-  - In terminal `react-native link`
-  - Change in src/style/fonts
-8. Change Theme color
-  - Change color in src/Theme/PaperTheme/index
-  - Adjust src/Theme/Fonts as needed (lineHeight and fontSize)
-  - Adjust src/Theme/Variables as needed (metric size)
-9. Setting Deep link
-  - Change prefixes in linking config in src/navigation/linking
-  - Change AndroidManifest.xml with targeted scheme / domain
-  - Change in Info.plist `CFBundleURLSchemes` `sibudi` value with targeted scheme / domain
-10. Env
-  - add value for file .env.staging and .env.production using .env-example template
-11. in app update functionality
-  - This functionality is requiring apps to be uploaded in play store. If this blocks your development, you can set WITH_APP_VERSION_CHECK to false in your .env . [Reference](https://stackoverflow.com/questions/60718191/in-app-update-gives-installexception-error-api-not-available)
-12. Add git label in Pull Request (PR). It will be used for automated workflow.
-  - `Type:Fix` : this PR fixing small / minor changes.
-  - `Type:Feature` : this PR has new / modified features
-  - `Type:Major` : this PR contain breaking changes. Ex: major refactor code, deprecated API response / request
-  - `QAPassed` : when QA engineer already pass manual QA
-  - `lockDeploy` : label for branch `release/` to stop other branch to be merged to branch `release/`
-
-## One signal
-1. Create account in firebase. Copy server key and sender id
-2. Create account in one signal
-3. Paste server id and key from firebase to one signal
-4. Copy one signal id to env ONE_SIGNAL_ID
-
-## Firebase
-1. Create two firebase project: Staging and Production
-2. Add android and ios apps to each of environment project
-3. Follow [here](https://rnfirebase.io/) to add `google-services.json` (for Android) and `GoogleService-Info.plist` (for iOS) for firebase credentials
-
-## Admob
-1. Create admob account => create app
-2. App Settings => copy to firebase.json
-
-## Fastlane
-- `fastlane supply init` to set up metadata management at a later point
-### Android
-- add json_key_file from google play console in /android/fastlane/Appfile
-
 # Monitoring / Debugging
 ## React native debugger
 - install react native debugger [here](https://github.com/jhen0409/react-native-debugger)
@@ -162,23 +160,9 @@ Included in this fastlane lane android
 - Use react-native-performance-monitoring package to debug render performance
 - See more options and how to use [here](https://github.com/Flagsmith/react-native-performance-monitor)
 - Use ScreenFlatListImage as playground
-# Things for designer
-## Colors
-- define colors (customColor and defined color if needed) in src/style/color
-## Spacing and Component
-- defined spacing and component sizes must match with designer
-## Font
-- Add custom font if needed
-- define in src/style/font
-## Images
-- Set Loading component (LoadingContent, LoadingOverlay) animation or using default Activiy Indicator.
-- Logo for
-  - app icon
-  - icon in splash screen
-  - launch screen for ios
-- Empty state image logo. If something bad happen when image is loading
 
-## Versioning
+# Fastlane
+On progress step by step to implement fastlane
 ### Android
 - With this step, will automatically upload sourcemap to sentry and codepush (with / without hermes, sentry.gradle already covered) since no custom versionName and versionCode generated by build gradle
 #### Staging - staging build
@@ -223,4 +207,3 @@ gradle(
 - upload appcenter
 - fastlane set previous custom versionName and versionCode
 #### Release - prerelease build
-

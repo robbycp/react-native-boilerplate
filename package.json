@@ -2,7 +2,25 @@
   "name": "react-native-boilerplate",
   "version": "0.1.0",
   "description": "Production ready React Native boilerplate",
-  "repository": "git@github.com:robbycp/react-native-boilerplate.git",
+  "repository": "https://github.com/robbycp/react-native-boilerplate.git",
   "author": "Robby Caesar Putra <robbycaesar@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": [
+    "react-native",
+    "boilerplate",
+    "template",
+    "starter",
+    "redux",
+    "redux-saga",
+    "react-navigation",
+    "typescript"
+  ],
+  "homepage": "https://github.com/robbycp/react-native-boilerplate",
+  "bugs": {
+    "url": "https://github.com/robbycp/react-native-boilerplate/issues"
+  },
+  "funding": {
+    "type" : "individual",
+    "url" : "https://www.buymeacoffee.com/robbycp"
+  }
 }

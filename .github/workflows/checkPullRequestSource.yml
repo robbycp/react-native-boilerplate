@@ -1,0 +1,51 @@
+name: Check Pull Request Source
+
+on:
+  pull_request:
+    types: [edited, labeled, opened, reopened, synchronize, unlabeled]
+    branches:
+      - main
+      - staging
+
+jobs:
+  check:
+    name: Check Pull Reqest Source
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check title and label
+        uses: actions/github-script@v5
+        with:
+          script: |
+            console.log('repo source details', context)
+            let errorMessage = ''
+            // Check title
+            const title = context.payload.pull_request.title
+            const prefix = title.split('-')[0].trim()
+            console.log('prefix', prefix)
+            const regex = /^[f|F]ix|[f|F]eature|[b|B]reaking|[m|M]odify|[r|R]elease$/
+            if (!prefix.match(regex)) {
+              errorMessage += 'Prefix must be fix|modify|feature|breaking|release, '
+            }
+
+            // Check label QAPassed
+            console.log('head', context.payload.pull_request.head)
+            console.log('base', context.payload.pull_request.base)
+            const labels = context.payload.pull_request.labels
+            console.log('labels', labels)
+            if (!labels.find((item) => item.name === 'QAPassed')) {
+              errorMessage += 'must have label QA passed, '
+            }
+
+            // Check label dev or release
+            const labelDev = labels.find((item) => item.name === 'dev')
+            const labelRelease = labels.find((item) => item.name === 'release')
+            if (
+              (context.payload.pull_request.base.name === 'main' && !labelRelease)
+              || (context.payload.pull_request.base.name === 'staging' && !labelDev)
+            ) {
+              errorMessage += 'must have label dev or release'
+            }
+            console.log('errorMessage', errorMessage)
+            if (errorMessage) {
+              core.setFailed(errorMessage)
+            }
