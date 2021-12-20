@@ -87,7 +87,7 @@ Production-ready react native boilerplate. This repo is still under active devel
 - */storybook*
   - Storybook setup and configuration
 ## Development
-![Development process](./docs/development-process.png)
+![Development process](docs/development_process.png?raw=true)
 ### Caveats
 - Labels used as types of changes compared to version increment:
   - patch: fix, bug
