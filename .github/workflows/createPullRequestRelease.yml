@@ -1,0 +1,38 @@
+name: Create Pull Request Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  create:
+    name: Create pull request release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.2.0
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: add semver
+      - name: 'Get Previous tag'
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+      - name: Set up git
+        run: |
+          git fetch
+          git checkout main
+          git config user.name Github Action
+      - name: Create Pull Request
+        uses: actions/github-script@v5
+        env:
+          TAG_LATEST: ${{ steps.previoustag.outputs.tag }}
+        with:
+          script: |
+            console.log('TAG_LATEST', process.env.TAG_LATEST)
+            console.log('context', context)
+            const script = require('./script/github/createPullRequest.js')
+            script({github, exec, context})
