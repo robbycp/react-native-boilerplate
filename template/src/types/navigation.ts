@@ -1,6 +1,5 @@
 export type RootStackParamList = {
   'Collapsible Background': undefined;
-  'Collapsible Custom': undefined;
   'Collapsible Default': undefined;
   'Collapsible Sticky': undefined;
   'Collapsible Subheader': undefined;

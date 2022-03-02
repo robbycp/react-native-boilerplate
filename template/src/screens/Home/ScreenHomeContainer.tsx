@@ -41,11 +41,6 @@ const ScreenHomeContainer: React.FunctionComponent<ScreenHomeContainerProps> =
         onPress: () => navigateAndAnalytics('Collapsible Background'),
       },
       {
-        title: 'Collapsible Custom',
-        icon: 'account-box',
-        onPress: () => navigateAndAnalytics('Collapsible Custom'),
-      },
-      {
         title: 'Collapsible Default',
         icon: 'account-box',
         onPress: () => navigateAndAnalytics('Collapsible Default'),
