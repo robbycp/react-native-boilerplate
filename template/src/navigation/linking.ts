@@ -6,7 +6,7 @@ const linking: LinkingOptions<RootStackParamList> = {
   config: {
     initialRouteName: 'Splash',
     screens: {
-      'Ads List': 'ads',
+      Form: 'form',
     },
   },
 };

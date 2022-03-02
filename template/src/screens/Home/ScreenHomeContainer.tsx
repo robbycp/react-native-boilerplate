@@ -31,11 +31,6 @@ const ScreenHomeContainer: React.FunctionComponent<ScreenHomeContainerProps> =
     });
     const listFeatures: ListFeature[] = [
       {
-        title: 'Ads List',
-        icon: 'account-box',
-        onPress: () => navigateAndAnalytics('Ads List'),
-      },
-      {
         title: 'Form',
         icon: 'account-box',
         onPress: () => navigateAndAnalytics('Form'),
@@ -44,11 +39,6 @@ const ScreenHomeContainer: React.FunctionComponent<ScreenHomeContainerProps> =
         title: 'Collapsible Background',
         icon: 'account-box',
         onPress: () => navigateAndAnalytics('Collapsible Background'),
-      },
-      {
-        title: 'Collapsible Custom',
-        icon: 'account-box',
-        onPress: () => navigateAndAnalytics('Collapsible Custom'),
       },
       {
         title: 'Collapsible Default',

@@ -5,7 +5,7 @@ describe('linking: ', () => {
     expect(linking.prefixes).toStrictEqual(['https://sibudi.id', 'sibudi://']);
     expect(linking.config?.initialRouteName).toBe('Splash');
     expect(linking.config?.screens).toStrictEqual({
-      'Ads List': 'ads',
+      Form: 'form',
     });
   });
 });
