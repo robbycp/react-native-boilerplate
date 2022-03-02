@@ -85,7 +85,7 @@ Here we use firebase firestore to store common data like terms and condition, pr
   - */utils* function helper like string formatter, error handler, clipboard.
 - */storybook*
   - Storybook setup and configuration
-## Development
+## Development Process
 ![Development process](docs/development_process.png?raw=true)
 ### Caveats
 - Labels used as types of changes compared to version increment:
@@ -140,9 +140,17 @@ yarn run dist:p-android
   - breaking change API or update major without any additional minor feature. New request or response payload form API for example.
 - Run this command to publish from codepush
 ```yarn run dist-codepush:s-android```
-## Create BottomPanel
+## Tips and Trick
+### Create BottomPanel
 - If bottom panel is full screen, use react-navigation screenOptions presentation `modal`
 - If not, use component BottomPanel
+### Fetch data
+Fetch which response is used in many places, screen or components (ex: request authentication)
+- use utils/api, create api service in services/api with all listed endpoints
+- invoke in redux/epic and stored to redux state.
+Fetch which response that used only in one component or screen (ex: request product detail)
+- you can use utils/api
+- create custom hooks in hooks/dataState that encapsulate react-query.
 # Monitoring / Debugging
 ## React native debugger
 - install react native debugger [here](https://github.com/jhen0409/react-native-debugger)
