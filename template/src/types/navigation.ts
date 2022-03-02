@@ -1,5 +1,4 @@
 export type RootStackParamList = {
-  'Ads List': undefined;
   'Collapsible Background': undefined;
   'Collapsible Custom': undefined;
   'Collapsible Default': undefined;

@@ -33,13 +33,12 @@ Production-ready react native boilerplate. This repo is still under active devel
 3. Paste server id and key from firebase to one signal
 4. Copy one signal id to env ONE_SIGNAL_ID
 
-#### Admob
-1. Create admob account => create app
-2. App Settings => copy to firebase.json
 #### Fastlane
 - `fastlane supply init` to set up metadata management at a later point
 #### Android Play Store
 - add json_key_file from google play console in /android/fastlane/Appfile
+#### Update terms and condition
+Here we use firebase firestore to store common data like terms and condition, privacy policy, stored with html tag, because we know that terms and condition, privacy policy is dynamic and sometimes need to change. So that explains why we user react-native-render-html and firebase/firestore.
 ### Things for designer
 #### Colors
 - define colors (customColor and defined color if needed) in src/style/color

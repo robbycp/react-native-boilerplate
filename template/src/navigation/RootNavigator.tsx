@@ -2,7 +2,6 @@ import React from 'react';
 import {Platform} from 'react-native';
 import {TransitionPresets, createStackNavigator} from '@react-navigation/stack';
 
-import ScreenAdsList from '~/screens/AdsList';
 import ScreenCollapsibleBackground from '~/screens/CollapsibleBackground';
 import ScreenCollapsibleCustomHeader from '~/screens/CollapsibleCustomHeader';
 import ScreenCollapsibleDefault from '~/screens/CollapsibleDefault';
@@ -35,7 +34,6 @@ const RootNavigator: React.FunctionComponent = () => {
             return <Header title={route.name} />;
           },
         }}>
-        <Stack.Screen name="Ads List" component={ScreenAdsList} />
         <Stack.Screen
           name="Collapsible Background"
           component={ScreenCollapsibleBackground}
